@@ -25,7 +25,7 @@ public class EJ_13 {
         return count;
 
     }
-    
+
 
     public static void main(String[] args) {
 
