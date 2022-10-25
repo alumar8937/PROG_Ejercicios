@@ -42,6 +42,8 @@ public class EJ_15 {
 
         // Calculate and display results
 
+        System.out.println("Test This is a TEst");
+
         checkLenghtMatchingWords(Utilities.divideStringIntoWords(string), inputValue);
 
         inputValue.close(); // Close Scanner
