@@ -1,32 +1,36 @@
 // 25_10_2022 Pedro Marín Sanchis
 
-// This program returns if there are short or long words in a text.
+// This program checks if a given text uses parenthesis correctly.
 
 import java.util.Scanner;
 
 public class EJ_15 {
 
-    public static void checkLenghtMatchingWords(String[] words, Scanner inputValue) { // Finds and returns if there are short or long words in a text.
+    public static boolean checkParenthesisFormatting(String string) { // Checks for correct parenthesis formatting.
         
-        int wordLength = 0;
-        boolean shortFlag = false;
-        boolean longFlag = false;
-        
-        System.out.print("Enter the word length: "); // Ask for wordLenght [We assume inputs are valid.]
-        wordLength = inputValue.nextInt();
+        int openingCount = 0;
+        int closingCount = 0;
 
-        for (String i : words){
+        for (int i = 0; i <= string.length()-1; i++) {
 
-            if (i.length() < wordLength) {shortFlag = true;}
-            if (i.length() > wordLength) {longFlag = true;}
+            switch (string.charAt(i)) {
+
+                case '(':
+                    openingCount++;
+                break;
+
+                case ')':
+                    closingCount++;
+                break;
+
+            }
 
         }
 
-        if (shortFlag) {System.out.println("There is at least a short word within the text.");}
-        if (longFlag) {System.out.println("There is at least a long word within the text.");}
+        if (openingCount == closingCount) {return true;} else {return false;}
 
     }
-    
+
 
     public static void main(String[] args) {
 
@@ -42,9 +46,15 @@ public class EJ_15 {
 
         // Calculate and display results
 
-        System.out.println("Test This is a TEst");
+        if (checkParenthesisFormatting(string)) {
 
-        checkLenghtMatchingWords(Utilities.divideStringIntoWords(string), inputValue);
+            System.out.println("The text is correctly formatted.");
+
+        } else {
+
+            System.out.println("The text isn't correctly formatted.");
+
+        }
 
         inputValue.close(); // Close Scanner
 

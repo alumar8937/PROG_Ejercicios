@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class EJ_14 {
 
-    public static int addUpNumbers(String[] words) { // Returns the ammount of digits in a string.
+    public static int addUpNumbers(String[] words) { // Returns the ammount of numbers in a string.
         
         int count = 0;
         boolean flag = true; // Used to validate if a word is a number.
