@@ -48,7 +48,6 @@ public class Alfabetica {
 
                     System.out.println("Your word is not alphabetically arranged.");
 
-
                 }
 
             }
