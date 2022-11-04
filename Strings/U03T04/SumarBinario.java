@@ -23,6 +23,7 @@ public class SumarBinario {
 
                     // La suma directa de los números [Pongamos de ejemplo 111 y 100] da 211. Restamos 200 y sumamos 1000.
 
+                    //                                                  Restamos 2*10^(Posición)                                                Sumamos 1*10^(Posición + 1)
                     binaryNumberSum = binaryNumberSum - (2 * (int) Math.pow(10, String.valueOf(binaryNumberSum).length() - i - 1)) + (1 * (int) Math.pow(10, String.valueOf(binaryNumberSum).length() - i));
 
                 }
@@ -44,9 +45,9 @@ public class SumarBinario {
 
         // Ask for both numbers [We assume inputs are valid].
 
-        System.out.println("Enter your first binary number: ");
+        System.out.print("Enter your first binary number: ");
         number1 = inputValue.nextInt();
-        System.out.println("Enter your second binary number: ");
+        System.out.print("Enter your second binary number: ");
         number2 = inputValue.nextInt();
 
         System.out.println(sumarBinario(number1, number2));
