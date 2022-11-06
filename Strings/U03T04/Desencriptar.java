@@ -1,6 +1,6 @@
 // 02/11/2022 Pedro Marín Sanchis
 
-// This program encrypts texts.
+// This program decrypts texts.
 
 import java.util.Scanner;
 
