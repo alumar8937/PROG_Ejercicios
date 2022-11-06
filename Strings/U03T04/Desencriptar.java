@@ -4,21 +4,17 @@
 
 import java.util.Scanner;
 
-public class EncriptarDesencriptar {
+public class Desencriptar {
 
     static char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
     static char[] uppercaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 
-    public static String encrypt(String text, int n, boolean decrypt) {
-
-        if (decrypt) {
-
-            n = alphabet.length - n;
-
-        }
+    public static String decrypt(String text, int n) {
 
         String encryptedText = "";
         boolean validCharacterFlag = false;
+
+        n = alphabet.length - n; // To move backwards trough character array.
 
         for (int i = 0; i < text.length(); i++) {
 
@@ -77,20 +73,16 @@ public class EncriptarDesencriptar {
         Scanner inputValue = new Scanner(System.in); // Open Scanner.
         String unencryptedText = "";
         int phase;
-        boolean decrypt = false;
 
-        // Ask for both numbers [We assume inputs are valid].
+        // Ask for user input [We assume inputs are valid].
 
         System.out.print("Enter your text: ");
         unencryptedText = inputValue.nextLine();
 
-        System.out.print("Do you want to decrypt? true/false: ");
-        decrypt = inputValue.nextBoolean();
-
         System.out.print("Enter phase: ");
         phase = inputValue.nextInt();
 
-        System.out.print("The encrypted text is: " + encrypt(unencryptedText, phase, decrypt));
+        System.out.print("The decrypted text is: " + decrypt(unencryptedText, phase));
 
         inputValue.close();
 
