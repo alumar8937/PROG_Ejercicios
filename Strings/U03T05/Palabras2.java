@@ -27,6 +27,7 @@ public class Palabras2 {
 
     }
 
+    
     public static String trimString(String string, char trim) {
 
         int startCount = 0; // Ammount of characters to be trimmed at the start of the string.
@@ -74,13 +75,13 @@ public class Palabras2 {
 
     public static String replaceInString(String string, char[] chars, char replace) {
 
-        String replacedString = string;
+        String replacedString = "";
 
-        for (char i: chars) { // Shit not working
+        for (char i: chars) {
 
-            for (int j = 0; j < stringLength(replacedString); j++) {
+            for (int j = 0; j < stringLength(string); j++) {
 
-                if (replacedString.charAt(j) == i) {
+                if (string.charAt(j) == i) {
 
                     replacedString = replacedString + replace;
 
@@ -92,18 +93,28 @@ public class Palabras2 {
 
             }
 
+            string = replacedString;
+            replacedString = "";
+
         }
 
-        return replacedString;
+        return string;
+
+    }
+
+
+    public static String removeAdditionalInString(String string, char[] replace) {
+
+        
 
     }
 
 
     /*public static String[] createWordArray(String string) {
 
-        string = trimString(string,  ' ');
         string = replaceInString(string, ",.;:".toCharArray(), ' ');
-        string = replaceAdditionalInString(string, " ");
+        string = trimString(string,  ' ');
+        string = removeAdditionalInString(string, " ");
 
         return splitString(string, " ");
 
@@ -123,7 +134,7 @@ public class Palabras2 {
 
         // Calculate and display results
 
-        System.out.println(replaceInString(userText, ",.;:".toCharArray(), ' '));
+        System.out.println(removeAdditionalInString(userText, ",.;:".toCharArray()));
 
         inputValue.close(); // Close Scanner
         
