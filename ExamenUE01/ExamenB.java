@@ -23,9 +23,9 @@ public class ExamenB {
 
         while (!paraulesOrdenades) {
 
-            for (int i = 0; i < paraules.length - 1; i++) {
+            paraulesOrdenades = true;
 
-                paraulesOrdenades = true;
+            for (int i = 0; i < paraules.length - 1; i++) {
 
                 if (paraules[i].length() > paraules[i+1].length()) {
 
@@ -60,7 +60,7 @@ public class ExamenB {
 
     private static void eliminarParaula(String paraula) {
 
-        textDeTreball = textDeTreball.replaceAll(paraula, "").replaceAll(" +", " ");
+        textDeTreball = textDeTreball.replaceAll(paraula, "").replaceAll(" +", " ").trim();
 
     }
 
