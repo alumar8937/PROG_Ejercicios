@@ -10,7 +10,7 @@ public class TransformaImagen {
 
     File f = null;
 
-    byte[] primerosBytes = new byte[53]; // Primeros 54 bytes.
+    byte[] primerosBytes = new byte[54]; // Primeros 54 bytes.
 
     byte[] datosPixeles; // El resto del archivo.
 
@@ -26,12 +26,6 @@ public class TransformaImagen {
             f = fEnt;
             cargarImagen();
 
-            for (int i = 0; i < 100; i++){
-
-                System.out.println(datosPixeles[i]);
-
-            }
-
         } else {
 
             System.out.println("[ERROR] File does not exist.");
@@ -44,24 +38,26 @@ public class TransformaImagen {
 
         FileInputStream archivo = new FileInputStream(f);
 
+        datosPixeles = new byte[archivo.available()-primerosBytes.length];
+        datosTrabajo = new byte[archivo.available()-primerosBytes.length];
+
+        int valor = archivo.read();
+
         // Cargar los primeros 54 bytes.
 
-        for (int i = 0; i < 53; i++) {
+        for (int i = 0; i < primerosBytes.length; i++) {
 
-            primerosBytes[i] = (byte) archivo.read();
+            primerosBytes[i] = (byte) valor;
+            valor = archivo.read();
 
         }
 
         // Cargar los datos de los pixeles.
 
-        int valor = archivo.read();
+        for (int i = 0; valor != -1; i++) {
 
-        datosPixeles = new byte[archivo.available() - 54];
-        datosTrabajo = new byte[archivo.available() - 54];
-
-        for (int i = 0; i < archivo.available() - 54; i++) {
-
-            datosPixeles[i] = (byte) archivo.read();
+            datosPixeles[i] = (byte) valor;
+            valor = archivo.read();
 
         }
 
@@ -106,7 +102,13 @@ public class TransformaImagen {
 
         // Transformar a una imagen más oscura y guardar como *_o.bmp
 
-        
+        for (int i = 0; i < datosPixeles.length; i++) {
+
+            datosTrabajo[i] = (byte) (datosPixeles[i] / 2);
+
+        }
+
+        guardarImagen(getNombreSinExtension(f.getName()) + "_o");
 
     }
 
@@ -114,6 +116,20 @@ public class TransformaImagen {
     public void transformaBlancoNegro() throws IOException {
 
         // Transformar a una imagen en blanco y negro y guardar como *_bn.bmp
+
+        int media = 0;
+
+        for (int i = 0; i < datosPixeles.length; i = i + 3) {
+
+            media = (( (int) datosPixeles[i] + (int) datosPixeles[i+1] + (int) datosPixeles[i+2]) / 3);
+
+            datosTrabajo[i] = (byte) media;
+            datosTrabajo[i+1] = (byte) media;
+            datosTrabajo[i+2] = (byte) media;
+
+        }
+
+        guardarImagen(getNombreSinExtension(f.getName()) + "_bn");
 
     }
 
