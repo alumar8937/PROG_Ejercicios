@@ -15,9 +15,9 @@ public class U04T02 {
         TransformaImagen ti = new TransformaImagen(f);
 
         
-        //ti.transformaNegativo();
+        ti.transformaNegativo();
         
-        //ti.transformaOscuro();
+        ti.transformaOscuro();
 
         ti.transformaBlancoNegro();
 

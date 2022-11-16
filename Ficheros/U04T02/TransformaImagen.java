@@ -3,7 +3,6 @@ import java.io.File;
 import java.io.FileInputStream;
 
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class TransformaImagen {
@@ -104,7 +103,15 @@ public class TransformaImagen {
 
         for (int i = 0; i < datosPixeles.length; i++) {
 
-            datosTrabajo[i] = (byte) (datosPixeles[i] / 2);
+            if (datosPixeles[i] < 0) {
+
+                datosTrabajo[i] = (byte) ((datosPixeles[i] + 256)/ 2);
+
+            } else {
+
+                datosTrabajo[i] = (byte) (datosPixeles[i] / 2);
+
+            }
 
         }
 
@@ -119,9 +126,23 @@ public class TransformaImagen {
 
         int media = 0;
 
+        int dato1 = 0;
+
+        int dato2 = 0;
+
+        int dato3 = 0;
+
         for (int i = 0; i < datosPixeles.length; i = i + 3) {
 
-            media = (( (int) datosPixeles[i] + (int) datosPixeles[i+1] + (int) datosPixeles[i+2]) / 3);
+            dato1 = datosPixeles[i];
+            dato2 = datosPixeles[i+1];
+            dato3 = datosPixeles[i+2];
+
+            if (dato1 < 0) {dato1=dato1+256;}
+            if (dato2 < 0) {dato2=dato2+256;}
+            if (dato3 < 0) {dato3=dato3+256;}
+
+            media = ( (dato1 + dato2 + dato3) / 3);
 
             datosTrabajo[i] = (byte) media;
             datosTrabajo[i+1] = (byte) media;
