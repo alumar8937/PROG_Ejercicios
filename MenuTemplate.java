@@ -5,7 +5,7 @@
 
 import java.util.Scanner;
 
-public class FileExplorer {
+public class CLASSNAME {
 
     private static Boolean exitCondition = false;
 
@@ -32,7 +32,7 @@ public class FileExplorer {
 
                 switch (inputValue.nextLine()) {
 
-                    case "-1":
+                    case "1":
 
                     break;
 
