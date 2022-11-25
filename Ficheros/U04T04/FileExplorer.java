@@ -27,9 +27,17 @@ public class FileExplorer {
 
         System.out.println("List of files and directories in directory: " + file.getAbsolutePath() + "\n" + "-".repeat(50) + "\n[0] Parent directory");
        
-        if (file.canRead()) {
+        if (file.canRead() && file.isDirectory()) {
 
-            System.out.println(FileCharacteristics(file.listFiles()));
+            if (file.listFiles().length != 0) {
+
+                System.out.println(FileCharacteristics(file.listFiles()));
+
+            } else {
+
+                System.out.println("            This directory is empty.");
+
+            }
 
         } else {
 
@@ -42,24 +50,16 @@ public class FileExplorer {
 
     private static String FileCharacteristics(File[] fileArray) {
 
-        StringBuffer buffer = new StringBuffer();
+        StringBuffer buffer = new StringBuffer(); // For method return.
         String[] fileCharacteristicsArray = new String[fileArray.length];
 
-        // Insert numbers
+        // Insert numbers.
 
         for (int i = 0; i < fileArray.length; i++) {
 
-            fileCharacteristicsArray[i] = "[" + (i+1) + "]";
+            fileCharacteristicsArray[i] = "[" + (i+1) + "]\t";
 
-        }
-
-        fileCharacteristicsArray = padToSameLength(fileCharacteristicsArray);
-
-        fileCharacteristicsArray = addSpacingToArray(fileCharacteristicsArray, 5);
-
-        // Insert permissions
-
-        for (int i = 0; i < fileArray.length; i++) {
+            // Insert permissions.
 
             if (fileArray[i].isDirectory()) {
                 
@@ -72,7 +72,7 @@ public class FileExplorer {
             }
 
             if (fileArray[i].canRead()) {
-                
+  
                 fileCharacteristicsArray[i] = fileCharacteristicsArray[i] + "r";
             
             } else {
@@ -93,49 +93,28 @@ public class FileExplorer {
 
             if (fileArray[i].canExecute()) {
                 
-                fileCharacteristicsArray[i] = fileCharacteristicsArray[i] + "x";
+                fileCharacteristicsArray[i] = fileCharacteristicsArray[i] + "x\t";
             
             } else {
 
-                fileCharacteristicsArray[i] = fileCharacteristicsArray[i] + "-";
+                fileCharacteristicsArray[i] = fileCharacteristicsArray[i] + "-\t";
 
             }
 
-        }
+            // Insert file sizes
 
-        fileCharacteristicsArray = addSpacingToArray(fileCharacteristicsArray, 5);
+            fileCharacteristicsArray[i] = fileCharacteristicsArray[i] + fileArray[i].length() + "\t";
 
-        // Insert file sizes
+            // Insert date
 
-        for (int i = 0; i < fileArray.length; i++) {
+            fileCharacteristicsArray[i] = fileCharacteristicsArray[i] + fileArray[i].lastModified() + "\t";
 
-            fileCharacteristicsArray[i] = fileCharacteristicsArray[i] + fileArray[i].length();
-
-        }
-
-        fileCharacteristicsArray = padToSameLength(fileCharacteristicsArray);
-
-        fileCharacteristicsArray = addSpacingToArray(fileCharacteristicsArray, 5);
-
-        // Insert date
-
-        for (int i = 0; i < fileArray.length; i++) {
-
-            fileCharacteristicsArray[i] = fileCharacteristicsArray[i] + fileArray[i].lastModified();
-
-        }
-
-        fileCharacteristicsArray = padToSameLength(fileCharacteristicsArray);
-
-        fileCharacteristicsArray = addSpacingToArray(fileCharacteristicsArray, 5);
-
-        // Insert name
-
-        for (int i = 0; i < fileArray.length; i++) {
-
+            // Insert file name
+            
             fileCharacteristicsArray[i] = fileCharacteristicsArray[i] + fileArray[i].getName();
 
         }
+
 
         for (String i: fileCharacteristicsArray) {
 
@@ -147,48 +126,6 @@ public class FileExplorer {
 
     }
 
-
-    private static String[] padToSameLength(String[] array) {
-
-        String biggestElement = array[0];
-
-        // Find biggest element in array
-
-        for (int i = 1; i < array.length; i++) {
-
-            if (biggestElement.length() < array[i].length()) {
-
-                biggestElement = array[i];
-
-            }
-
-        }
-
-        // Pad elements
-
-        for (int i = 0; i < array.length; i++) {
-
-            array[i] = array[i] + " ".repeat(biggestElement.length() - array[i].length());
-
-        }
-
-        return array;
-
-    }
-
-    
-    private static String[] addSpacingToArray(String[] array, int spacing) {
-
-        for (int i = 0; i < array.length; i++) {
-
-            array[i] = array[i] + " ".repeat(spacing);
-
-        }
-
-        return array;
-
-    }
-    
     
     private static void menu(Scanner inputValue) {
 
@@ -216,17 +153,23 @@ public class FileExplorer {
                     break;
 
                     case 0:
-                        currentRoute = file.getParent();
+                        if (currentRoute != File.listRoots()[0].getAbsolutePath()) {
+
+                            currentRoute = file.getParent();
+
+                        }
                     break;
 
                     default:
-                        if (choice > 0) {
+                        if (choice > 0 && choice < file.listFiles().length) {
 
                             currentRoute = file.listFiles()[choice-1].getAbsolutePath();
 
                         } else {
 
-                            System.out.println("[ERROR]: That is not a correct option, try again.\n");
+                            cls();
+                            System.out.print("[ERROR]: That is not a correct option, try again.\nPress ENTER to continue.");
+                            inputValue.nextLine();
 
                         }
 
@@ -237,9 +180,9 @@ public class FileExplorer {
 
         } catch (Exception e) {
 
-            e.printStackTrace();
             cls();
-            System.out.println("[ERROR]: That is not a correct option, try again.\n");
+            System.out.print("[ERROR]: That is not a correct option, try again.\nPress ENTER to continue.");
+            inputValue.nextLine();
 
         }
 
@@ -249,7 +192,6 @@ public class FileExplorer {
     public static void main(String[] args) {
 
         Scanner inputValue = new Scanner(System.in);
-
         
         while (!exitCondition) {
 
