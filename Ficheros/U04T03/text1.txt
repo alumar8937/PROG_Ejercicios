@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Cras quis tortor lacus.
 Maecenas a tortor ut sapien lobortis venenatis vitae nec dolor.
 Etiam dignissim magna et nisl feugiat posuere. Donec ac ante urna.
 Nam tellus dolor, sagittis et tincidunt sit amet, aliquet sit amet justo.
+=======
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Cras quis tortor lacus.
+Maecenas a tortor ut sapien lobortis venenatis vitae nec dolor.
+Etiam dignissim magna et nisl feugiat posuere. Donec ac ante urna.
+Nam tellus dolor, sagittis et tincidunt sit amet, aliquet sit amet justo.
+>>>>>>> 631d28022fb59252d7e8f32598d70cb78bcccaaa
 Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
