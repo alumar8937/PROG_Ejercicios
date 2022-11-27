@@ -4,7 +4,8 @@
 // This is a simple file system explorer.
 
 import java.util.Scanner;
-
+import java.util.Locale;
+import java.text.DateFormat;
 import java.io.File;
 
 
@@ -53,9 +54,11 @@ public class FileExplorer {
         StringBuffer buffer = new StringBuffer(); // For method return.
         String[] fileCharacteristicsArray = new String[fileArray.length];
 
-        // Insert numbers.
+        DateFormat formatter = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, Locale.getDefault());
 
         for (int i = 0; i < fileArray.length; i++) {
+
+            // Insert numbers.
 
             fileCharacteristicsArray[i] = "[" + (i+1) + "]\t";
 
@@ -107,7 +110,7 @@ public class FileExplorer {
 
             // Insert date
 
-            fileCharacteristicsArray[i] = fileCharacteristicsArray[i] + fileArray[i].lastModified() + "\t";
+            fileCharacteristicsArray[i] = fileCharacteristicsArray[i] + formatter.format(fileArray[i].lastModified()) + "\t";
 
             // Insert file name
             
@@ -150,6 +153,7 @@ public class FileExplorer {
 
                     case -1: // Exit
                         correctInputFlag = true;
+                        exitCondition = true;
                     break;
 
                     case 0:
@@ -161,7 +165,7 @@ public class FileExplorer {
                     break;
 
                     default:
-                        if (choice > 0 && choice < file.listFiles().length) {
+                        if (choice > 0 && choice <= file.listFiles().length) {
 
                             currentRoute = file.listFiles()[choice-1].getAbsolutePath();
 
