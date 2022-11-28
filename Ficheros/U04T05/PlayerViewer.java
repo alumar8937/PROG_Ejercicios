@@ -3,7 +3,6 @@
 
 // This program shows, combines and sorts player lists.
 
-import java.rmi.server.ExportException;
 import java.util.Scanner;
 
 public class PlayerViewer {
