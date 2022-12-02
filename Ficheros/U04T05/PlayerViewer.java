@@ -4,11 +4,21 @@
 // This program shows, combines and sorts player lists.
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.security.spec.ECFieldF2m;
+import java.text.FieldPosition;
 
 public class PlayerViewer {
 
     private static Boolean exitCondition = false;
-    private static Player[] playerArray;
+    private static ArrayList<Player> playerList = new ArrayList<Player>(1);
     private static boolean fileLoadedFlag = false;
 
 
@@ -29,7 +39,7 @@ public class PlayerViewer {
 
                 correctInputFlag = true;
 
-                System.out.println("| 0.- Exit | 1.- Load file | 2.- Combine with file | 3.- Generate Brazil |");
+                System.out.println("| 0.- Exit | 1.- Load File | 2.- Sort | 3.- Combine with file | 4.- Save File | 5.- Generate Brazil |");
                 System.out.print("Write your choice: ");
 
                 switch (inputValue.nextLine()) {
@@ -42,17 +52,29 @@ public class PlayerViewer {
 
                     case "1":
 
-                        loadFile();
+                        loadPlayerArray(readPlayerFile(inputValue));
 
                     break;
 
                     case "2":
 
-
+                        //sort();
 
                     break;
 
                     case "3":
+
+                        appendPlayerArray(readPlayerFile(inputValue));
+
+                    break;
+
+                    case "4":
+
+                        exportToFile(playerList, inputValue);
+
+                    break;
+
+                    case "5":
 
                         generateBrazil(inputValue);
 
@@ -85,20 +107,18 @@ public class PlayerViewer {
 
         if (fileLoadedFlag) {
 
-            if (playerArray.length != 0) {
+            if (playerList.size() != 0) {
+               
+                System.out.printf("%-8s%-8s%-15s%-25s%-8s%-8s%-15s\n\n","" , "ID", "Country", "Name", "Year", "Height", "Club");
 
-                System.out.println("Players");
-                for (int i = 0; i < playerArray.length; i++) {
+                for (int i = 0; i < playerList.size(); i++) {
         
-                    System.out.print("[" + (i+1) + "]\t");
-                    System.out.print(playerArray[i].getCountryID() + "\t");
-                    System.out.print(playerArray[i].getCountryName() + "\t");
-                    System.out.print(playerArray[i].getPlayerName() + "\t");
-                    System.out.print(playerArray[i].getBirthYear() + "\t");
-                    System.out.print(playerArray[i].getPlayerHeight() + "\t");
-                    System.out.println(playerArray[i].getClub());
+                    System.out.printf("%-8s%-8s%-15s%-25s%-8s%-8s%-15s\n","[" + (i+1) + "]", playerList.get(i).getCountryID(), 
+                    playerList.get(i).getCountryName(), playerList.get(i).getPlayerName(), playerList.get(i).getBirthYear(), 
+                    playerList.get(i).getPlayerHeight(), playerList.get(i).getClub());
         
                 }
+
 
             } else {
 
@@ -114,9 +134,139 @@ public class PlayerViewer {
 
     }
 
-    private static void loadFile() {
+
+    private static void loadPlayerArray(ArrayList<Player> playerList) {
+
+        playerList.clear();
+        appendPlayerArray(playerList);
+
+    }
 
 
+    private static void appendPlayerArray(ArrayList<Player> list) {
+
+        for (Player i: list) {
+
+            playerList.add(i);
+
+        }
+
+    }
+
+
+    private static ArrayList<Player> readPlayerFile(Scanner inputValue) {
+
+        ArrayList<Player> list = new ArrayList<Player>(1);
+        File file;
+        DataInputStream inputStream;
+
+        boolean correctInputFlag = false;
+
+        try {
+            inputStream = new DataInputStream(new FileInputStream(selectFile(inputValue)));
+            while (inputStream.available() > 0) {
+
+                inputStream.readInt();
+                inputStream.readUTF();
+                inputStream.readUTF(); // Por aqui me he quedado.
+            
+            }
+        } catch (Exception e) {
+            
+        }
+
+        fileLoadedFlag = true;
+
+
+
+        return list;
+
+    }
+
+
+    private static void exportToFile(ArrayList<Player> list, Scanner inputValue) {
+
+        DataOutputStream outputStream;
+
+            try {
+
+                outputStream = new DataOutputStream(new FileOutputStream(selectFile(inputValue)));
+                
+                for (Player i: playerList) {
+
+                    outputStream.writeInt(i.getCountryID());
+                    outputStream.writeUTF(i.getCountryName());
+                    outputStream.writeUTF(i.getPlayerName());
+                    outputStream.writeInt(i.getBirthYear());
+                    outputStream.writeFloat(i.getPlayerHeight());
+                    outputStream.writeUTF(i.getClub());
+
+                }
+            } catch (Exception e) {
+                cls();
+                System.out.print("[ERROR]: Try Again.\nPress ENTER to continue: ");
+                inputValue.nextLine();
+                cls();
+            }
+
+    }
+
+
+    private static File selectFile(Scanner inputValue) {
+
+        File file=null;
+
+        boolean correctInputFlag = false;
+        
+        while (!correctInputFlag) {
+
+            try {
+
+                System.out.println("Enter the path to the file: ");
+                file = new File(inputValue.nextLine());
+
+                if (file.exists()) {
+
+                    cls();
+                    System.out.print("[WARNING]: File alredy exists. Do you wish to continue? [Y/N]: ");
+                    switch (inputValue.nextLine()) {
+
+                        case "Y": case "y":
+
+                            correctInputFlag = true;
+
+                        break;
+
+                        case "N": case "n": break;
+
+                        default:
+
+                            correctInputFlag = false;
+                            cls();
+                            System.out.print("[ERROR]: That is not a correct option, try again.\nPress ENTER to continue: ");
+                            inputValue.nextLine();
+                            cls();
+
+                        break;
+
+                    }
+
+                } else {
+
+                    correctInputFlag = true;
+
+                }
+                
+            } catch (Exception e) {
+                cls();
+                System.out.print("[ERROR]: Try Again.\nPress ENTER to continue: ");
+                inputValue.nextLine();
+                cls();
+            }
+
+        }
+
+        return file;
 
     }
 
@@ -174,35 +324,47 @@ public class PlayerViewer {
 
                     case "0":
 
-                        
+                        ArrayList<Player> list = new ArrayList<Player>(1);
+
+                        for (Player i: brazilArray) {
+
+                            list.add(i);
+
+                        }
+
+                        exportToFile(list, inputValue);
 
                     break;
 
                     case "1":
 
                         cls();
-                        System.out.println("[WARNING]: This will overwrite the currently loaded players. Do you wish to continue? [Y/N]");
+                        System.out.print("[WARNING]: This will overwrite the currently loaded players. Do you wish to continue? [Y/N]: ");
                         switch (inputValue.nextLine()) {
 
                             case "Y": case "y":
 
+                                fileLoadedFlag = true;
+                                playerList.clear();
+                                for (Player i: brazilArray) {
 
+                                    playerList.add(i);
+
+                                }
 
                             break;
 
-                            case "N": case "n":
-
-
-
-                            break;
+                            case "N": case "n": break;
 
                             default:
 
-                            correctInputFlag = false;
-                            cls();
-                            System.out.print("[ERROR]: That is not a correct option, try again.\nPress ENTER to continue: ");
-                            inputValue.nextLine();
-                            cls();
+                                correctInputFlag = false;
+                                cls();
+                                System.out.print("[ERROR]: That is not a correct option, try again.\nPress ENTER to continue: ");
+                                inputValue.nextLine();
+                                cls();
+                            
+                            break;
 
                         }
 
@@ -216,7 +378,7 @@ public class PlayerViewer {
 
                     case "3":
 
-                        //generateBrazil();
+                        generateBrazil(inputValue);
 
                     break;
 
@@ -246,13 +408,6 @@ public class PlayerViewer {
     public static void main(String[] args) {
 
         Scanner inputValue = new Scanner(System.in);
-
-        playerArray = new Player[2];
-
-        fileLoadedFlag = true;
-
-        playerArray[0] = new Player(1, "miguel", null, 0, 0, null);
-        playerArray[1] = new Player(4, "jose", null, 0, 0, null);
 
         while (!exitCondition) {
 
