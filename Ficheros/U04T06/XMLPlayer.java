@@ -7,10 +7,7 @@ public class XMLPlayer {
 
         ArrayList<Player> list = new ArrayList<Player>(1);
 
-        list.add(new Player(9, "Brazil", "Gabriel Martinelli", 2001, (float) 1.78, "Arsenal (ENG)"));
-        list.add(new Player(9, "Brazil", "Gabriel Martinelli", 2001, (float) 1.78, "Arsenal (ENG)"));
-        list.add(new Player(9, "Brazil", "Gabriel Martinelli", 2001, (float) 1.78, "Arsenal (ENG)"));
-        list.add(new Player(9, "Brazil", "Gabriel Martinelli", 2001, (float) 1.78, "Arsenal (ENG)"));
+        
 
         return list;
 
