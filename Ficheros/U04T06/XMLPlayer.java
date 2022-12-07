@@ -51,9 +51,9 @@ public class XMLPlayer {
             countryID = Integer.parseInt(currentSelection.getAttributes().item(0).getTextContent()); // Get country ID from selection attribute.
             countryName = currentSelection.getElementsByTagName(XMLTag_Country).item(0).getTextContent(); // Get country name from selection child element.
 
-            for (int j = 0; i < players.getLength(); i++) {
+            for (int j = 0; i < players.getLength(); j++) {
 
-                Element currentPlayer = (Element)players.item(i);
+                Element currentPlayer = (Element)players.item(j);
 
                 playerName = currentPlayer.getElementsByTagName(XMLTag_playerName).item(0).getTextContent();
                 birthYear = Integer.parseInt(currentPlayer.getElementsByTagName(XMLTag_birthYear).item(0).getTextContent());
