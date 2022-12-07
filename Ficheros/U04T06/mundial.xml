@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mundial>
+    <seleccion id="20">
+        <pais>Spain</pais>
+        <entrenador>Luis Enrique Martínez</entrenador>
+        <plantilla>
+            <jugador demarcacion="portero">
+                <nombre>Robert Sanchez</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1,97</altura>
+                <dorsal>1</dorsal>
+                <club>Brighton and Hove Albion (ENG)</club>
+            </jugador>
+            <jugador demarcacion="portero">
+                <nombre>David Raya</nombre>
+                <nacimiento>1995</nacimiento>
+                <altura>1,83</altura>
+                <dorsal>13</dorsal>
+                <club>Brentford F.C. (ENG)</club>
+            </jugador>
+            <jugador demarcacion="portero">
+                <nombre>Unai Simón</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1,90</altura>
+                <dorsal>23</dorsal>
+                <club>Athletic Bilbao (SPA)</club>
+            </jugador>
+            <jugador demarcacion="defensa">
+                <nombre>César Azpilicueta</nombre>
+                <nacimiento>1989</nacimiento>
+                <altura>1,78</altura>
+                <dorsal>2</dorsal>
+                <club>Chelsea (ENG)</club>
+            </jugador>
+            <jugador demarcacion="defensa">
+                <nombre>Eric García</nombre>
+                <nacimiento>2001</nacimiento>
+                <altura>1,82</altura>
+                <dorsal>3</dorsal>
+                <club>F.C. Barcelona (SPA)</club>
+            </jugador>
+            <jugador demarcacion="defensa">
+                <nombre>Pau Torres</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1,91</altura>
+                <dorsal>4</dorsal>
+                <club>Villarreal (SPA)</club>
+            </jugador>
+            <jugador demarcacion="defensa">
+                <nombre>Alejandro Balde</nombre>
+                <nacimiento>2003</nacimiento>
+                <altura>1,75</altura>
+                <dorsal>14</dorsal>
+                <club>F.C. Barcelona (SPA)</club>
+            </jugador>
+            <jugador demarcacion="defensa">
+                <nombre>Hugo Guillamón</nombre>
+                <nacimiento>2000</nacimiento>
+                <altura>1,78</altura>
+                <dorsal>15</dorsal>
+                <club>Valencia (SPA)</club>
+            </jugador>
+            <jugador demarcacion="defensa">
+                <nombre>Jordi Alba</nombre>
+                <nacimiento>1989</nacimiento>
+                <altura>1,70</altura>
+                <dorsal>18</dorsal>
+                <club>F.C. Barcelona (SPA)</club>
+            </jugador>
+            <jugador demarcacion="defensa">
+                <nombre>Dani Carvajal</nombre>
+                <nacimiento>1992</nacimiento>
+                <altura>1,73</altura>
+                <dorsal>20</dorsal>
+                <club>Real Madrid C.F. (SPA)</club>
+            </jugador>
+            <jugador demarcacion="defensa">
+                <nombre>Aymeric Laporte</nombre>
+                <nacimiento>1994</nacimiento>
+                <altura>1,89</altura>
+                <dorsal>24</dorsal>
+                <club>Manchester City (ENG)</club>
+            </jugador>
+            <jugador demarcacion="centrocampista">
+                <nombre>Sergio Busquets</nombre>
+                <nacimiento>1988</nacimiento>
+                <altura>1,89</altura>
+                <dorsal>5</dorsal>
+                <club>F.C. Barcelona (SPA)</club>
+            </jugador>
+            <jugador demarcacion="centrocampista">
+                <nombre>Marcos Llorente</nombre>
+                <nacimiento>1995</nacimiento>
+                <altura>1,84</altura>
+                <dorsal>6</dorsal>
+                <club>Atlético Madrid (SPA)</club>
+            </jugador>
+            <jugador demarcacion="centrocampista">
+                <nombre>Koke</nombre>
+                <nacimiento>1992</nacimiento>
+                <altura>1,76</altura>
+                <dorsal>8</dorsal>
+                <club>Atlético Madrid (SPA)</club>
+            </jugador>
+            <jugador demarcacion="centrocampista">
+                <nombre>Gavi</nombre>
+                <nacimiento>2004</nacimiento>
+                <altura>1,73</altura>
+                <dorsal>9</dorsal>
+                <club>F.C. Barcelona (SPA)</club>
+            </jugador>
+            <jugador demarcacion="centrocampista">
+                <nombre>Rodri</nombre>
+                <nacimiento>1996</nacimiento>
+                <altura>1,90</altura>
+                <dorsal>16</dorsal>
+                <club>Manchester City (ENG)</club>
+            </jugador>
+            <jugador demarcacion="centrocampista">
+                <nombre>Carlos Soler</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1,80</altura>
+                <dorsal>19</dorsal>
+                <club>PSG (FRA)</club>
+            </jugador>
+            <jugador demarcacion="centrocampista">
+                <nombre>Pedri</nombre>
+                <nacimiento>2002</nacimiento>
+                <altura>1,74</altura>
+                <dorsal>26</dorsal>
+                <club>FC Barcelona</club>
+            </jugador>
+            <jugador demarcacion="delantero">
+                <nombre>Alvaro Morata</nombre>
+                <nacimiento>1992</nacimiento>
+                <altura>1,88</altura>
+                <dorsal>7</dorsal>
+                <club>Atlético Madrid (SPA)</club>
+            </jugador>
+            <jugador demarcacion="delantero">
+                <nombre>Marco Asensio</nombre>
+                <nacimiento>1996</nacimiento>
+                <altura>1,75</altura>
+                <dorsal>10</dorsal>
+                <club>Real Madrid C.F. (SPA)</club>
+            </jugador>
+            <jugador demarcacion="delantero">
+                <nombre>Ferran Torres</nombre>
+                <nacimiento>2000</nacimiento>
+                <altura>1,84</altura>
+                <dorsal>11</dorsal>
+                <club>F.C. Barcelona (SPA)</club>
+            </jugador>
+            <jugador demarcacion="delantero">
+                <nombre>Nico Williams</nombre>
+                <nacimiento>2002</nacimiento>
+                <altura>1,81</altura>
+                <dorsal>12</dorsal>
+                <club>Atlétic Bilbao (SPA)</club>
+            </jugador>
+            <jugador demarcacion="delantero">
+                <nombre>Yeremi Pino</nombre>
+                <nacimiento>2002</nacimiento>
+                <altura>1,72</altura>
+                <dorsal>17</dorsal>
+                <club>Villarreal (SPA)</club>
+            </jugador>
+            <jugador demarcacion="delantero">
+                <nombre>Dani Olmo</nombre>
+                <nacimiento>1998</nacimiento>
+                <altura>1,79</altura>
+                <dorsal>21</dorsal>
+                <club>R.B. Leipzig (GER)</club>
+            </jugador>
+            <jugador demarcacion="delantero">
+                <nombre>Pablo Sarabia</nombre>
+                <nacimiento>1992</nacimiento>
+                <altura>1,79</altura>
+                <dorsal>22</dorsal>
+                <club>PSG (FRA)</club>
+            </jugador>
+            <jugador demarcacion="delantero">
+                <nombre>Ansu Fati</nombre>
+                <nacimiento>2002</nacimiento>
+                <altura>1,78</altura>
+                <dorsal>25</dorsal>
+                <club>F.C. Barcelona (SPA)</club>
+            </jugador>
+        </plantilla>
+    </seleccion>
+</mundial>
