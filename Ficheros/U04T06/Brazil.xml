@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mundial>
+    <seleccion id="9">
+        <pais>Brazil</pais>
+        <entrenador/>
+        <plantilla>
+            <jugador demarcación="">
+                <nombre>Alisson</nombre>
+                <nacimiento>1992</nacimiento>
+                <altura>1.93</altura>
+                <dorsal/>
+                <club>Liverpool (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Weverton</nombre>
+                <nacimiento>1987</nacimiento>
+                <altura>1.89</altura>
+                <dorsal/>
+                <club>Palmeiras (BRA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Ederson</nombre>
+                <nacimiento>1993</nacimiento>
+                <altura>1.88</altura>
+                <dorsal/>
+                <club>Manchester City (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Danilo</nombre>
+                <nacimiento>1991</nacimiento>
+                <altura>1.84</altura>
+                <dorsal/>
+                <club>Juventus (ITA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Thiago Silva</nombre>
+                <nacimiento>1984</nacimiento>
+                <altura>1.83</altura>
+                <dorsal/>
+                <club>Chelsea (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Marquinhos</nombre>
+                <nacimiento>1994</nacimiento>
+                <altura>1.83</altura>
+                <dorsal/>
+                <club>PSG (FRA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Alex Sandro</nombre>
+                <nacimiento>1991</nacimiento>
+                <altura>1.8</altura>
+                <dorsal/>
+                <club>Juventus (ITA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Dani Alves</nombre>
+                <nacimiento>1983</nacimiento>
+                <altura>1.72</altura>
+                <dorsal/>
+                <club>UNAM (MEX)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Eder Militao</nombre>
+                <nacimiento>1998</nacimiento>
+                <altura>1.86</altura>
+                <dorsal/>
+                <club>Real Madrid CF (SPA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Alex Telles</nombre>
+                <nacimiento>1992</nacimiento>
+                <altura>1.81</altura>
+                <dorsal/>
+                <club>Sevilla FC (SPA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Bremer</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.88</altura>
+                <dorsal/>
+                <club>Juventus (ITA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Casemiro</nombre>
+                <nacimiento>1992</nacimiento>
+                <altura>1.95</altura>
+                <dorsal/>
+                <club>Manchester United (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Lucas Paqueta</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.8</altura>
+                <dorsal/>
+                <club>West Ham United (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Fred</nombre>
+                <nacimiento>1993</nacimiento>
+                <altura>1.69</altura>
+                <dorsal/>
+                <club>Manchester United (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Fabinho</nombre>
+                <nacimiento>1993</nacimiento>
+                <altura>1.88</altura>
+                <dorsal/>
+                <club>Liverpool (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Bruno Guimaraes</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.82</altura>
+                <dorsal/>
+                <club>Newcastle United (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Everton Ribeiro</nombre>
+                <nacimiento>1989</nacimiento>
+                <altura>1.74</altura>
+                <dorsal/>
+                <club>Flamengo (BRA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Richarlison</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.84</altura>
+                <dorsal/>
+                <club>Tottenham Hotspur (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Neymar Jr.</nombre>
+                <nacimiento>1992</nacimiento>
+                <altura>1.75</altura>
+                <dorsal/>
+                <club>PSG (FRA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Raphinha</nombre>
+                <nacimiento>1996</nacimiento>
+                <altura>1.76</altura>
+                <dorsal/>
+                <club>FC Barcelona (SPA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Gabriel Jesus</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.75</altura>
+                <dorsal/>
+                <club>Arsenal (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Antony</nombre>
+                <nacimiento>2000</nacimiento>
+                <altura>1.72</altura>
+                <dorsal/>
+                <club>Manchester United (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Vinicius Junior</nombre>
+                <nacimiento>2000</nacimiento>
+                <altura>1.76</altura>
+                <dorsal/>
+                <club>Real Madrid CF (SPA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Rodrygo</nombre>
+                <nacimiento>2001</nacimiento>
+                <altura>1.74</altura>
+                <dorsal/>
+                <club>Real Madrid CF (SPA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Pedro</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.85</altura>
+                <dorsal/>
+                <club>Flamengo (BRA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Gabriel Martinelli</nombre>
+                <nacimiento>2001</nacimiento>
+                <altura>1.78</altura>
+                <dorsal/>
+                <club>Arsenal (ENG)</club>
+            </jugador>
+        </plantilla>
+    </seleccion>
+</mundial>
