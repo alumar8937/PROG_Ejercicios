@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <mundial>
     <seleccion id="15">
-        <pais pais="Francia"/>
+        <pais>Francia</pais>
         <entrenador/>
         <plantilla>
             <jugador demarcación="">
@@ -189,7 +189,7 @@
         </plantilla>
     </seleccion>
     <seleccion id="9">
-        <pais pais="Brazil"/>
+        <pais>Brazil</pais>
         <entrenador/>
         <plantilla>
             <jugador demarcación="">

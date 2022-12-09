@@ -59,7 +59,7 @@ public class XMLPlayer {
             countryID = Integer.parseInt(currentSelection.getAttributes().item(0).getTextContent()); // Get country ID from selection attribute.
             countryName = currentSelection.getElementsByTagName(XMLTag_Country).item(0).getTextContent(); // Get country name from selection child element.
 
-            for (int j = 0; j < players.getLength(); j++) {
+            for (int j = 0; j < players.getLength(); j++) { // Fetch and append Players.
 
                 Element currentPlayer = (Element)players.item(j);
 
@@ -98,7 +98,7 @@ public class XMLPlayer {
         ArrayList<String> countryNameList = new ArrayList<String>(1);
         boolean isSelectionOnList = true;
 
-        for (Player i: list) { 
+        for (Player i: list) { // Obtain a list of selections and their respective country's names WITHOUT duplicates.
 
             isSelectionOnList = false;
 
@@ -119,10 +119,13 @@ public class XMLPlayer {
 
         }
 
+        // Export XML.
+
         Document XMLDocument = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
-        Element rootElement = XMLDocument.createElement(XMLTag_Root); // Root element
+        Element rootElement = XMLDocument.createElement(XMLTag_Root); // Root element.
         XMLDocument.appendChild(rootElement);
-        for (int i = 0; i < selectionList.size(); i++) {
+
+        for (int i = 0; i < selectionList.size(); i++) { // Loop through all selections.
 
             Element selection = XMLDocument.createElement(XMLTag_Selection);
             Element country = XMLDocument.createElement(XMLTag_Country);
@@ -133,12 +136,12 @@ public class XMLPlayer {
             selection.appendChild(manager);
             selection.appendChild(team);
 
-            selection.setAttribute("id", Integer.toString(selectionList.get(i)));
-            country.setAttribute(XMLTag_Country, countryNameList.get(i));
+            selection.setAttribute("id", Integer.toString(selectionList.get(i))); // Selection ID.
+            country.setTextContent(countryNameList.get(i)); // Country name.
 
-            for (Player j: list) {
+            for (Player j: list) { // Loop through Player list.
 
-                if (j.getCountryID() == selectionList.get(i)) {
+                if (j.getCountryID() == selectionList.get(i)) { // If a Player's selection matches our current selection append it.
 
                     Element player = XMLDocument.createElement(XMLTag_PlayerTag);
                     Element name = XMLDocument.createElement(XMLTag_playerName);
@@ -166,19 +169,18 @@ public class XMLPlayer {
 
             }
 
-            rootElement.appendChild(selection);
+            rootElement.appendChild(selection); // Finally, append the completed selection to our root element.
 
         }
 
-        // Generación del fichero XML a partir del documento DOM en memoria
-        // Instanciamos una clase que realizará la transformación.
+
+        // Export to file from XMLDocument in memory.
         Transformer transformerClass = TransformerFactory.newInstance().newTransformer();
         transformerClass.setOutputProperty(OutputKeys.INDENT, "yes");
-        // Instanciamos un objeto DOMSource a partir del Document
+
         DOMSource sourceDocument = new DOMSource(XMLDocument);
-        // Preparamos el flujo de salida
+   
         StreamResult streamResultClass = new StreamResult(new FileOutputStream(file));
-        // Trasformamos el documentoOrigen y lo volcamos en el flujoSalida.
         transformerClass.transform(sourceDocument, streamResultClass);
 
     }
