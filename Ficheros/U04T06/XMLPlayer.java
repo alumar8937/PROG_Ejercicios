@@ -94,11 +94,45 @@ public class XMLPlayer {
 
     public static void exportXMLFile(ArrayList<Player> list, File file) throws Exception {
 
+        // Generate XML document in memory.
+        Document XMLDocument = generateXMLDocument(list);
+
+        // Transform and export to file from XMLDocument in memory.
+        Transformer transformerClass = TransformerFactory.newInstance().newTransformer();
+        transformerClass.setOutputProperty(OutputKeys.INDENT, "yes");
+
+        DOMSource sourceDocument = new DOMSource(XMLDocument);
+   
+        StreamResult streamResultClass = new StreamResult(new FileOutputStream(file));
+        transformerClass.transform(sourceDocument, streamResultClass);
+
+    }
+
+    
+    private static Document generateXMLDocument(ArrayList<Player> list) throws Exception {
+
+        Document XMLDocument = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+        Element rootElement = XMLDocument.createElement(XMLTag_Root); // Root element.
+        XMLDocument.appendChild(rootElement);
+
+        for (Element i: generateSelections(list, XMLDocument)) {
+
+            rootElement.appendChild(i); 
+
+        }
+
+        return XMLDocument;
+
+    }
+
+
+    private static ArrayList<Element> generateSelections(ArrayList<Player> playerList, Document XMLDocument) {
+
         ArrayList<Integer> selectionList = new ArrayList<Integer>(1);
         ArrayList<String> countryNameList = new ArrayList<String>(1);
         boolean isSelectionOnList = true;
 
-        for (Player i: list) { // Obtain a list of selections and their respective country's names WITHOUT duplicates.
+        for (Player i: playerList) { // Obtain a list of selections and their respective country's names WITHOUT duplicates.
 
             isSelectionOnList = false;
 
@@ -119,11 +153,7 @@ public class XMLPlayer {
 
         }
 
-        // Export XML.
-
-        Document XMLDocument = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
-        Element rootElement = XMLDocument.createElement(XMLTag_Root); // Root element.
-        XMLDocument.appendChild(rootElement);
+        ArrayList<Element> selectionArrayList = new ArrayList<Element>(1);
 
         for (int i = 0; i < selectionList.size(); i++) { // Loop through all selections.
 
@@ -139,50 +169,49 @@ public class XMLPlayer {
             selection.setAttribute("id", Integer.toString(selectionList.get(i))); // Selection ID.
             country.setTextContent(countryNameList.get(i)); // Country name.
 
-            for (Player j: list) { // Loop through Player list.
+            for (Player j: playerList) { // Loop through Player list.
 
                 if (j.getCountryID() == selectionList.get(i)) { // If a Player's selection matches our current selection append it.
 
-                    Element player = XMLDocument.createElement(XMLTag_PlayerTag);
-                    Element name = XMLDocument.createElement(XMLTag_playerName);
-                    Element birthYear = XMLDocument.createElement(XMLTag_birthYear);
-                    Element height = XMLDocument.createElement(XMLTag_playerHeight);
-                    Element number = XMLDocument.createElement(XMLTag_playerNumber);
-                    Element club = XMLDocument.createElement(XMLTag_club);
-
-                    team.appendChild(player);
-
-                    player.setAttribute(XMLTag_position, "");
-                    player.appendChild(name);
-                    player.appendChild(birthYear);
-                    player.appendChild(height);
-                    player.appendChild(number);
-                    player.appendChild(club);
-
-                    name.setTextContent(j.getPlayerName());
-                    birthYear.setTextContent(Integer.toString(j.getBirthYear()));
-                    height.setTextContent(Float.toString(j.getPlayerHeight()));
-                    number.setTextContent("");
-                    club.setTextContent(j.getClub());
+                    team.appendChild(generatePlayerElement(j, XMLDocument));
 
                 }
 
             }
 
-            rootElement.appendChild(selection); // Finally, append the completed selection to our root element.
+            selectionArrayList.add(selection); // Finally, append the completed selection to our slectionArrayList.
 
         }
 
-
-        // Export to file from XMLDocument in memory.
-        Transformer transformerClass = TransformerFactory.newInstance().newTransformer();
-        transformerClass.setOutputProperty(OutputKeys.INDENT, "yes");
-
-        DOMSource sourceDocument = new DOMSource(XMLDocument);
-   
-        StreamResult streamResultClass = new StreamResult(new FileOutputStream(file));
-        transformerClass.transform(sourceDocument, streamResultClass);
+        return selectionArrayList;
 
     }
-    
+
+
+    private static Element generatePlayerElement(Player player, Document XMLDocument) {
+
+        Element playerElement = XMLDocument.createElement(XMLTag_PlayerTag);
+        Element name = XMLDocument.createElement(XMLTag_playerName);
+        Element birthYear = XMLDocument.createElement(XMLTag_birthYear);
+        Element height = XMLDocument.createElement(XMLTag_playerHeight);
+        Element number = XMLDocument.createElement(XMLTag_playerNumber);
+        Element club = XMLDocument.createElement(XMLTag_club);
+
+        playerElement.setAttribute(XMLTag_position, "");
+        playerElement.appendChild(name);
+        playerElement.appendChild(birthYear);
+        playerElement.appendChild(height);
+        playerElement.appendChild(number);
+        playerElement.appendChild(club);
+
+        name.setTextContent(player.getPlayerName());
+        birthYear.setTextContent(Integer.toString(player.getBirthYear()));
+        height.setTextContent(Float.toString(player.getPlayerHeight()));
+        number.setTextContent("");
+        club.setTextContent(player.getClub());
+
+        return playerElement;
+
+    }
+
 }
