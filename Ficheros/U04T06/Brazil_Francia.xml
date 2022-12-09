@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mundial>
+    <seleccion id="15">
+        <pais pais="Francia"/>
+        <entrenador/>
+        <plantilla>
+            <jugador demarcación="">
+                <nombre>Eduardo Camavinga</nombre>
+                <nacimiento>2002</nacimiento>
+                <altura>1.82</altura>
+                <dorsal/>
+                <club>Real Madrid CF</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>William Saliba</nombre>
+                <nacimiento>2001</nacimiento>
+                <altura>1.92</altura>
+                <dorsal/>
+                <club>Arsenal</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Aurélien Tchouaméni</nombre>
+                <nacimiento>2000</nacimiento>
+                <altura>1.87</altura>
+                <dorsal/>
+                <club>Real Madrid CF</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Youssouf Fofana</nombre>
+                <nacimiento>1999</nacimiento>
+                <altura>1.78</altura>
+                <dorsal/>
+                <club>AS Monaco FC</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Ibrahima Konaté</nombre>
+                <nacimiento>1999</nacimiento>
+                <altura>1.94</altura>
+                <dorsal/>
+                <club>Liverpool</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Mattéo Guendouzi</nombre>
+                <nacimiento>1999</nacimiento>
+                <altura>1.84</altura>
+                <dorsal/>
+                <club>Olympique de Marseille</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Axel Diasi</nombre>
+                <nacimiento>1998</nacimiento>
+                <altura>1.9</altura>
+                <dorsal/>
+                <club>AS Monaco FC</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Jules Kounde</nombre>
+                <nacimiento>1998</nacimiento>
+                <altura>1.78</altura>
+                <dorsal/>
+                <club>FC Barcelona</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Dayot Upamecano</nombre>
+                <nacimiento>1998</nacimiento>
+                <altura>1.86</altura>
+                <dorsal/>
+                <club>Bayern Munich</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Kylian Mbappé</nombre>
+                <nacimiento>1998</nacimiento>
+                <altura>1.78</altura>
+                <dorsal/>
+                <club>PSG</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Randal Kolo Muani</nombre>
+                <nacimiento>1998</nacimiento>
+                <altura>1.87</altura>
+                <dorsal/>
+                <club>Eintracht</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Théo Hernandez</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.84</altura>
+                <dorsal/>
+                <club>Milan</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Ousmane Dembélé</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.78</altura>
+                <dorsal/>
+                <club>FC Barcelona</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Marcus Thuram</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.92</altura>
+                <dorsal/>
+                <club>Borussia Mönchengladbach</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Benjamin Pavard</nombre>
+                <nacimiento>1996</nacimiento>
+                <altura>1.86</altura>
+                <dorsal/>
+                <club>Bayern Munich</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Lucas Hernandez</nombre>
+                <nacimiento>1996</nacimiento>
+                <altura>1.84</altura>
+                <dorsal/>
+                <club>Bayern Munich</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Kingsley Coman</nombre>
+                <nacimiento>1996</nacimiento>
+                <altura>1.8</altura>
+                <dorsal/>
+                <club>Bayern Munich</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Adrien Rabiot</nombre>
+                <nacimiento>1995</nacimiento>
+                <altura>1.91</altura>
+                <dorsal/>
+                <club>Juventus</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Areola</nombre>
+                <nacimiento>1993</nacimiento>
+                <altura>1.95</altura>
+                <dorsal/>
+                <club>West Ham</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Raphael Varane</nombre>
+                <nacimiento>1993</nacimiento>
+                <altura>1.91</altura>
+                <dorsal/>
+                <club>Manchester United</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Jordan Veretout</nombre>
+                <nacimiento>1993</nacimiento>
+                <altura>1.77</altura>
+                <dorsal/>
+                <club>Olympique de Marseille</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Antoine Griezmann</nombre>
+                <nacimiento>1991</nacimiento>
+                <altura>1.73</altura>
+                <dorsal/>
+                <club>Atlético Madrid</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Karim Benzema</nombre>
+                <nacimiento>1987</nacimiento>
+                <altura>1.87</altura>
+                <dorsal/>
+                <club>Real Madrid CF</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Hugo Lloris</nombre>
+                <nacimiento>1986</nacimiento>
+                <altura>1.88</altura>
+                <dorsal/>
+                <club>Totenham</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Olivier Giroud</nombre>
+                <nacimiento>1986</nacimiento>
+                <altura>1.93</altura>
+                <dorsal/>
+                <club>Milan</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Steve Mandanda</nombre>
+                <nacimiento>1985</nacimiento>
+                <altura>1.86</altura>
+                <dorsal/>
+                <club>Stade Rennais</club>
+            </jugador>
+        </plantilla>
+    </seleccion>
+    <seleccion id="9">
+        <pais pais="Brazil"/>
+        <entrenador/>
+        <plantilla>
+            <jugador demarcación="">
+                <nombre>Rodrygo</nombre>
+                <nacimiento>2001</nacimiento>
+                <altura>1.74</altura>
+                <dorsal/>
+                <club>Real Madrid CF (SPA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Gabriel Martinelli</nombre>
+                <nacimiento>2001</nacimiento>
+                <altura>1.78</altura>
+                <dorsal/>
+                <club>Arsenal (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Antony</nombre>
+                <nacimiento>2000</nacimiento>
+                <altura>1.72</altura>
+                <dorsal/>
+                <club>Manchester United (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Vinicius Junior</nombre>
+                <nacimiento>2000</nacimiento>
+                <altura>1.76</altura>
+                <dorsal/>
+                <club>Real Madrid CF (SPA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Eder Militao</nombre>
+                <nacimiento>1998</nacimiento>
+                <altura>1.86</altura>
+                <dorsal/>
+                <club>Real Madrid CF (SPA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Bremer</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.88</altura>
+                <dorsal/>
+                <club>Juventus (ITA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Lucas Paqueta</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.8</altura>
+                <dorsal/>
+                <club>West Ham United (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Bruno Guimaraes</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.82</altura>
+                <dorsal/>
+                <club>Newcastle United (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Richarlison</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.84</altura>
+                <dorsal/>
+                <club>Tottenham Hotspur (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Gabriel Jesus</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.75</altura>
+                <dorsal/>
+                <club>Arsenal (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Pedro</nombre>
+                <nacimiento>1997</nacimiento>
+                <altura>1.85</altura>
+                <dorsal/>
+                <club>Flamengo (BRA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Raphinha</nombre>
+                <nacimiento>1996</nacimiento>
+                <altura>1.76</altura>
+                <dorsal/>
+                <club>FC Barcelona (SPA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Marquinhos</nombre>
+                <nacimiento>1994</nacimiento>
+                <altura>1.83</altura>
+                <dorsal/>
+                <club>PSG (FRA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Ederson</nombre>
+                <nacimiento>1993</nacimiento>
+                <altura>1.88</altura>
+                <dorsal/>
+                <club>Manchester City (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Fred</nombre>
+                <nacimiento>1993</nacimiento>
+                <altura>1.69</altura>
+                <dorsal/>
+                <club>Manchester United (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Fabinho</nombre>
+                <nacimiento>1993</nacimiento>
+                <altura>1.88</altura>
+                <dorsal/>
+                <club>Liverpool (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Alisson</nombre>
+                <nacimiento>1992</nacimiento>
+                <altura>1.93</altura>
+                <dorsal/>
+                <club>Liverpool (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Alex Telles</nombre>
+                <nacimiento>1992</nacimiento>
+                <altura>1.81</altura>
+                <dorsal/>
+                <club>Sevilla FC (SPA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Casemiro</nombre>
+                <nacimiento>1992</nacimiento>
+                <altura>1.95</altura>
+                <dorsal/>
+                <club>Manchester United (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Neymar Jr.</nombre>
+                <nacimiento>1992</nacimiento>
+                <altura>1.75</altura>
+                <dorsal/>
+                <club>PSG (FRA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Danilo</nombre>
+                <nacimiento>1991</nacimiento>
+                <altura>1.84</altura>
+                <dorsal/>
+                <club>Juventus (ITA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Alex Sandro</nombre>
+                <nacimiento>1991</nacimiento>
+                <altura>1.8</altura>
+                <dorsal/>
+                <club>Juventus (ITA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Everton Ribeiro</nombre>
+                <nacimiento>1989</nacimiento>
+                <altura>1.74</altura>
+                <dorsal/>
+                <club>Flamengo (BRA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Weverton</nombre>
+                <nacimiento>1987</nacimiento>
+                <altura>1.89</altura>
+                <dorsal/>
+                <club>Palmeiras (BRA)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Thiago Silva</nombre>
+                <nacimiento>1984</nacimiento>
+                <altura>1.83</altura>
+                <dorsal/>
+                <club>Chelsea (ENG)</club>
+            </jugador>
+            <jugador demarcación="">
+                <nombre>Dani Alves</nombre>
+                <nacimiento>1983</nacimiento>
+                <altura>1.72</altura>
+                <dorsal/>
+                <club>UNAM (MEX)</club>
+            </jugador>
+        </plantilla>
+    </seleccion>
+</mundial>
