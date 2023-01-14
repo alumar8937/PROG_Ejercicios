@@ -2,15 +2,15 @@
 
 public class StringUtils {
 
-    public static String surroundWithBox(String[] stringArray) { // Should be fed a String array where each element is a pure string without any newline characters.
+    public static String[] surroundStringWithBox(String[] stringArray) { // Should be fed a String array where each element is a pure string without any newline characters.
         
         stringArray = padToSameLength(replace(stringArray, "\n", ""), ' ');
         String[] boxedStringArray = new String[stringArray.length + 2];
 
         // TOP AND BOTTOM LINE.
 
-        boxedStringArray[0] = "╭" + "─".repeat(getLongestString(stringArray).length()) + "╮";
-        boxedStringArray[boxedStringArray.length-1] = "╰" + "─".repeat(getLongestString(stringArray).length()) + "╯";
+        boxedStringArray[0] = "┌" + "─".repeat(getLongestString(stringArray).length()) + "┐";
+        boxedStringArray[boxedStringArray.length-1] = "└" + "─".repeat(getLongestString(stringArray).length()) + "┘";
 
         // REST OF LINES.
 
@@ -18,8 +18,12 @@ public class StringUtils {
             boxedStringArray[i+1] = "│" + stringArray[i] + "│";
         }
 
-        return stringArrayToString(boxedStringArray);
+        return boxedStringArray;
 
+    }
+
+    public static String[] surroundStringWithBox(String string) {
+        return surroundStringWithBox(new String[]{string});
     }
 
     public static String stringArrayToString(String[] stringArray) {
