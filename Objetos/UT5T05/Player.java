@@ -3,27 +3,27 @@
 import java.util.ArrayList;
 
 public class Player {
-    private Board playerBoard;
+    private Board board;
     private ArrayList<BoardView> boardViews = new ArrayList<>();
     private String name;
     
     public Player(String name, boolean RENDER_COLORS) {
-        this.playerBoard = new Board(name, RENDER_COLORS);
+        this.board = new Board(name, RENDER_COLORS);
         this.name = name;
     }
 
-    public Player(Board playerBoard, ArrayList<BoardView> boardViews) {
-        this.playerBoard = playerBoard;
+    public Player(Board board, ArrayList<BoardView> boardViews) {
+        this.board = board;
         this.boardViews = boardViews;
-        this.name = playerBoard.getBoardName();
+        this.name = board.getBoardName();
     }
 
     public ArrayList<BoardView> getBoardViews() {
         return boardViews;
     }
 
-    public Board getPlayerBoard() {
-        return playerBoard;
+    public Board getBoard() {
+        return board;
     }
 
     public String getName() {

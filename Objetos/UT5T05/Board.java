@@ -7,11 +7,11 @@ import Utils.ConsoleColors;
 
 public class Board {
     
-    final private char[] ALPHABET_INDEX = "abcdefghijklmnopqrstuvwxyz".toUpperCase().toCharArray();
+    final private static char[] ALPHABET_INDEX = "abcdefghijklmnopqrstuvwxyz".toUpperCase().toCharArray();
     final private int MAX_ROWS = 50;
     final private int MIN_ROWS = 8;
     final private int MAX_COLUMNS = ALPHABET_INDEX.length;
-    final private int MIN_COLUMNS = 20;
+    final private int MIN_COLUMNS = 8;
     private String boardName;
     protected boolean colorizeCells;
     protected String boardColor;
@@ -114,7 +114,7 @@ public class Board {
     }
 
     public boolean isShipCell(int row, int column) {
-        return cells[column][row].isShip();
+        return cells[row][column].isShip();
     }
 
     public String getBoardName() {

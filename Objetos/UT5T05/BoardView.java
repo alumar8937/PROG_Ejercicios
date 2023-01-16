@@ -16,12 +16,15 @@ public class BoardView extends Board {
         this.originalBoard = oriniginalBoard;
     }
 
-    public void revealCell(int row, int column) { // Updates view and updates original if it is populated (With a SHIP cell)
-        if (originalBoard.isShipCell(column, row)) {
-            cells[column][row].setCellType(Cell.CellType.HIT);
-            originalBoard.cells[column][row].setCellType(Cell.CellType.HIT);
+    public boolean revealCell(int row, int column) { // Updates view and updates original if it is populated (With a SHIP cell)
+        if (originalBoard.isShipCell(row, column)) {
+            cells[row][column].setCellType(Cell.CellType.HIT);
+            originalBoard.cells[row][column].setCellType(Cell.CellType.HIT);
+            return true;
         } else {
-            cells[column][row].setCellType(Cell.CellType.MISS);
+            if (!cells[row][column].isHitShip())
+            cells[row][column].setCellType(Cell.CellType.MISS);
+            return false;
         }
     }
     

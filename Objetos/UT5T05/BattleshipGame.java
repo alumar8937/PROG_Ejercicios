@@ -6,11 +6,13 @@ import Utils.*;
 public class BattleshipGame {
 
     private static final String MENU_TEXT = "          ┌┐ ┌─┐┌┬┐┌┬┐┬  ┌─┐┌─┐┬ ┬┬┌─┐          \n     ───  ├┴┐├─┤ │  │ │  ├┤ └─┐├─┤│├─┘  ───     \n────────  └─┘┴ ┴ ┴  ┴ ┴─┘└─┘└─┘┴ ┴┴┴    ────────\n            COMMAND-LINE EDITION V.0\n \n \n            Press ENTER to continue:";
+    final static private String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
     private static Scanner inputValue = new Scanner(System.in);
     private static final boolean RENDER_COLORS = true;
 
     public static void main(String[] args) {
         TerminalUtils.hideCursor();
+        //playClassic();
         showTitle();
         menu();
     }
@@ -47,7 +49,7 @@ public class BattleshipGame {
 
     private static void showLegend() {
         TerminalUtils.cls();
-        StringUtils.revealString("   LEGEND\n███  SHIP CELL\n▓╬▓  HIT CELL\n X   MISS CELL\n ·   EMPTY CELL", 50);
+        StringUtils.revealString("   LEGEND\n███  SHIP \n▓╬▓  HIT  \n X   MISS CELL \n ·   EMPTY\n", 50);
         enterToContinue();
     }
 
@@ -61,14 +63,13 @@ public class BattleshipGame {
     private static void menu() {
 
         while (true) {
-            TerminalUtils.cls();
-            System.out.println("| 1.- Play Against CPU | 2.- | 3.- | 4.- Quit Game |");
+            showMenuText();
             switch(inputValue.nextLine()) {
                 case "1":
                     showLegend();
-                    play();
+                    playClassic();
                     break;
-
+    
                 case "2":
                     break;
             
@@ -87,17 +88,71 @@ public class BattleshipGame {
 
     }
 
-    private static void play() {
-        Player player = new Player(askUserForString("Write your name: "), RENDER_COLORS);
+    private static void showMenuText() {
+        TerminalUtils.cls();
+        System.out.println(StringUtils.stringArrayToString(
+            StringUtils.surroundStringWithBox(
+                " 1.- Play Classic | 2.- Play Against CPU | 3.- ??? | 4.- Quit Game ")));
+        System.out.print(StringUtils.stringArrayToString(
+            StringUtils.surroundStringWithBox(
+                " ENTER CHOICE:" + " ".repeat(11))));
+        TerminalUtils.moveCursorUp(1);
+        TerminalUtils.moveCursorBack(11);
+    }
+
+    private static void playClassic() { // In classic mode you only see the enemy board. It's implemented in a way that you actually shoot the board you're controlling.
+
+        Player enemy = new Player("ENEMY", RENDER_COLORS);
         if (RENDER_COLORS) {
             if (!askUserForConfirmation("· Use default board color? [Y/N]:")) {
-                    player.getPlayerBoard().setBoardColor(choseColor());
+                    enemy.getBoard().setBoardColor(choseColor());
             }
         }
-        TerminalUtils.cls();
-        player.getPlayerBoard().cells[1][1].setCellType(Cell.CellType.SHIP);
-        printFormattedBoard(player.getPlayerBoard(), "ENTER FIRE COORDINATES:");
-        inputValue.nextLine();
+
+        enemy.getBoard().cells[0][0].setCellType(Cell.CellType.SHIP);
+        enemy.getBoard().cells[0][1].setCellType(Cell.CellType.SHIP);
+        enemy.getBoard().cells[2][0].setCellType(Cell.CellType.SHIP);
+        enemy.getBoard().cells[2][1].setCellType(Cell.CellType.SHIP);
+        enemy.getBoard().cells[5][4].setCellType(Cell.CellType.SHIP);
+
+        BoardView enemyView = new BoardView(enemy.getBoard());
+
+        while (true) {
+            TerminalUtils.cls();
+            printFormattedBoard(enemyView, "ENTER FIRE COORDINATES:");
+            if(shoot(enemyView)) {
+                TerminalUtils.cls();
+                System.out.print("                     ");
+                //StringUtils.revealString("HIT!\n\nPress ENTER to continue:", 50);
+                inputValue.nextLine();
+            } else {
+                TerminalUtils.cls();
+                System.out.print("                     ");
+                //StringUtils.revealString("MISS!\n\nPress ENTER to continue:", 50);
+                inputValue.nextLine();
+            }
+        }
+
+    }
+
+    private static boolean shoot(BoardView board) {
+        
+        String userInput = "";
+        int row = 0;
+        int column = 0;
+
+        userInput = inputValue.nextLine();
+        if (userInput.length() != 0) {
+            column  = ALPHABET.indexOf((userInput.charAt(0)+"").toLowerCase());
+            row = Integer.parseInt(userInput.substring(1, userInput.length()));
+    
+            if (row < board.getRowNumber() && column < board.getColumnNumber()) {
+                return board.revealCell(row, column);
+            }
+        }
+        
+        return false;
+
     }
 
     private static void printFormattedBoard(Board board, String message) {

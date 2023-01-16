@@ -71,15 +71,11 @@ public class StringUtils {
     }
 
     public static void revealString(String string, int speed_ms) {
-        String[] stringArray = string.split("\n");
-        for (String i: stringArray) {
-            for (int j = 0; j < i.length(); j++){
-                try {
-                    TimeUnit.MILLISECONDS.sleep(speed_ms);
-                    System.out.print(i.charAt(j));
-                } catch (InterruptedException e) {}
-            }
-            System.out.print("\n");
+        for (int j = 0; j < string.length(); j++){
+            try {
+                TimeUnit.MILLISECONDS.sleep(speed_ms);
+                System.out.print(string.charAt(j));
+            } catch (InterruptedException e) {}
         }
     }
 

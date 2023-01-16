@@ -49,8 +49,16 @@ public class Cell {
         this.type = type;
     }
 
+    public CellType getCellType() {
+        return type;
+    }
+
     public boolean isShip() {
         return (type == CellType.SHIP);
+    }
+
+    public boolean isHitShip() {
+        return (type == CellType.HIT);
     }
 
 }
