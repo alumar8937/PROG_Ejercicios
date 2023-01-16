@@ -2,22 +2,30 @@
 
 // Contains a cell matrix.
 
+import Utils.StringUtils;
+import Utils.ConsoleColors;
+
 public class Board {
     
     final private char[] ALPHABET_INDEX = "abcdefghijklmnopqrstuvwxyz".toUpperCase().toCharArray();
     final private int MAX_ROWS = 50;
     final private int MIN_ROWS = 8;
     final private int MAX_COLUMNS = ALPHABET_INDEX.length;
-    final private int MIN_COLUMNS = 8;
-    private String boardName = "Board";
+    final private int MIN_COLUMNS = 20;
+    private String boardName;
+    protected boolean colorizeCells;
+    protected String boardColor;
     protected Cell[][] cells;
 
-    public Board() {
+    public Board(String boardName, boolean colorizeCells) {
         this.cells = new Cell[MIN_ROWS][MIN_COLUMNS]; // Row, Column.
+        this.boardName = boardName;
+        this.colorizeCells = colorizeCells;
+        this.boardColor = ConsoleColors.WHITE;
         populateCells();
     }
 
-    public Board(int rows, int columns, String boardName) {
+    public Board(int rows, int columns, String boardName, boolean colorizedCells, String boardColor) {
         
         if (rows >= MAX_ROWS) {rows = MAX_ROWS;}
         if (columns >= MAX_COLUMNS) {columns = MAX_COLUMNS;}
@@ -25,17 +33,20 @@ public class Board {
         if (rows <= MIN_ROWS) {rows = MIN_ROWS;}
         if (columns <= MIN_COLUMNS) {columns = MIN_COLUMNS;}
 
-        this.cells = new Cell[rows][columns];
+        this.cells = new Cell[rows][columns]; // Row, Column.
         populateCells();
         this.boardName = boardName;
-    }
+        this.colorizeCells = colorizedCells;
+        this.boardColor = boardColor;
 
-    public String toString() {
+    }
+    
+    public String toString(boolean colorize) {
         
         String[] boardStringArray = new String[cells.length]; // Rows.
         String[] numericalIndexingArray = new String[cells.length]; // Number column.
-        String alphabeticalIndexingRow = "";
-        String boardString = ""; // Final return String.
+        String[] alphabeticalIndexingArray = new String[]{""};
+        String[] combinedBoxes; // Final return String.
 
         for (int i = 0; i < boardStringArray.length; i++) { // Set all elements as empty String instead of NULL.
             boardStringArray[i] = "";
@@ -46,32 +57,55 @@ public class Board {
                 boardStringArray[i] = boardStringArray[i] + cells[i][j].toString();
             }
             numericalIndexingArray[i] = ""; // Set element to empty string (Is NULL before).
-            numericalIndexingArray[i] = numericalIndexingArray[i] + "[ " + i + " ]"; // Numerical indexing column.
+            numericalIndexingArray[i] = numericalIndexingArray[i] + " " + i + " "; // Numerical indexing column.
         }
 
         for (int i = 0; i < cells[0].length; i++) {
-            alphabeticalIndexingRow = alphabeticalIndexingRow + "[ " + ALPHABET_INDEX[i] + " ]";
+            alphabeticalIndexingArray[0] = alphabeticalIndexingArray[0] + " " + ALPHABET_INDEX[i] + " ";
         }
 
         // Encase in box.
 
         numericalIndexingArray = StringUtils.surroundStringWithBox(numericalIndexingArray);
-        alphabeticalIndexingRow = StringUtils.stringArrayToString(StringUtils.surroundStringWithBox(alphabeticalIndexingRow));
+        alphabeticalIndexingArray = StringUtils.surroundStringWithBox(alphabeticalIndexingArray);
         boardStringArray = StringUtils.surroundStringWithBox(boardStringArray);
+
+        combinedBoxes = new String[boardStringArray.length + alphabeticalIndexingArray.length + 1]; // Initialze combined boxes array. + 1 For the Name
+        
+        for (int i = 0; i < combinedBoxes.length; i++) { // Set all elements as empty String instead of NULL.
+            combinedBoxes[i] = "";
+        }
 
         // Combine boxes.
 
-        boardString = " ".repeat((alphabeticalIndexingRow.substring(0, alphabeticalIndexingRow.indexOf('\n')).length() / 2) - (boardName.length() / 2)) + boardName.toUpperCase() + "\n" + boardString + alphabeticalIndexingRow + "\n";
-        
-        for (int i = 0; i < boardStringArray.length; i++) {
-            boardString = boardString + boardStringArray[i] + " " + numericalIndexingArray[i] + "\n";
+        for (int i = 0; i < alphabeticalIndexingArray.length; i++) { // Set all elements as empty String instead of NULL.
+            combinedBoxes[i+1] = alphabeticalIndexingArray[i];
         }
-    
-        return boardString;
+
+        for (int i = 0; i < boardStringArray.length; i++) {
+            boardStringArray[i] = boardStringArray[i] + " " + numericalIndexingArray[i];
+            combinedBoxes[i+alphabeticalIndexingArray.length+1] = boardStringArray[i];
+        }
+
+        combinedBoxes[0] = " ".repeat((combinedBoxes[1].length() / 2) - (boardName.length() - boardName.length() / 2)) + boardName;
+        StringUtils.padToSameLength(combinedBoxes, ' ');
+        
+        if (colorize) {
+            return colorize(boardColor + StringUtils.stringArrayToString(combinedBoxes) + ConsoleColors.RESET); 
+        } else {
+            return StringUtils.stringArrayToString(combinedBoxes);
+        }
     
     }
 
-    public void populateCells() {
+    public String colorize(String boardString) { // Adds ASCII color characters + boardColor afterwards.
+        for (int i = 0; i < Cell.CellType.values().length; i++) {
+            boardString = boardString.replaceAll(Cell.CellType.values()[i].getCellString(), (Cell.CellType.values()[i].getCellColor() + boardColor));
+        }
+        return boardString;
+    }
+
+    public void populateCells() { // Fills cells array with Cell objects.
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[0].length; j++){
                 cells[i][j] = new Cell();
@@ -79,16 +113,28 @@ public class Board {
         } 
     }
 
-    public boolean isCellPopulated(int row, int column) {
-        return cells[column][row].isPopulated();
+    public boolean isShipCell(int row, int column) {
+        return cells[column][row].isShip();
     }
-
-    /*public void setCellType(int column, int row, Cell.CellType type) { // Made obsolete due to "board" becoming protected instead of private.
-        board[column][row].setCellType(type);
-    }*/
 
     public String getBoardName() {
         return boardName;
+    }
+
+    public void setBoardName(String boardName) {
+        this.boardName = boardName;
+    }
+    
+    public void setColorizeCells(boolean colorizedCells) {
+        this.colorizeCells = colorizedCells;
+    }
+
+    public String getBoardColor() {
+        return boardColor;
+    }
+
+    public void setBoardColor(String boardColor) {
+        this.boardColor = boardColor;
     }
 
     public int getColumnNumber() {

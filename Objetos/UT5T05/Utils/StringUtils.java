@@ -1,10 +1,14 @@
 // 13/01/2023 - Pedro Marín Sanchis
 
+package Utils;
+
+import java.util.concurrent.TimeUnit;
+
 public class StringUtils {
 
     public static String[] surroundStringWithBox(String[] stringArray) { // Should be fed a String array where each element is a pure string without any newline characters.
         
-        stringArray = padToSameLength(replace(stringArray, "\n", ""), ' ');
+        stringArray = padToSameLength(replaceInStringArray(stringArray, "\n", ""), ' ');
         String[] boxedStringArray = new String[stringArray.length + 2];
 
         // TOP AND BOTTOM LINE.
@@ -36,7 +40,7 @@ public class StringUtils {
         return returnString.substring(0, returnString.length() - 1);
     }
 
-    public static String[] replace(String[] stringArray, String target, String replacement) {
+    public static String[] replaceInStringArray(String[] stringArray, String target, String replacement) {
         for (int i = 0; i < stringArray.length; i++) {
             stringArray[i] = stringArray[i].replace(target, replacement);
         }
@@ -45,8 +49,11 @@ public class StringUtils {
 
     public static String[] padToSameLength(String[] stringArray, char padding) {
         int biggestLineLength = getLongestString(stringArray).length();
+        int paddingAmmount;
+
         for (int i = 0; i < stringArray.length; i++) {
-            stringArray[i] = stringArray[i] + (padding + "").repeat(biggestLineLength - stringArray[i].length());
+            if (biggestLineLength - stringArray[i].length() <= 0) {paddingAmmount = 0;} else {paddingAmmount = biggestLineLength - stringArray[i].length();}
+            stringArray[i] = stringArray[i] + (padding + "").repeat(paddingAmmount);
         }
         return stringArray;
     }
@@ -62,4 +69,18 @@ public class StringUtils {
 
         return biggestString;
     }
+
+    public static void revealString(String string, int speed_ms) {
+        String[] stringArray = string.split("\n");
+        for (String i: stringArray) {
+            for (int j = 0; j < i.length(); j++){
+                try {
+                    TimeUnit.MILLISECONDS.sleep(speed_ms);
+                    System.out.print(i.charAt(j));
+                } catch (InterruptedException e) {}
+            }
+            System.out.print("\n");
+        }
+    }
+
 }
