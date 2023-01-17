@@ -12,7 +12,7 @@ public class BattleshipGame {
 
     public static void main(String[] args) {
         TerminalUtils.hideCursor();
-        //playClassic();
+        playClassic();
         showTitle();
         menu();
     }
@@ -49,7 +49,7 @@ public class BattleshipGame {
 
     private static void showLegend() {
         TerminalUtils.cls();
-        StringUtils.revealString("   LEGEND\n███  SHIP \n▓╬▓  HIT  \n X   MISS CELL \n ·   EMPTY\n", 50);
+        StringUtils.revealString("   LEGEND\n\n███  SHIP \n\n▓╬▓  HIT  \n\n X   MISS \n\n ·   EMPTY\n\n", 50);
         enterToContinue();
     }
 
@@ -90,12 +90,10 @@ public class BattleshipGame {
 
     private static void showMenuText() {
         TerminalUtils.cls();
-        System.out.println(StringUtils.stringArrayToString(
-            StringUtils.surroundStringWithBox(
-                " 1.- Play Classic | 2.- Play Against CPU | 3.- ??? | 4.- Quit Game ")));
-        System.out.print(StringUtils.stringArrayToString(
-            StringUtils.surroundStringWithBox(
-                " ENTER CHOICE:" + " ".repeat(11))));
+        System.out.println(StringUtils.surroundStringWithBox(
+                " 1.- Play Classic | 2.- Play Against CPU | 3.- ??? | 4.- Quit Game "));
+        System.out.print(StringUtils.surroundStringWithBox(
+                " ENTER CHOICE:" + " ".repeat(11)));
         TerminalUtils.moveCursorUp(1);
         TerminalUtils.moveCursorBack(11);
     }
@@ -121,15 +119,9 @@ public class BattleshipGame {
             TerminalUtils.cls();
             printFormattedBoard(enemyView, "ENTER FIRE COORDINATES:");
             if(shoot(enemyView)) {
-                TerminalUtils.cls();
-                System.out.print("                     ");
-                //StringUtils.revealString("HIT!\n\nPress ENTER to continue:", 50);
-                inputValue.nextLine();
+                
             } else {
-                TerminalUtils.cls();
-                System.out.print("                     ");
-                //StringUtils.revealString("MISS!\n\nPress ENTER to continue:", 50);
-                inputValue.nextLine();
+
             }
         }
 
@@ -155,22 +147,30 @@ public class BattleshipGame {
 
     }
 
-    private static void printFormattedBoard(Board board, String message) {
+    private static void printFormattedBoard(BoardView board, String message) {
         String boardString = board.toString(false);
         int boardStringLength = boardString.split("\n")[0].length();
         int fireStringPadding = boardStringLength - message.length() - 3;
-        String fireString = StringUtils.stringArrayToString(StringUtils.surroundStringWithBox(" " + message + " ".repeat(fireStringPadding)));
+        String fireString = StringUtils.surroundStringWithBox(" " + message + " ".repeat(fireStringPadding));
         boardString = boardString + "\n" + fireString;
-        //boardString = StringUtils.stringArrayToString(StringUtils.surroundStringWithBox(StringUtils.padToSameLength(boardString.split("\n"), ' ')));
         
         if (RENDER_COLORS) {
             boardString = board.colorize(board.boardColor + boardString + ConsoleColors.RESET);
         }
 
+        boardString = addStatisticsToBoardString(boardString, board);
+
         System.out.print(boardString);
         
         TerminalUtils.moveCursorUp(1);
         TerminalUtils.moveCursorBack(fireStringPadding);
+    }
+
+    private static String addStatisticsToBoardString(String boardString, BoardView board) {
+        String[] boardStringArray = boardString.split("\n");
+        boardStringArray[5] = boardStringArray[5] + " > Shots made: " + board.getShotsMade();
+        boardStringArray[6] = boardStringArray[6] + " > Ships left: " + board;
+        return StringUtils.stringArrayToString(boardStringArray);
     }
 
     private static String choseColor() {

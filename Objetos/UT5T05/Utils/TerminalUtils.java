@@ -28,7 +28,6 @@ public class TerminalUtils {
 
     public static void cls() {
         System.out.print("\033[2J");
-        moveCursorToEnd();
     }
 
     public static void clsFromCursorToEnd() {

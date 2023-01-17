@@ -8,7 +8,10 @@ point of the game.)
 
 public class BoardView extends Board {
 
-    Board originalBoard;
+    private Board originalBoard;
+    
+    private int shotsMade;
+    private int shotsHit;
 
     public BoardView(Board oriniginalBoard) {
         super(oriniginalBoard.getColumnNumber(), oriniginalBoard.getRowNumber(), oriniginalBoard.getBoardName(),
@@ -20,12 +23,19 @@ public class BoardView extends Board {
         if (originalBoard.isShipCell(row, column)) {
             cells[row][column].setCellType(Cell.CellType.HIT);
             originalBoard.cells[row][column].setCellType(Cell.CellType.HIT);
+            shotsMade++;
+            shotsHit++;
             return true;
         } else {
             if (!cells[row][column].isHitShip())
             cells[row][column].setCellType(Cell.CellType.MISS);
+            shotsMade++;
             return false;
         }
+    }
+
+    public int getShotsMade() {
+        return shotsMade;
     }
     
 }

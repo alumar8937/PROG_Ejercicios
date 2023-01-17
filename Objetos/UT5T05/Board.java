@@ -66,9 +66,9 @@ public class Board {
 
         // Encase in box.
 
-        numericalIndexingArray = StringUtils.surroundStringWithBox(numericalIndexingArray);
-        alphabeticalIndexingArray = StringUtils.surroundStringWithBox(alphabeticalIndexingArray);
-        boardStringArray = StringUtils.surroundStringWithBox(boardStringArray);
+        numericalIndexingArray = StringUtils.surroundStringArrayWithBox(numericalIndexingArray);
+        alphabeticalIndexingArray = StringUtils.surroundStringArrayWithBox(alphabeticalIndexingArray);
+        boardStringArray = StringUtils.surroundStringArrayWithBox(boardStringArray);
 
         combinedBoxes = new String[boardStringArray.length + alphabeticalIndexingArray.length + 1]; // Initialze combined boxes array. + 1 For the Name
         

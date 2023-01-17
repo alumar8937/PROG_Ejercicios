@@ -1,0 +1,14 @@
+Dudas individuales:
+
+- Clases y Métodos Abstractos ☒
+- Polimorfismo ☑
+
+Dudas de Pere
+
+- Clases y Métodos Abstractos ☒
+- Polimorfismo ☑
+- Casting ☑
+
+Dudas conjuntas:
+
+- Clases y Métodos Abstractos

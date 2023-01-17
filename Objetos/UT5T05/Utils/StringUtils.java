@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class StringUtils {
 
-    public static String[] surroundStringWithBox(String[] stringArray) { // Should be fed a String array where each element is a pure string without any newline characters.
+    public static String[] surroundStringArrayWithBox(String[] stringArray) { // Should be fed a String array where each element is a pure string without any newline characters.
         
         stringArray = padToSameLength(replaceInStringArray(stringArray, "\n", ""), ' ');
         String[] boxedStringArray = new String[stringArray.length + 2];
@@ -26,9 +26,14 @@ public class StringUtils {
 
     }
 
-    public static String[] surroundStringWithBox(String string) {
-        return surroundStringWithBox(new String[]{string});
+    public static String[] surroundStringArrayWithBox(String string) {
+        return surroundStringArrayWithBox(new String[]{string});
     }
+
+    public static String surroundStringWithBox(String string) {
+        return stringArrayToString(surroundStringArrayWithBox(new String[]{string}));
+    }
+
 
     public static String stringArrayToString(String[] stringArray) {
         String returnString = "";
