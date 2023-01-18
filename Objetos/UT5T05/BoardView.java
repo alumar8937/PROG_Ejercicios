@@ -8,7 +8,7 @@ point of the game.)
 
 public class BoardView extends Board {
 
-    private Board originalBoard;
+    protected Board originalBoard;
     
     private int shotsMade;
     private int shotsHit;
@@ -21,11 +21,14 @@ public class BoardView extends Board {
 
     public boolean revealCell(int row, int column) { // Updates view and updates original if it is populated (With a SHIP cell)
         if (originalBoard.isShipCell(row, column)) {
-            cells[row][column].setCellType(Cell.CellType.HIT);
-            originalBoard.cells[row][column].setCellType(Cell.CellType.HIT);
+
+            cells[row][column].setCellType(Cell.CellType.HIT); // Set this cell to HIT cell.
+            originalBoard.cells[row][column].setCellType(Cell.CellType.HIT); // Set original board cell to HIT cell.
+
             shotsMade++;
             shotsHit++;
             return true;
+
         } else {
             if (!cells[row][column].isHitShip())
             cells[row][column].setCellType(Cell.CellType.MISS);
@@ -34,8 +37,20 @@ public class BoardView extends Board {
         }
     }
 
+    public void revealAllCheat() { // Reveals all cells and ruins the fun.
+        for (int i = 0; i < getRowNumber(); i++) {
+            for (int j = 0; j < getColumnNumber(); j++) {
+                cells[i][j].setCellType(originalBoard.cells[i][j].getCellType());
+            }
+        }
+    }
+
     public int getShotsMade() {
         return shotsMade;
+    }
+
+    public int getShotsHit() {
+        return shotsHit;
     }
     
 }

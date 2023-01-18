@@ -9,7 +9,8 @@ public class Cell {
         SHIP("███", ConsoleColors.WHITE),
         EMPTY(" · ", ConsoleColors.GREY_8),
         MISS(" X ", ConsoleColors.WHITE),
-        HIT("▓╬▓", ConsoleColors.WHITE);
+        HIT("▓╬▓", ConsoleColors.WHITE),
+        SAFETY(" = ",  ConsoleColors.WHITE);
 
         private final String cellString;
         private final String color;
@@ -59,6 +60,10 @@ public class Cell {
 
     public boolean isHitShip() {
         return (type == CellType.HIT);
+    }
+
+    public boolean isSafezone() {
+        return (type == CellType.SAFETY);
     }
 
 }

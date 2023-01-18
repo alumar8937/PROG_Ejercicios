@@ -18,12 +18,21 @@ public class TerminalUtils {
         System.out.print("\033[A".repeat(lines));
     }
 
+    public static void moveCursorDown(int lines) {
+        System.out.print("\033[B".repeat(lines));
+    }
+
+    public static void moveCursorForward(int characters) {
+        System.out.print("\033[C".repeat(characters));
+    }
+
     public static void moveCursorBack(int characters) {
-        for (int i = 0; i < characters; i++) {System.out.print("\b");}
+        System.out.print("\b".repeat(characters));
     }
 
     public static void moveCursorToEnd() {
-        System.out.print("\033[B".repeat(250));
+        moveCursorDown(250);
+        moveCursorForward(250);        
     }
 
     public static void cls() {

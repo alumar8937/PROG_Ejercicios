@@ -34,7 +34,6 @@ public class StringUtils {
         return stringArrayToString(surroundStringArrayWithBox(new String[]{string}));
     }
 
-
     public static String stringArrayToString(String[] stringArray) {
         String returnString = "";
 
@@ -63,6 +62,13 @@ public class StringUtils {
         return stringArray;
     }
 
+    public static String[] appendToStringArray(String[] stringArray, String append) {
+        for (int i = 0; i < stringArray.length; i++) {
+            stringArray[i] = stringArray[i] + append;
+        }
+        return stringArray;
+    }
+
     public static String getLongestString(String[] stringArray) {
         String biggestString = stringArray[0];
 
@@ -82,6 +88,14 @@ public class StringUtils {
                 System.out.print(string.charAt(j));
             } catch (InterruptedException e) {}
         }
+    }
+
+    public static String removeNonNumbers(String string) {
+        return string.replaceAll("[^0-9]", "");
+    }
+
+    public static String removeNonLetters(String string) {
+        return string.replaceAll("[^A-Za-z]", "");
     }
 
 }

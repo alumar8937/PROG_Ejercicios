@@ -3,6 +3,9 @@
 // Contains a cell matrix.
 
 import Utils.StringUtils;
+
+import java.util.ArrayList;
+
 import Utils.ConsoleColors;
 
 public class Board {
@@ -16,6 +19,7 @@ public class Board {
     protected boolean colorizeCells;
     protected String boardColor;
     protected Cell[][] cells;
+    private ArrayList<Ship> ships = new ArrayList<Ship>();
 
     public Board(String boardName, boolean colorizeCells) {
         this.cells = new Cell[MIN_ROWS][MIN_COLUMNS]; // Row, Column.
@@ -115,6 +119,83 @@ public class Board {
 
     public boolean isShipCell(int row, int column) {
         return cells[row][column].isShip();
+    }
+
+    public boolean addShip(Ship ship, int row, int column) {
+        boolean canAddShip = true;
+        
+        for (int i = 0; i < ship.getHeight(); i++) {
+            for (int j = 0; j < ship.getWidth(); j++) {
+                if (!canPlaceShipCell(row + i, column + j)) {
+                    canAddShip = false;
+                }
+            }
+        }
+
+        if (canAddShip) {
+            
+            ships.add(ship);
+            for (int i = 0; i < ship.getHeight(); i++) { 
+                for (int j = 0; j < ship.getWidth(); j++) {
+                    cells[row + i][column + j].setCellType(Cell.CellType.SHIP);
+                    placeSafezone(row + i, column + j);
+                }
+            }
+
+            ship.setRow(row);
+            ship.setColumn(column);
+
+        }
+
+        return canAddShip;
+    
+    }
+
+    public boolean isShipAlive(Ship ship) {
+        ships.add(ship);
+        for (int i = 0; i < ship.getHeight(); i++) {
+            for (int j = 0; j < ship.getWidth(); j++) {
+                if (isShipCell(ship.getRow() + i, ship.getColumn() + j)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean canPlaceShipCell(int row, int column) {
+        if (row >= getRowNumber() || column >= getColumnNumber()) {
+            return false;
+        } else {
+            return (!cells[row][column].isSafezone());
+        }
+    }
+
+    public void placeSafezone(int row, int column) {
+        row--; // Move to upper left corner
+        column--;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                try {
+                    if (!cells[row+i][column+j].isShip()) {
+                        cells[row+i][column+j].setCellType(Cell.CellType.SAFETY);
+                    }
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
+
+    public int getAliveShipNumber() {
+        int shipCells = 0;
+
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[0].length; j++) {
+                if (isShipCell(i, j)) {shipCells++;}
+            }
+        }
+
+        return shipCells;
     }
 
     public String getBoardName() {
