@@ -8,11 +8,6 @@ import Character.Stat.Strength;
 
 public abstract class Race {
 
-    private Constitution CON = new Constitution();
-    private Dexterity DEX = new Dexterity();
-    private Intelligence INT = new Intelligence();
-    private Strength STR = new Strength();
-
     protected int CON_MODIFIER = 0;
     protected int DEX_MODIFIER = 0;
     protected int INT_MODIFIER = 0;

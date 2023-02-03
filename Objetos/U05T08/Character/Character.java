@@ -85,7 +85,7 @@ public class Character implements IDamageable {
                 "-------------------------\n" +
                 "Velocity: " + this.velocity() + "\n" +
                 "Power: " + this.power() + "\n" +
-                "MAgic: " + this.magic() + "\n" +
+                "Magic: " + this.magic() + "\n" +
                 "-------------------------\n" +
                 "Max Health: " + this.maxHealth() + "\n";
     }
@@ -109,7 +109,10 @@ public class Character implements IDamageable {
 
     public void heals(double amount) {
         if (amount >= 0) {return;}
-        this.damageTaken = damageTaken - amount;  
+        this.damageTaken = damageTaken - amount;
+        if (this.damageTaken < 0) {
+            this.damageTaken = 0;
+        }
     }
 
 }
