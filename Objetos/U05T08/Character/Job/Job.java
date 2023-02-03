@@ -1,17 +1,8 @@
-package Character.Race;
+package Character.Job;
 
-import Character.Stat.Constitution;
-import Character.Stat.Dexterity;
-import Character.Stat.Intelligence;
-import Character.Stat.Stat;
-import Character.Stat.Strength;
+import Character.Stat.*;
 
-public abstract class Race {
-
-    private Constitution CON = new Constitution();
-    private Dexterity DEX = new Dexterity();
-    private Intelligence INT = new Intelligence();
-    private Strength STR = new Strength();
+public abstract class Job {
 
     protected int CON_MODIFIER = 0;
     protected int DEX_MODIFIER = 0;
@@ -41,6 +32,7 @@ public abstract class Race {
     @Override
     //Devuelve true si son la misma clase
     public boolean equals(Object obj){
-        return (obj instanceof Race); // ????
+        return (obj instanceof Job); // ????
     }
+    
 }

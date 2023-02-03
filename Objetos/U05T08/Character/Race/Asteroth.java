@@ -1,18 +1,18 @@
 package Character.Race;
 
-public class Human extends Race {
+public class Asteroth extends Race {
 
-    public Human() {
+    public Asteroth() {
         super();
         this.CON_MODIFIER = 2;
-        this.DEX_MODIFIER = 1;
+        this.DEX_MODIFIER = 3;
         this.INT_MODIFIER = 0;
-        this.STR_MODIFIER = 2;
+        this.STR_MODIFIER = 0;
     }
-    
+
     @Override
     public String toString() {
-        return "Human";
+        return "Asteroth";
     }
     
 }

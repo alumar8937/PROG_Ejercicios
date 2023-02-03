@@ -15,6 +15,10 @@ public abstract class Stat {
         return this.value;
     }
 
+    public void setValue(int value) {
+        this.value = value;
+    }
+
     public void increase() {
         this.value++;
     }
