@@ -1,7 +1,7 @@
 package Item;
 
-import Character.Character;
+import Character.RPGCharacter;
 
 public interface IConsumable {
-    void consumedBy(Character character);
-    }
+    void consumedBy(RPGCharacter character);
+}

@@ -5,7 +5,7 @@ import Character.Race.Race;
 import Character.Stat.*;
 import Item.IConsumable;
 
-public class Character implements IDamageable {
+public class RPGCharacter implements IDamageable {
 
     Stat CON = new Constitution();
     Stat DEX = new Dexterity();
@@ -18,7 +18,7 @@ public class Character implements IDamageable {
     Race race = null;
     Job job = null;
 
-    public Character(String name, Race race, Job job) {
+    public RPGCharacter(String name, Race race, Job job) {
         this.name = name;
         this.race = race;
         this.job = job;

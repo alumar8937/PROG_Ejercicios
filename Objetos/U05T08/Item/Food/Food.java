@@ -1,13 +1,14 @@
 package Item.Food;
 
 import Item.IConsumable;
-import Character.Character;
+import Item.Item;
+import Character.RPGCharacter;
 
-public class Food implements IConsumable {
+public abstract class Food extends Item implements IConsumable {
 
     protected double power = 0;
 
-    public void consumedBy(Character character) {
+    public void consumedBy(RPGCharacter character) {
         character.heals(this.power);
     }
 
