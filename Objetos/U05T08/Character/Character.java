@@ -3,6 +3,7 @@ package Character;
 import Character.Job.Job;
 import Character.Race.Race;
 import Character.Stat.*;
+import Item.IConsumable;
 
 public class Character implements IDamageable {
 
@@ -104,15 +105,22 @@ public class Character implements IDamageable {
 
     public void receivesDamage(double amount) {
         if (amount <= 0) {return;}
-        this.damageTaken = damageTaken + amount;        
+        this.damageTaken = damageTaken + amount;
+        System.out.println(this.name + " takes " + amount + " damage.");       
     }
 
     public void heals(double amount) {
-        if (amount >= 0) {return;}
+        if (amount <= 0) {return;}
         this.damageTaken = damageTaken - amount;
         if (this.damageTaken < 0) {
             this.damageTaken = 0;
         }
+        System.out.println(this.name + " heals " + amount + " damage.");     
+    }
+
+    public void consumes(IConsumable consumable) {
+        System.out.println(this.name + " eats:  " + consumable.getClass().getSimpleName()); 
+        consumable.consumedBy(this); 
     }
 
 }
