@@ -1,3 +1,5 @@
+// Intended to test weight mechanics.
+
 package Item;
 
 public class LeadBrick extends Item {

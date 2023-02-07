@@ -7,6 +7,7 @@ import Character.Stat.*;
 import Item.IConsumable;
 import Item.IWearable;
 import Item.Item;
+import Item.Weapon.Weapon;
 
 public class RPGCharacter implements IDamageable {
 
@@ -22,8 +23,8 @@ public class RPGCharacter implements IDamageable {
     Job job = null;
 
     ArrayList<Item> inventory = new ArrayList<>();
-
     ArrayList<IWearable> wornEquipment = new ArrayList<>();
+    ArrayList<Weapon> equippedWeapons = new ArrayList<>();
 
     public RPGCharacter(String name, Race race, Job job) {
         this.name = name;
@@ -34,6 +35,7 @@ public class RPGCharacter implements IDamageable {
         this.DEX.setValue(5);
         this.INT.setValue(5);
         this.STR.setValue(5);
+    
     }
 
     public int getStat(Stat stat) {
@@ -172,7 +174,7 @@ public class RPGCharacter implements IDamageable {
         if (!inventory.contains(item) && getWeightCarried() + item.getWeight() < getMaxWeight()) {
             inventory.add(item);
         } else {
-            System.out.println(this.name + " alredy has that item (Object) in the inventory!");
+            System.out.println(this.name + " can't add that to the inventory");
         }
     }
 
@@ -215,6 +217,28 @@ public class RPGCharacter implements IDamageable {
 
     public void remove(IWearable equipment) {
         wornEquipment.remove(equipment);
+    }
+
+    public void equipWeapon(Weapon weapon) {
+        if (equippedWeapons.size() < 2 && inventory.contains(weapon)) {
+            equippedWeapons.add(weapon);
+        }
+    }
+
+    public void unequipWeapon(Weapon weapon) {
+        equippedWeapons.remove(weapon);
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    public ArrayList<Weapon> getEquippedWeapons() {
+        return equippedWeapons;
+    }
+
+    public ArrayList<IWearable> getWornEquipment() {
+        return wornEquipment;
     }
 
 }

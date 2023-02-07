@@ -10,6 +10,7 @@ import Character.Stat.Intelligence;
 import Item.*;
 import Item.Food.*;
 import Item.Gear.*;
+import Item.Weapon.*;
 
 
 public class TestCharacter {
@@ -94,6 +95,18 @@ public class TestCharacter {
 
         System.out.println("Weight carried: " + character.getWeightCarried());
         System.out.println("Max weight: " + character.getMaxWeight());
+
+    }
+
+    @Test
+    public void testWeapons() {
+        
+        RPGCharacter character = new RPGCharacter("Merlin", new Human(), new Assassin());
+        Weapon sword = new Sword();
+        character.stow(sword);
+        character.equipWeapon(sword);
+
+        assertEquals(character.getEquippedWeapons().get(0), sword);
 
     }
     
