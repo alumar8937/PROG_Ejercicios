@@ -6,5 +6,9 @@ public class HealingPotion extends Potion {
         super();
         this.power = 50;
     }
+
+    public String toString() {
+        return "Healing Potion";
+    }
     
 }

@@ -1,9 +1,12 @@
 package Character;
 
+import java.util.ArrayList;
 import Character.Job.Job;
 import Character.Race.Race;
 import Character.Stat.*;
 import Item.IConsumable;
+import Item.IWearable;
+import Item.Item;
 
 public class RPGCharacter implements IDamageable {
 
@@ -18,6 +21,10 @@ public class RPGCharacter implements IDamageable {
     Race race = null;
     Job job = null;
 
+    ArrayList<Item> inventory = new ArrayList<>();
+
+    ArrayList<IWearable> wornEquipment = new ArrayList<>();
+
     public RPGCharacter(String name, Race race, Job job) {
         this.name = name;
         this.race = race;
@@ -31,17 +38,55 @@ public class RPGCharacter implements IDamageable {
 
     public int getStat(Stat stat) {
         if (stat instanceof Constitution) {
-            return CON.getValue();
+            return CON.getValue() + getGearModifiers(stat);
         }
         if (stat instanceof Dexterity) {
-            return DEX.getValue();
+            return DEX.getValue() + getGearModifiers(stat);
         }
         if (stat instanceof Intelligence) {
-            return INT.getValue();
+            return INT.getValue() + getGearModifiers(stat);
         }
         if (stat instanceof Strength) {
-            return STR.getValue();
+            return STR.getValue() + getGearModifiers(stat);
         }
+        return 0;
+    }
+
+    public int getGearModifiers(Stat stat) {
+
+        int CON = 0;
+        int DEX = 0;
+        int INT = 0;
+        int STR = 0;
+
+        for (int i = 0; i < wornEquipment.size(); i++) {
+            if (stat instanceof Constitution) {
+                CON++;
+            }
+            if (stat instanceof Dexterity) {
+                DEX++;
+            }
+            if (stat instanceof Intelligence) {
+                INT++;
+            }
+            if (stat instanceof Strength) {
+                STR++;
+            }
+        }
+
+        if (stat instanceof Constitution) {
+            return CON;
+        }
+        if (stat instanceof Dexterity) {
+            return DEX;
+        }
+        if (stat instanceof Intelligence) {
+            return INT;
+        }
+        if (stat instanceof Strength) {
+            return STR;
+        }
+
         return 0;
     }
 
@@ -121,6 +166,55 @@ public class RPGCharacter implements IDamageable {
     public void consumes(IConsumable consumable) {
         System.out.println(this.name + " eats:  " + consumable.getClass().getSimpleName()); 
         consumable.consumedBy(this); 
+    }
+
+    public void stow(Item item) {
+        if (!inventory.contains(item) && getWeightCarried() + item.getWeight() < getMaxWeight()) {
+            inventory.add(item);
+        } else {
+            System.out.println(this.name + " alredy has that item (Object) in the inventory!");
+        }
+    }
+
+    public void drop(Item item) {
+        inventory.remove(item);
+        System.out.println(this.name + " dropped " + item.getClass().getSimpleName());
+    }
+
+    public String listInventory() {
+
+        String list = "";
+
+        for (int i = 0; i < inventory.size(); i++) {
+            list = list + "· " + inventory.get(i).toString() + "\n";
+        }
+
+        return list;
+
+    }
+
+    public double getWeightCarried() {
+        double weight = 0;
+        for (int i = 0; i < inventory.size(); i++) {
+            weight = weight + inventory.get(i).getWeight();
+        }
+        return weight;
+    }
+
+    public double getMaxWeight() {
+        return getStat(new Strength()) * 100;
+    }
+
+    public void wear(IWearable equipment) {
+        if (!wornEquipment.contains(equipment) && inventory.contains(equipment)) {
+            wornEquipment.add(equipment);
+        } else {
+            System.out.println(this.name + " is alredy wearing that equipment (Object)!");
+        }
+    }
+
+    public void remove(IWearable equipment) {
+        wornEquipment.remove(equipment);
     }
 
 }

@@ -8,6 +8,10 @@ public abstract class Food extends Item implements IConsumable {
 
     protected double power = 0;
 
+    public Food() {
+        this.weight = 0;
+    }
+
     public void consumedBy(RPGCharacter character) {
         character.heals(this.power);
     }

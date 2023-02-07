@@ -1,13 +1,18 @@
 package Item.Potion;
 
 import Item.IConsumable;
-import Character.Character;
+import Item.Item;
+import Character.RPGCharacter;
 
-public class Potion implements IConsumable {
+public abstract class Potion extends Item implements IConsumable {
 
     protected double power = 0;
 
-    public void consumedBy(Character character) {
+    public Potion() {
+        this.weight = 5;
+    }
+
+    public void consumedBy(RPGCharacter character) {
         character.heals(this.power);
     }
 
