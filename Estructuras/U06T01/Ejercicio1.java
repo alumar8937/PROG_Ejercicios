@@ -1,11 +1,9 @@
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ejercicio1 {
 
-    private static ArrayList<Coche> coches = new ArrayList();
+    private static ArrayList<Coche> coches = new ArrayList<>();
     private static Scanner inputValue = new Scanner(System.in);
     private static boolean salir = false;
     public static void main(String[] args) {
