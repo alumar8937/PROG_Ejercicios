@@ -10,4 +10,5 @@ public class Sword extends Weapon {
     public String toString() {
         return "Sword";
     }
+    
 }

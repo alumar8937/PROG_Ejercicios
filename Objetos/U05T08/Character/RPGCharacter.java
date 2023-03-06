@@ -23,7 +23,7 @@ public class RPGCharacter implements IDamageable {
     Job job = null;
 
     ArrayList<Item> inventory = new ArrayList<>();
-    ArrayList<IWearable> wornEquipment = new ArrayList<>();
+    ArrayList<Item> wornEquipment = new ArrayList<>();
     ArrayList<Weapon> equippedWeapons = new ArrayList<>();
 
     public RPGCharacter(String name, Race race, Job job) {
@@ -207,21 +207,27 @@ public class RPGCharacter implements IDamageable {
         return getStat(new Strength()) * 100;
     }
 
-    public void wear(IWearable equipment) {
-        if (!wornEquipment.contains(equipment) && inventory.contains(equipment)) {
+    public void wear(Item equipment) {
+        if (!(equipment instanceof IWearable)) {
+            return;
+        }
+
+        if ((!wornEquipment.contains(equipment)) && inventory.contains((Item) equipment)) {
             wornEquipment.add(equipment);
         } else {
             System.out.println(this.name + " is alredy wearing that equipment (Object)!");
         }
     }
 
-    public void remove(IWearable equipment) {
+    public void remove(Item equipment) {
         wornEquipment.remove(equipment);
     }
 
     public void equipWeapon(Weapon weapon) {
         if (equippedWeapons.size() < 2 && inventory.contains(weapon)) {
             equippedWeapons.add(weapon);
+        } else {
+            System.out.println(this.name + " is alredy wearing that equipment (Object) or has no space to equip weapon " + weapon.getClass());
         }
     }
 
@@ -237,7 +243,7 @@ public class RPGCharacter implements IDamageable {
         return equippedWeapons;
     }
 
-    public ArrayList<IWearable> getWornEquipment() {
+    public ArrayList<Item> getWornEquipment() {
         return wornEquipment;
     }
 

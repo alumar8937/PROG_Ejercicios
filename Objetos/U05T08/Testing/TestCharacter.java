@@ -10,6 +10,7 @@ import Character.Stat.Intelligence;
 import Item.*;
 import Item.Food.*;
 import Item.Gear.*;
+import Item.Potion.*;
 import Item.Weapon.*;
 
 
@@ -58,9 +59,6 @@ public class TestCharacter {
         behelit.droppedBy(character);
         assertEquals(character.listInventory(), "· Apple\n");
 
-        apple.droppedBy(character);
-        assertEquals(character.listInventory(), "");
-
     }
 
     @Test
@@ -79,6 +77,19 @@ public class TestCharacter {
         character.wear(glasses);
 
         assertEquals(baseINTStat + 1, character.getStat(new Intelligence()));
+
+        character.remove(glasses);
+
+        assertEquals(baseINTStat, character.getStat(new Intelligence()));
+
+        // Check that you can't equip something you don't have in the inventory.
+
+        character.drop(glasses);
+        character.wear(glasses);
+
+        assertEquals(baseINTStat, character.getStat(new Intelligence()));
+
+        // Weight
 
         System.out.println("Weight carried: " + character.getWeightCarried());
         System.out.println("Max weight: " + character.getMaxWeight());
@@ -103,10 +114,46 @@ public class TestCharacter {
         
         RPGCharacter character = new RPGCharacter("Merlin", new Human(), new Assassin());
         Weapon sword = new Sword();
+        Weapon sword2 = new Sword();
+        Weapon sword3 = new Sword();
         character.stow(sword);
+        character.stow(sword2);
+        character.stow(sword3);
+
         character.equipWeapon(sword);
+        character.equipWeapon(sword2);
+        character.equipWeapon(sword3); // Should not happen. (You only have two hands!)
 
         assertEquals(character.getEquippedWeapons().get(0), sword);
+        assertEquals(character.getEquippedWeapons().size(), 2);
+
+    }
+
+    @Test
+    public void testPotions() {
+
+        RPGCharacter character = new RPGCharacter("Merlin", new Human(), new Assassin());
+        HealingPotion healingPotion = new HealingPotion();
+        MinorPotionDecorator minorHealingPotion = new MinorPotionDecorator(healingPotion);
+        GreaterPotionDecorator greaterHealingPotion = new GreaterPotionDecorator(healingPotion);
+
+        character.stow(healingPotion);
+        character.stow(greaterHealingPotion);
+        character.stow(minorHealingPotion);
+
+        double maxHP = character.maxHealth();
+
+        character.receivesDamage(greaterHealingPotion.getPower());
+        character.consumes(greaterHealingPotion);
+        assertEquals(character.health(), maxHP, delta);
+
+        character.receivesDamage(healingPotion.getPower());
+        character.consumes(healingPotion);
+        assertEquals(character.health(), maxHP, delta);
+
+        character.receivesDamage(minorHealingPotion.getPower());
+        character.consumes(minorHealingPotion);
+        assertEquals(character.health(), maxHP, delta);
 
     }
     

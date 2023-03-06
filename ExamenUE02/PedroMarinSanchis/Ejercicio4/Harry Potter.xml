@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<saga>
+    <pelicula titulo="Harry Potter y la camara secreta">
+        <director>Chris Columbus</director>
+        <fecha>2002</fecha>
+        <duracion>154</duracion>
+        <orden>2</orden>
+    </pelicula>
+    <pelicula titulo="Harry Potter y la piedra filosofal">
+        <director>Chris Columbus</director>
+        <fecha>2001</fecha>
+        <duracion>152</duracion>
+        <orden>1</orden>
+    </pelicula>
+    <pelicula titulo="Harry Potter y el prisionero de Azkaban">
+        <director>Alfonso Cuarón</director>
+        <fecha>2004</fecha>
+        <duracion>144</duracion>
+        <orden>3</orden>
+    </pelicula>
+    <pelicula titulo="Harry Potter y el misterio del príncipe">
+        <director>David Yates</director>
+        <fecha>2009</fecha>
+        <duracion>153</duracion>
+        <orden>6</orden>
+    </pelicula>
+</saga>
