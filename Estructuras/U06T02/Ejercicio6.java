@@ -28,6 +28,7 @@ public class Ejercicio6 {
         distancia = Math.abs(listaPortales.get(0) - aterriza);
         
         while (!listaPortales.isEmpty()) {
+            iterador = listaPortales.iterator();
             while (iterador.hasNext()) {
                 currentPortal = iterador.next();
                 distancia = Math.abs(currentPortal - aterriza);
