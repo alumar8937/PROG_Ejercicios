@@ -8,8 +8,8 @@ public class Parentesis {
     private static final String TERMINACIONES_ACEPTADAS = ")]}";
 
     public static void main(String[] args) {
-        System.out.println(evaluarParentesis("([{}])}")); //true
-        System.out.println(evaluarParentesis("{uno}{otro}])([])}")); //true
+        System.out.println(evaluarParentesis("{([{}])}")); //true
+        System.out.println(evaluarParentesis("{[{uno}{otro}])([])}")); //true
         System.out.println(evaluarParentesis("{dos}}])([])}")); //false
         System.out.println(evaluarParentesis("{}{}])[])}")); //false
     }
@@ -24,12 +24,14 @@ public class Parentesis {
                     stack.add(APERTURAS_ACEPTADAS.charAt(j));
                 }
             }
+            if (stack.empty()) {
+                return false;
+            }
             for (int j = 0; j < TERMINACIONES_ACEPTADAS.length(); j++){
                 if (expresion.charAt(i) == TERMINACIONES_ACEPTADAS.charAt(j)) {
-                    if (APERTURAS_ACEPTADAS.charAt(j) != stack.peek()){
-                        return false;
-                    } else {
+                    if (APERTURAS_ACEPTADAS.charAt(j) == stack.peek()){
                         stack.pop();
+                        break;
                     }
                 }
             }
