@@ -17,6 +17,7 @@ public class Loteria implements Comparable<Loteria>{
     }
     
     public int compareTo(Loteria l) {
+
         if (Math.abs(this.getFairness() - l.getFairness()) < DELTA) {
             return 0;
         }
