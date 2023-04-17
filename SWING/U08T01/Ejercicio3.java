@@ -1,6 +1,6 @@
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
 
@@ -11,15 +11,31 @@ public class Ejercicio3 {
     private static Toolkit toolkit = Toolkit.getDefaultToolkit();
     private JLabel mainWindowJLabel = new JLabel();
     private JFrame mainWindow = createMainWindow();
-    private static final String END_CODE = "fin";
     public static void main(String[] args) {
-        Ejercicio2 ejercicio2 = new Ejercicio2();
+        Ejercicio3 ejercicio3 = new Ejercicio3();
     }
 
     public Ejercicio3() {
-        String userInput = "";
+        int xPos = 0;
+        int yPos = 0;
+        boolean goingUp = false;
+        boolean goingLeft = false;
+        mainWindowJLabel.setText("[DVD]");
         while (true) {
-            mainWindowJLabel.set
+            try {
+                TimeUnit.MILLISECONDS.sleep(20);
+                if (xPos > mainWindow.getWidth()-mainWindowJLabel.getWidth()-15) {goingLeft = true;}
+                if (yPos > mainWindow.getHeight()-mainWindowJLabel.getHeight()-37) {goingUp = true;}
+                if (xPos < 0) {goingLeft = false;}
+                if (yPos < 0) {goingUp = false;}
+                if (goingLeft) {xPos--;} else {xPos++;}
+                if (goingUp) {yPos--;} else {yPos++;}
+                mainWindowJLabel.setLocation(xPos, yPos);
+                    mainWindow.setTitle("Window Dimensions -> [x:"+mainWindow.getWidth()+" y:"+mainWindow.getHeight()+"]    Text Location -> [x:"+xPos+" y:"+yPos+"]");
+                mainWindow.update(mainWindow.getGraphics());
+            } catch (Exception e) {
+                //TODO: Handle Exception Properly.
+            }
         }
     }
 
@@ -27,16 +43,20 @@ public class Ejercicio3 {
         JFrame mainWindow = new JFrame();
         JPanel mainWindowJPanel = new JPanel();
         int frameHeight = 200;
-        int frameWidth = 400;
+        int frameWidth = 800;
 
-        mainWindow.setTitle("Ventana Principal");
+        mainWindow.setLayout(null);
+        mainWindow.setTitle("[x:"+frameWidth+" y:"+frameHeight+"]");
         mainWindow.setSize(frameWidth, frameHeight);
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         centerWindow(mainWindow);
 
+        mainWindowJPanel.setSize(frameWidth, frameHeight);
+
         mainWindow.add(mainWindowJPanel);
         mainWindowJPanel.add(mainWindowJLabel);
 
+        mainWindowJPanel.setVisible(true);
         mainWindow.setVisible(true);
         return mainWindow;
     }
