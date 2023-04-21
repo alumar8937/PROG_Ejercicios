@@ -20,7 +20,7 @@ public class Gravitas extends JFrame {
     private int screenSizeY = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
     private boolean simulate = true;
-    private int graviyAcceleration = 1; // Pixels*tick^2
+    private int GRAVITY_ACCELERATION = 1; // Pixels*step^2
     private final int SIMULATION_STEP_TIME = 10;
     private SwingWorker<Void,Void> worker = null;
 
@@ -33,8 +33,8 @@ public class Gravitas extends JFrame {
     private JButton destroyAllButton = new JButton("Destroy all windows");
     private JButton toggleSimulationButton = new JButton("Toggle simulation");
     public static void main(String[] args) {
-        Gravitas destroyer = new Gravitas();
-        destroyer.destroyWindow(-1);
+        Gravitas gravitas = new Gravitas();
+        gravitas.destroyWindow(-1);
     }
 
     public Gravitas() {
@@ -121,7 +121,7 @@ public class Gravitas extends JFrame {
 
     private void simulationStep() {
         for (SubWindow subWindow: windows) {
-            subWindow.simulationMove(subWindow.getSpeed().getX(), subWindow.getSpeed().getY()+graviyAcceleration);
+            subWindow.simulationMove(subWindow.getSpeed().getX(), subWindow.getSpeed().getY() + GRAVITY_ACCELERATION);
         }
         try {
             TimeUnit.MILLISECONDS.sleep(SIMULATION_STEP_TIME);
@@ -156,7 +156,7 @@ public class Gravitas extends JFrame {
 
     class SubWindow extends JFrame {
 
-        private int mass = 1;
+        //private int mass = 1;
         private int bounceAbsorption = 10;
         private vector2 speed = new vector2(0,0);
         private JLabel label = new JLabel();
@@ -194,22 +194,22 @@ public class Gravitas extends JFrame {
         }
 
         public void simulationMove(int speedX, int speedY) {
-            int x = this.getX()+speedX;
-            int y = this.getY()+speedY;
-            if (x+this.getWidth() > screenSizeX) {
-                x = screenSizeX-this.getWidth();
+            int xPos = this.getX()+speedX;
+            int yPos = this.getY()+speedY;
+            if (xPos+this.getWidth() > screenSizeX) {
+                xPos = screenSizeX-this.getWidth();
                 speedX = -speedX+bounceAbsorption;
             }
-            if (x < 0) {
-                x = 1;
+            if (xPos < 0) {
+                xPos = 1;
                 speedX = -speedX-bounceAbsorption;
             }
-            if (y+this.getHeight() > screenSizeY) {
-                y = screenSizeY-this.getHeight();
+            if (yPos+this.getHeight() > screenSizeY) {
+                yPos = screenSizeY-this.getHeight();
                 speedY = -speedY+bounceAbsorption;
             }
-            if (y < 0) {
-                y = 1;
+            if (yPos < 0) {
+                yPos = 1;
                 speedY = -speedY;
             }
 
@@ -217,7 +217,7 @@ public class Gravitas extends JFrame {
                 updateLabel();
                 return;
             }
-            this.setLocation(x, y);
+            this.setLocation(xPos, yPos);
             this.setSpeed(speedX, speedY);
             this.updateLabel();
         }
