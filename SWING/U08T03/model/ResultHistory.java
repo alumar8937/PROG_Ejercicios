@@ -3,16 +3,13 @@ package model;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import constants.Constants;
+
 public class ResultHistory {
 
     private Queue<CalculatorResult> resultHistoryQueue = new LinkedList<CalculatorResult>();
 
-    public ResultHistory() {
-        resultHistoryQueue.add(new CalculatorResult("lorem ipsum akjñwa wñlkja ñlkfjaaseñ aeñlkfjseañlkfjña aseñklfjañlkfr aeñlkfj","a"));
-        resultHistoryQueue.add(new CalculatorResult("2","b"));
-        resultHistoryQueue.add(new CalculatorResult("3","c"));
-        resultHistoryQueue.add(new CalculatorResult("4","d"));
-    }
+    public ResultHistory() {}
     
     public Queue<CalculatorResult> getResultHistoryQueue() {
         return resultHistoryQueue;

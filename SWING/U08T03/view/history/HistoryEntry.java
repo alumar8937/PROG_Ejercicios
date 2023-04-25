@@ -1,35 +1,53 @@
 package view.history;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 public class HistoryEntry extends JPanel {
 
-    private JPanel entryPanel = new JPanel();
-    private JLabel entrySentenceLabel = new JLabel("Sentence");
-    private JLabel entryResultLabel = new JLabel("Result");
+    private JTextArea entrySentenceLabel = new JTextArea();
+    private JTextArea entryResultLabel = new JTextArea();
 
     private String sentence = "Sentence";
     private String result = "Result";
     
     public HistoryEntry(String sentence, String result) {
 
-        entrySentenceLabel.setText("Sentence: "+sentence);
-        entryResultLabel.setText("      Result: "+result);
+        this.sentence = sentence;
+        this.result = result;
 
-        entryPanel.setLayout(new BoxLayout(entryPanel, BoxLayout.Y_AXIS));
-        entryPanel.add(entrySentenceLabel);
-        entryPanel.add(entryResultLabel);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        add(entryPanel);
-        
+        addEntryInformation();
+
         setBorder(BorderFactory.createLineBorder(Color.black));
         setVisible(true);
 
+    }
+
+    private void addEntryInformation() {
+        entrySentenceLabel.setEnabled(false);
+        entrySentenceLabel.setDisabledTextColor(Color.BLACK);
+        entrySentenceLabel.setOpaque(false);
+        entrySentenceLabel.setLineWrap(true);
+        entrySentenceLabel.setWrapStyleWord(true);
+        entrySentenceLabel.setFont(new Font(getFont().getName(), getFont().getStyle(), getFont().getSize()+2));
+        entrySentenceLabel.setText("Sentence: "+sentence);
+
+        entryResultLabel.setEnabled(false);
+        entryResultLabel.setDisabledTextColor(Color.BLACK);
+        entryResultLabel.setOpaque(false);
+        entryResultLabel.setLineWrap(true);
+        entryResultLabel.setWrapStyleWord(true);
+        entryResultLabel.setText("      Result: "+result);
+        
+        add(entrySentenceLabel);
+        add(entryResultLabel);
     }
 
     public String getSentence() {

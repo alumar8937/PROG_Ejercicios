@@ -25,5 +25,9 @@ public class HistoryController {
 
         return entryQueue;
     }
+
+    public void addResult(CalculatorResult result) {
+        model.getResultHistory().addResult(result);
+    }
     
 }
