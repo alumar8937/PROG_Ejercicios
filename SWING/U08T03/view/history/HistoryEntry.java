@@ -5,16 +5,19 @@ import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JEditorPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 public class HistoryEntry extends JPanel {
 
-    private JTextArea entrySentenceLabel = new JTextArea();
-    private JTextArea entryResultLabel = new JTextArea();
+    private JEditorPane entrySentenceLabel = new JEditorPane("text/html", "");
+    private JEditorPane entryResultLabel = new JEditorPane("text/html", "");
 
     private String sentence = "Sentence";
     private String result = "Result";
+
+    private Font font = new Font(getFont().getName(), getFont().getStyle(), getFont().getSize()+1);
+    private String cssStyle = "<head><style>b {font-size: 1.15em;font-style: italic;}</style></head>";
     
     public HistoryEntry(String sentence, String result) {
 
@@ -32,19 +35,18 @@ public class HistoryEntry extends JPanel {
 
     private void addEntryInformation() {
         entrySentenceLabel.setEnabled(false);
-        entrySentenceLabel.setDisabledTextColor(Color.BLACK);
         entrySentenceLabel.setOpaque(false);
-        entrySentenceLabel.setLineWrap(true);
-        entrySentenceLabel.setWrapStyleWord(true);
-        entrySentenceLabel.setFont(new Font(getFont().getName(), getFont().getStyle(), getFont().getSize()+2));
-        entrySentenceLabel.setText("Sentence: "+sentence);
+        entrySentenceLabel.setDisabledTextColor(Color.BLACK);
+        entrySentenceLabel.setFont(font);
+        entrySentenceLabel.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, true);
+        entrySentenceLabel.setText("<html>"+cssStyle+"<b>Sentence:</b> "+sentence+"</html>");
 
         entryResultLabel.setEnabled(false);
-        entryResultLabel.setDisabledTextColor(Color.BLACK);
         entryResultLabel.setOpaque(false);
-        entryResultLabel.setLineWrap(true);
-        entryResultLabel.setWrapStyleWord(true);
-        entryResultLabel.setText("      Result: "+result);
+        entryResultLabel.setDisabledTextColor(Color.BLACK);
+        entryResultLabel.setFont(font);
+        entryResultLabel.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, true);
+        entryResultLabel.setText("<html>"+cssStyle+"      <b>Result:</b> "+result+"</html>");
         
         add(entrySentenceLabel);
         add(entryResultLabel);

@@ -1,7 +1,11 @@
 package view.mainWindow;
 
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import constants.Constants;
 import controller.RPNCalculatorController;
@@ -13,7 +17,8 @@ public class CalculatorMainWindow extends JFrame {
     private RPNCalculatorView view = null;
 
     private JButton equalsButton = new JButton("=");
-    private int count = 0;
+    private JTextField input = new JTextField();
+    private JPanel panel = new JPanel();
 
     public CalculatorMainWindow(RPNCalculatorView view, RPNCalculatorController controller) {
 
@@ -29,8 +34,11 @@ public class CalculatorMainWindow extends JFrame {
     }
 
     private void populate() {
-        equalsButton.addActionListener((e) -> {controller.evaluateRPNSentence(count+""); count++; e.setSource("EQUALS_BUTTON"); view.actionPerformed(e);});
-        add(equalsButton);
+        input.setPreferredSize(new Dimension(100, 30));
+        panel.add(input);
+        equalsButton.addActionListener((e) -> {controller.evaluateRPNSentence(input.getText()); e.setSource("EQUALS_BUTTON"); view.actionPerformed(e);});
+        panel.add(equalsButton);
+        add(panel);
     }
 
 }

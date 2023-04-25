@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-import constants.Constants;
+import config.Constants;
 import controller.RPNCalculatorController;
 import view.RPNCalculatorView;
 
@@ -50,6 +50,9 @@ public class HistoryWindow extends JFrame {
         for (HistoryEntry h: historyEntryQueue) {
             historyEntryPanel.add(h);
         }
+
+        // Update title text.
+        setTitle(Constants.HISTORY_TITLE + " ["+historyEntryQueue.size()+"/"+Constants.MAX_HISTORY_ENTRIES+"]");
 
         revalidate();
         // Continue with super implementation of repaint method.
