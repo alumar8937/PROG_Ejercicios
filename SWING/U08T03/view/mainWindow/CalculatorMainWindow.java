@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import constants.Constants;
+import config.Constants;
 import controller.RPNCalculatorController;
 import view.RPNCalculatorView;
 
