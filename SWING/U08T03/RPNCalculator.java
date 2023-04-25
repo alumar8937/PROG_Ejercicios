@@ -1,5 +1,6 @@
 import controller.RPNCalculatorController;
 import model.RPNCalculatorModel;
+import model.operator.CalculatorOperator;
 import view.RPNCalculatorView;
 
 // RPNCalculator - Pedro Marín Sanchis - 24/04/2023
@@ -7,8 +8,19 @@ import view.RPNCalculatorView;
 
 public class RPNCalculator {
     public static void main(String[] args) {
-        RPNCalculatorModel model = new RPNCalculatorModel();
+        /*RPNCalculatorModel model = new RPNCalculatorModel();
         RPNCalculatorController controller = new RPNCalculatorController(model);
-        RPNCalculatorView view = new RPNCalculatorView(controller);
+        RPNCalculatorView view = new RPNCalculatorView(controller);*/
+
+        try {
+            System.out.println(CalculatorOperator.ADDITION.operate(new double[]{1,2}));   
+            System.out.println(CalculatorOperator.SUBTRACTION.operate(new double[]{1,2})); 
+            System.out.println(CalculatorOperator.MULTIPLICATION.operate(new double[]{1,2})); 
+            System.out.println(CalculatorOperator.DIVISION.operate(new double[]{1,2})); 
+            System.out.println(CalculatorOperator.EXPONENTIATION.operate(new double[]{2,4})); 
+        } catch (Exception e) {
+            System.out.println("JEfe ha petao");
+        }
+
     }
 }
