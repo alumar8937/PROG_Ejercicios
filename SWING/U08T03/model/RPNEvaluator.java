@@ -1,53 +1,47 @@
 package model;
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
+
 import config.Constants;
 
 public class RPNEvaluator {
 
-    public static double operate(double[] operands, CalculatorOperator[] operators) throws SyntaxErrorException {
+    public static double operate(Deque<Double> operands, Queue<CalculatorOperator> operators) throws SyntaxErrorException {
         
         double result = 0;
-        int operandPosition = 0;
-        int operatorPosition = 0;
 
         if (!isSyntaxValid(operands, operators)) {
             throw new SyntaxErrorException(Constants.SYNTAX_ERROR);
         }
 
-        if (operators.length == 0 && operands.length == 1) {return operands[0];}
-        if (operators.length == 1 && operands.length == 1) {
-            if (operators[0].isBinary()) {
+        if (operators.size() == 0 && operands.size() == 1) {return operands.getFirst();}
+        if (operators.size() == 1 && operands.size() == 1) {
+            if (operators.peek().isBinary()) {
                 throw new SyntaxErrorException(Constants.SYNTAX_ERROR);
             } else {
-                return operators[0].operate(operands);
+                return operators.poll().operate(operands);
             }
         } // Good until here
 
-        if (operators[0].isBinary()) {
-            result = operators[operatorPosition].operate(new double[]{operands[operandPosition],operands[operandPosition+1]});
-        } else {
-            result = operators[operatorPosition].operate(new double[]{operands[operandPosition]});
-        }
-        operandPosition++;
-        operatorPosition++;
-
-        for (int i = operatorPosition; i < operators.length; operatorPosition++) {
-            if (operators[0].isBinary()) {
-                result = operators[operatorPosition].operate(new double[]{result,operands[operandPosition]});
-                operandPosition++;
+        while (!operators.isEmpty()) {
+            if (operators.peek().isBinary()) {
+                result = operators.poll().operate(operands);
             } else {
-                result = operators[operatorPosition].operate(new double[]{result});
+                result = operators.poll().operate(operands);
             }
+            operands.addFirst(result);
         }
 
         return result;
     }
 
-    private static boolean isSyntaxValid(double[] operands, CalculatorOperator[] operators) {
+    private static boolean isSyntaxValid(Deque<Double> operands, Queue<CalculatorOperator> operators) {
         
         int operandsNeeded = 1;
         
-        if (operators.length == 0 && operands.length > 1) {return false;}
+        if (operators.size() == 0 && operands.size() > 1) {return false;}
 
         for (CalculatorOperator c: operators) {
             if (c.isBinary()) {
@@ -55,7 +49,7 @@ public class RPNEvaluator {
             }
         }
 
-        return operandsNeeded==operands.length;
+        return operandsNeeded==operands.size();
 
     }
 

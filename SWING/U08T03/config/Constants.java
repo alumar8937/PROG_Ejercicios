@@ -2,10 +2,13 @@ package config;
 
 public class Constants {
     
+    //View
+
     public static final String PROGRAM_VERSION = "v0.0";
     public static final String PROGRAM_TITLE = "RPN Calculator - "+PROGRAM_VERSION;
     public static final String HISTORY_TITLE = "History";
     public static final int MAX_HISTORY_ENTRIES = 20;
+    public static final int MEMORY_BUTTON_AMMOUNT = 4;
 
     //Operations
 

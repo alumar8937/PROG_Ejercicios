@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import config.Constants;
 import controller.RPNCalculatorController;
 import view.RPNCalculatorView;
+import view.mainWindow.keypad.keypadPanel;
 
 public class CalculatorMainWindow extends JFrame {
 
@@ -27,17 +28,18 @@ public class CalculatorMainWindow extends JFrame {
 
         populate();
 
-        setSize(400, 500);
+        setSize(600, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle(Constants.PROGRAM_TITLE);
         setVisible(true);
     }
 
     private void populate() {
-        input.setPreferredSize(new Dimension(100, 30));
+        input.setPreferredSize(new Dimension(500, 30));
         panel.add(input);
         equalsButton.addActionListener((e) -> {controller.evaluateRPNSentence(input.getText()); e.setSource("EQUALS_BUTTON"); view.actionPerformed(e);});
         panel.add(equalsButton);
+        panel.add(new keypadPanel());
         add(panel);
     }
 
