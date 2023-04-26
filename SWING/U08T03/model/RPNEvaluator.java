@@ -1,9 +1,7 @@
 package model;
 
 import java.util.Deque;
-import java.util.LinkedList;
 import java.util.Queue;
-
 import config.Constants;
 
 public class RPNEvaluator {
@@ -23,7 +21,7 @@ public class RPNEvaluator {
             } else {
                 return operators.poll().operate(operands);
             }
-        } // Good until here
+        }
 
         while (!operators.isEmpty()) {
             if (operators.peek().isBinary()) {

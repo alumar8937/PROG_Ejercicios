@@ -8,21 +8,25 @@ import javax.swing.BoxLayout;
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 
+import config.Constants;
+
 public class HistoryEntry extends JPanel {
 
     private JEditorPane entrySentenceLabel = new JEditorPane("text/html", "");
     private JEditorPane entryResultLabel = new JEditorPane("text/html", "");
 
     private String sentence = "Sentence";
-    private String result = "Result";
+    private double result = 0;
+    private boolean wasSyntaxError = false;
 
     private Font font = new Font(getFont().getName(), getFont().getStyle(), getFont().getSize()+1);
     private String cssStyle = "<head><style>b {font-size: 1.15em;font-style: italic;}</style></head>";
     
-    public HistoryEntry(String sentence, String result) {
+    public HistoryEntry(String sentence, double result, boolean wasSyntaxError) {
 
         this.sentence = sentence;
         this.result = result;
+        this.wasSyntaxError = wasSyntaxError;
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -46,18 +50,17 @@ public class HistoryEntry extends JPanel {
         entryResultLabel.setDisabledTextColor(Color.BLACK);
         entryResultLabel.setFont(font);
         entryResultLabel.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, true);
-        entryResultLabel.setText("<html>"+cssStyle+"      <b>Result:</b> "+result+"</html>");
+        entryResultLabel.setText("<html>"+cssStyle+"      <b>Result:</b> "+getDisplayResult()+"</html>");
         
         add(entrySentenceLabel);
         add(entryResultLabel);
     }
 
-    public String getSentence() {
-        return sentence;
-    }
-
-    public String getResult() {
-        return result;
+    public String getDisplayResult() {
+        if (!wasSyntaxError) {
+            return Constants.SYNTAX_ERROR;
+        }
+        return result+"";
     }
 
 }

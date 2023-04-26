@@ -1,6 +1,3 @@
-import controller.RPNCalculatorController;
-import model.CalculatorOperator;
-import model.RPNCalculatorModel;
 import view.RPNCalculatorView;
 
 // RPNCalculator - Pedro Marín Sanchis - 24/04/2023
@@ -8,9 +5,7 @@ import view.RPNCalculatorView;
 
 public class RPNCalculator {
     public static void main(String[] args) {
-        RPNCalculatorModel model = new RPNCalculatorModel();
-        RPNCalculatorController controller = new RPNCalculatorController(model);
-        RPNCalculatorView view = new RPNCalculatorView(controller);
+        RPNCalculatorView view = RPNCalculatorView.getInstance();
     }
 
 }

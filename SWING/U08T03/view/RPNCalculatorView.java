@@ -3,27 +3,28 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import controller.RPNCalculatorController;
 import view.history.HistoryWindow;
 import view.mainWindow.CalculatorMainWindow;
 
 public class RPNCalculatorView implements ActionListener {
 
-    private RPNCalculatorController controller = null;
-    private CalculatorMainWindow calculatorMainWindow = null;
-    private HistoryWindow historyWindow = null;
+    private static RPNCalculatorView INSTANCE = null;
+    private static CalculatorMainWindow calculatorMainWindow = CalculatorMainWindow.getInstance();
+    private static HistoryWindow historyWindow = HistoryWindow.getInstance();
 
-    public RPNCalculatorView(RPNCalculatorController controller) {
-        this.controller = controller;
-        
-        calculatorMainWindow = new CalculatorMainWindow(this, controller);
-        historyWindow = new HistoryWindow(this, controller);
-
+    private RPNCalculatorView() {
         FrameUtils.centerWindowOnScreen(calculatorMainWindow);
         FrameUtils.centerWindowOnScreen(historyWindow);
         
         calculatorMainWindow.setVisible(true);
         historyWindow.setVisible(true);
+    }
+
+    public static RPNCalculatorView getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new RPNCalculatorView();
+        }
+        return INSTANCE;
     }
 
     @Override

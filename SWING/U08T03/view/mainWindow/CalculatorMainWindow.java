@@ -8,39 +8,39 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import config.Constants;
-import controller.RPNCalculatorController;
-import view.RPNCalculatorView;
-import view.mainWindow.keypad.keypadPanel;
+import view.mainWindow.keypad.buttonPanel;
 
 public class CalculatorMainWindow extends JFrame {
 
-    private RPNCalculatorController controller = null;
-    private RPNCalculatorView view = null;
+    private static CalculatorMainWindow INSTANCE = null;
 
-    private JButton equalsButton = new JButton("=");
-    private JTextField input = new JTextField();
+    private JTextField displayComponent = new JTextField();
     private JPanel panel = new JPanel();
 
-    public CalculatorMainWindow(RPNCalculatorView view, RPNCalculatorController controller) {
-
-        this.controller = controller;
-        this.view = view;
-
+    private CalculatorMainWindow() {
         populate();
-
         setSize(600, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle(Constants.PROGRAM_TITLE);
         setVisible(true);
     }
 
+    public static CalculatorMainWindow getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new CalculatorMainWindow();
+        }
+        return INSTANCE;
+    }
+
     private void populate() {
-        input.setPreferredSize(new Dimension(500, 30));
-        panel.add(input);
-        equalsButton.addActionListener((e) -> {controller.evaluateRPNSentence(input.getText()); e.setSource("EQUALS_BUTTON"); view.actionPerformed(e);});
-        panel.add(equalsButton);
-        panel.add(new keypadPanel());
+        displayComponent.setPreferredSize(new Dimension(500, 30));
+        panel.add(displayComponent);
+        panel.add(new buttonPanel());
         add(panel);
+    }
+
+    public JTextField getDisplayComponent() {
+        return displayComponent;
     }
 
 }

@@ -12,12 +12,10 @@ import javax.swing.ScrollPaneConstants;
 
 import config.Constants;
 import controller.RPNCalculatorController;
-import view.RPNCalculatorView;
 
 public class HistoryWindow extends JFrame {
 
-    private RPNCalculatorController controller = null;
-    private RPNCalculatorView view = null;
+    private static HistoryWindow INSTANCE = null;
     
     private JPanel historyWindowPanel = new JPanel();
 
@@ -26,9 +24,7 @@ public class HistoryWindow extends JFrame {
     private JScrollPane historyEntryScrollPane = new JScrollPane(historyEntryPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
                                                                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-    public HistoryWindow(RPNCalculatorView view, RPNCalculatorController controller) {
-        this.controller = controller;
-        this.view = view;
+    public HistoryWindow() {
 
         setSize(300, 500);
         setTitle(Constants.HISTORY_TITLE);
@@ -42,10 +38,17 @@ public class HistoryWindow extends JFrame {
         repaint();
     }
 
+    public static HistoryWindow getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new HistoryWindow();
+        }
+        return INSTANCE;
+    }
+
     @Override
     public void repaint() {
         // Add elements.
-        historyEntryQueue = controller.getResultHistory();
+        historyEntryQueue = RPNCalculatorController.getResultHistory();
         historyEntryPanel.removeAll();
         for (HistoryEntry h: historyEntryQueue) {
             historyEntryPanel.add(h);
