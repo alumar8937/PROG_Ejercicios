@@ -1,8 +1,8 @@
 package view.mainWindow;
 
 import java.awt.Dimension;
+import java.awt.Font;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -18,8 +18,8 @@ public class CalculatorMainWindow extends JFrame {
     private JPanel panel = new JPanel();
 
     private CalculatorMainWindow() {
-        populate();
         setSize(600, 500);
+        populate();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle(Constants.PROGRAM_TITLE);
         setVisible(true);
@@ -33,7 +33,8 @@ public class CalculatorMainWindow extends JFrame {
     }
 
     private void populate() {
-        displayComponent.setPreferredSize(new Dimension(500, 30));
+        displayComponent.setPreferredSize(new Dimension(this.getWidth()-50, 50));
+        displayComponent.setFont(new Font(displayComponent.getFont().getName(), displayComponent.getFont().getStyle(), displayComponent.getFont().getSize()+5));
         panel.add(displayComponent);
         panel.add(new buttonPanel());
         add(panel);
@@ -41,6 +42,18 @@ public class CalculatorMainWindow extends JFrame {
 
     public JTextField getDisplayComponent() {
         return displayComponent;
+    }
+
+    public void addToDisplay(String text) {
+        displayComponent.setText(displayComponent.getText()+text);
+    }
+
+    public void clearDisplay() {
+        displayComponent.setText("");
+    }
+
+    public void displayBackspace() {
+        displayComponent.setText(displayComponent.getText().substring(0, displayComponent.getText().length()-1));
     }
 
 }

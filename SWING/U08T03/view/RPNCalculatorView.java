@@ -17,6 +17,7 @@ public class RPNCalculatorView implements ActionListener {
         FrameUtils.centerWindowOnScreen(historyWindow);
         
         calculatorMainWindow.setVisible(true);
+        historyWindow.setLocation(calculatorMainWindow.getX()+calculatorMainWindow.getWidth(), calculatorMainWindow.getY());
         historyWindow.setVisible(true);
     }
 

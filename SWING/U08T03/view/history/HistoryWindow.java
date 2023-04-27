@@ -34,7 +34,7 @@ public class HistoryWindow extends JFrame {
         historyWindowPanel.add(historyEntryScrollPane);
         add(historyWindowPanel);
 
-        setDefaultCloseOperation(HIDE_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         repaint();
     }
 
@@ -55,7 +55,7 @@ public class HistoryWindow extends JFrame {
         }
 
         // Update title text.
-        setTitle(Constants.HISTORY_TITLE + " ["+historyEntryQueue.size()+"/"+Constants.MAX_HISTORY_ENTRIES+"]");
+        setTitle(Constants.HISTORY_TITLE+" ["+historyEntryQueue.size()+"/"+Constants.MAX_HISTORY_ENTRIES+"]");
 
         revalidate();
         // Continue with super implementation of repaint method.
