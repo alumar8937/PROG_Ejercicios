@@ -15,7 +15,7 @@ public class ResultHistory {
 
     public static void addResult(CalculatorResult result) {
         resultHistoryQueue.add(result);
-        if (resultHistoryQueue.size() > Constants.MAX_HISTORY_ENTRIES) {
+        if (resultHistoryQueue.size() > Constants.MAX_HISTORY_ENTRIES) { // Poll head of queue when maximum result count has been reached.
             resultHistoryQueue.poll();
         }
     }

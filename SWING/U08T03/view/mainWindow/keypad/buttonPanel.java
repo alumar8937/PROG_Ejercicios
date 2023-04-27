@@ -37,9 +37,12 @@ public class buttonPanel extends JPanel {
 
     private void addFunctionPanel() {
         functionButtonPanel.setLayout(new GridLayout(4,3));
-        for (String buttonLabel: RPNCalculatorController.getButtonLabels()) {
-            JButton currentButton = new JButton(buttonLabel);
-            currentButton.addActionListener((e)->CalculatorMainWindow.getInstance().addToDisplay(buttonLabel));
+        String[] labels = RPNCalculatorController.getButtonLabels();
+        String[] tooltips = RPNCalculatorController.getButtonTooltips();
+        for (int i = 0; i < labels.length; i++) {
+            JButton currentButton = new JButton(labels[i]);
+            currentButton.addActionListener((e)->CalculatorMainWindow.getInstance().addToDisplay(currentButton.getText()));
+            currentButton.setToolTipText(tooltips[i]);
             functionButtonPanel.add(currentButton);
         }
 

@@ -24,4 +24,13 @@ public class RPNCalculatorController {
         return buttonLabels;
     }
 
+    public static String[] getButtonTooltips() {
+        CalculatorOperator[] operators = CalculatorOperator.class.getEnumConstants();
+        String[] buttonLabels = new String[operators.length];
+        for (int i = 0; i < operators.length; i++) {
+            buttonLabels[i] = operators[i].toString().replace("CalculatorOperator.", "").toLowerCase();
+        }
+        return buttonLabels;
+    }
+
 }

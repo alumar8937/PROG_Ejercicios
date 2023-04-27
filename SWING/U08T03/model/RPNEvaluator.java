@@ -14,7 +14,7 @@ public class RPNEvaluator {
             throw new SyntaxErrorException(Constants.SYNTAX_ERROR);
         }
 
-        if (operators.size() == 0 && operands.size() == 1) {return operands.getFirst();}
+        if (operators.size() == 0 && operands.size() == 1) {return operands.getFirst();} // Return first operand if there are no operators or other operands.
         if (operators.size() == 1 && operands.size() == 1) {
             if (operators.peek().isBinary()) {
                 throw new SyntaxErrorException(Constants.SYNTAX_ERROR);

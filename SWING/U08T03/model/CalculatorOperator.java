@@ -3,8 +3,11 @@ package model;
 import config.Constants;
 import java.util.Deque;
 
+// Every entry implements the operathe method.
+
 public enum CalculatorOperator {
 
+            //isBinary, stringRepresentation
     ADDITION(true, "+") {
         public double operate(Deque<Double> operands) throws SyntaxErrorException {
             if (!isSyntaxValid(operands, isBinary())) {
@@ -108,7 +111,7 @@ public enum CalculatorOperator {
     COTANGENT(false, "ctan()"){
         public double operate(Deque<Double> operands) throws SyntaxErrorException {
             if (!isSyntaxValid(operands, isBinary())) {throw new SyntaxErrorException(Constants.SYNTAX_ERROR);}
-            return Math.cos(operands.pop())/Math.sin(operands.pop());
+            return Math.cos(operands.peek())/Math.sin(operands.pop());
         }
     }, // cot()
     SECANT(false, "sec()"){
