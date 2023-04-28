@@ -1,12 +1,9 @@
 package view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import view.history.HistoryWindow;
 import view.mainWindow.CalculatorMainWindow;
 
-public class RPNCalculatorView implements ActionListener {
+public class RPNCalculatorView {
 
     private static RPNCalculatorView INSTANCE = null;
     private static CalculatorMainWindow calculatorMainWindow = CalculatorMainWindow.getInstance();
@@ -28,14 +25,4 @@ public class RPNCalculatorView implements ActionListener {
         return INSTANCE;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (e.getSource()+"") {
-            case "EQUALS_BUTTON":
-                historyWindow.repaint();
-            break;
-        default:
-            System.out.println("ActionEvent \""+e.getSource()+"\"was not accounted for.");
-        }
-    }
 }
