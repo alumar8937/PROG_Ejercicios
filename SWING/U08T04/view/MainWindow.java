@@ -1,6 +1,6 @@
 package view;
 
-import java.awt.Dimension;
+import java.awt.Color;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -47,9 +47,13 @@ class MainWindowContainerPanel extends JPanel {
         navigationButtonPanel = new JPanel();
         teamCreationPanelButton = new JButton("Team Creation");
         playerCreationPanelButton = new JButton("Player Creation");
+        playerCreationPanelButton.setBackground(Color.WHITE);
+        teamCreationPanelButton.setBackground(Color.WHITE);
+        playerCreationPanelButton.setFocusPainted(false);
+        teamCreationPanelButton.setFocusPainted(false);
 
-        teamCreationPanelButton.addActionListener((e) -> establishPanel(PlayerCreationPanel.getInstance()));
-        playerCreationPanelButton.addActionListener((e) -> establishPanel(TeamCreationPanel.getInstance()));
+        teamCreationPanelButton.addActionListener((e) -> teamCreationPanelButtonAction());
+        playerCreationPanelButton.addActionListener((e) -> playerCreationPanelButtonAction());
 
         navigationButtonPanel.add(teamCreationPanelButton);
         navigationButtonPanel.add(playerCreationPanelButton);
@@ -58,6 +62,18 @@ class MainWindowContainerPanel extends JPanel {
 
         add(navigationButtonPanel);
         add(programPanel);
+    }
+
+    private void playerCreationPanelButtonAction() {
+        establishPanel(TeamCreationPanel.getInstance());
+        playerCreationPanelButton.setBackground(Color.GRAY);
+        teamCreationPanelButton.setBackground(Color.WHITE);
+    }
+
+    private void teamCreationPanelButtonAction() {
+        establishPanel(PlayerCreationPanel.getInstance());
+        teamCreationPanelButton.setBackground(Color.GRAY);
+        playerCreationPanelButton.setBackground(Color.WHITE);
     }
 
     public static MainWindowContainerPanel getInstance() {
