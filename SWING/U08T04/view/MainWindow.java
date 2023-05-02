@@ -20,6 +20,7 @@ public class MainWindow extends JFrame {
         mainWindowContainerPanel = MainWindowContainerPanel.getInstance();
         add(mainWindowContainerPanel);
         setSize(500, 500);
+        setResizable(false);
         setVisible(true);
     }
 
@@ -44,6 +45,7 @@ class MainWindowContainerPanel extends JPanel {
 
     private MainWindowContainerPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        
         navigationButtonPanel = new JPanel();
         teamCreationPanelButton = new JButton("Team Creation");
         playerCreationPanelButton = new JButton("Player Creation");
@@ -62,16 +64,17 @@ class MainWindowContainerPanel extends JPanel {
 
         add(navigationButtonPanel);
         add(programPanel);
+
     }
 
     private void playerCreationPanelButtonAction() {
-        establishPanel(TeamCreationPanel.getInstance());
+        establishPanel(PlayerCreationPanel.getInstance());
         playerCreationPanelButton.setBackground(Color.GRAY);
         teamCreationPanelButton.setBackground(Color.WHITE);
     }
 
     private void teamCreationPanelButtonAction() {
-        establishPanel(PlayerCreationPanel.getInstance());
+        establishPanel(TeamCreationPanel.getInstance());
         teamCreationPanelButton.setBackground(Color.GRAY);
         playerCreationPanelButton.setBackground(Color.WHITE);
     }
