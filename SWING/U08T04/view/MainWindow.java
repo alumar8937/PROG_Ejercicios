@@ -21,7 +21,6 @@ public class MainWindow extends JFrame {
         add(mainWindowContainerPanel);
         setSize(500, 500);
         setResizable(false);
-        setVisible(true);
     }
 
     public static MainWindow getInstance() {
