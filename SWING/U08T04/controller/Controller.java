@@ -34,12 +34,14 @@ public class Controller {
             System.out.println("Nombre del entrenador: "+e.getNombreEntrenador());
             System.out.println("Jugadores: ");
             for (Jugador j: e.getJugadores()) {
-                System.out.println("Demarcación: "+j.getDemarcacion());
-                System.out.println("Nombre: "+j.getNombre());
-                System.out.println("Año de nacimiento: "+j.getAnyoNacimiento());
-                System.out.println("Altura: "+j.getAltura());
-                System.out.println("Dorsal: "+j.getDorsal());
+                System.out.println("\tDemarcación: "+j.getDemarcacion());
+                System.out.println("\tNombre: "+j.getNombre());
+                System.out.println("\tAño de nacimiento: "+j.getAnyoNacimiento());
+                System.out.println("\tAltura: "+j.getAltura());
+                System.out.println("\tDorsal: "+j.getDorsal());
+                System.out.println("");
             }
+            System.out.println("");
         }
     }
 
