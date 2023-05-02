@@ -7,6 +7,14 @@ public class Jugador {
     private int altura = 0;
     private int dorsal = 0;
 
+    public Jugador(Demarcacion demarcacion, String nombre, int anyoNacimiento, int altura, int dorsal) {
+        this.demarcacion = demarcacion;
+        this.nombre = nombre;
+        this.anyoNacimiento = anyoNacimiento;
+        this.altura = altura;
+        this.dorsal = dorsal;
+    }
+
     public Demarcacion getDemarcacion() {
         return demarcacion;
     }

@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controller.Controller;
 import view.creation.PlayerCreationPanel;
 import view.creation.TeamCreationPanel;
 
@@ -21,6 +22,7 @@ public class MainWindow extends JFrame {
         add(mainWindowContainerPanel);
         setSize(500, 500);
         setResizable(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public static MainWindow getInstance() {
@@ -36,18 +38,16 @@ class MainWindowContainerPanel extends JPanel {
 
     private static MainWindowContainerPanel INSTANCE = null;
 
-    private static JPanel navigationButtonPanel = null;
-    private static JButton teamCreationPanelButton = null;
-    private static JButton playerCreationPanelButton = null;
+    private static JPanel navigationButtonPanel = new JPanel();
+    private static JButton teamCreationPanelButton = new JButton("Team Creation");
+    private static JButton playerCreationPanelButton = new JButton("Player Creation");
+    private static JButton mostrarDatosButton = new JButton("Mostrar Datos");
 
     private static JPanel programPanel = null;
 
     private MainWindowContainerPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         
-        navigationButtonPanel = new JPanel();
-        teamCreationPanelButton = new JButton("Team Creation");
-        playerCreationPanelButton = new JButton("Player Creation");
         playerCreationPanelButton.setBackground(Color.WHITE);
         teamCreationPanelButton.setBackground(Color.WHITE);
         playerCreationPanelButton.setFocusPainted(false);
@@ -55,9 +55,11 @@ class MainWindowContainerPanel extends JPanel {
 
         teamCreationPanelButton.addActionListener((e) -> teamCreationPanelButtonAction());
         playerCreationPanelButton.addActionListener((e) -> playerCreationPanelButtonAction());
+        mostrarDatosButton.addActionListener((e) -> Controller.imprimirDatosPorConsola());
 
         navigationButtonPanel.add(teamCreationPanelButton);
         navigationButtonPanel.add(playerCreationPanelButton);
+        navigationButtonPanel.add(mostrarDatosButton);
 
         programPanel = new JPanel();
 
