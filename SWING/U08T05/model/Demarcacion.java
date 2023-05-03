@@ -1,6 +1,6 @@
 package model;
 
-import footballLang.LangProperties;
+import programLanguage.ProgramLanguageProperties;
 
 public enum Demarcacion {
     PORTERO,
@@ -11,7 +11,7 @@ public enum Demarcacion {
 
     @Override
     public String toString() {
-        return LangProperties.getInstance().getProperty(this.name());
+        return ProgramLanguageProperties.getInstance().getProperty(this.name());
     }
 
 }

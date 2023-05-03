@@ -1,6 +1,6 @@
-package footballLang;
+package programLanguage;
 
-public enum Language {
+public enum ProgramLanguage {
 
     ES,
     EN;

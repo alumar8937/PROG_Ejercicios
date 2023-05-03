@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import controller.Controller;
-import footballLang.LangProperties;
+import programLanguage.ProgramLanguageProperties;
 
 public class TeamCreationPanel extends JPanel {
 
@@ -50,15 +50,14 @@ public class TeamCreationPanel extends JPanel {
         add(nombreEntrenadorLabel);
         add(nombreEntrenador);
         add(botonAnyadir);
-        //String nombre, String pais, String nombreCompeticion, String nombreEntrenador
     }
 
     public void updateLang() {
-        botonAnyadir.setText(LangProperties.getInstance().getProperty("anyadirEquipo"));
-        nombreLabel.setText(LangProperties.getInstance().getProperty("nombre"));
-        paisLabel.setText(LangProperties.getInstance().getProperty("pais"));
-        nombreCompeticionLabel.setText(LangProperties.getInstance().getProperty("competicion"));
-        nombreEntrenadorLabel.setText(LangProperties.getInstance().getProperty("entrenador"));
+        botonAnyadir.setText(ProgramLanguageProperties.getInstance().getProperty("anyadirEquipo"));
+        nombreLabel.setText(ProgramLanguageProperties.getInstance().getProperty("nombre"));
+        paisLabel.setText(ProgramLanguageProperties.getInstance().getProperty("pais"));
+        nombreCompeticionLabel.setText(ProgramLanguageProperties.getInstance().getProperty("competicion"));
+        nombreEntrenadorLabel.setText(ProgramLanguageProperties.getInstance().getProperty("entrenador"));
         repaint();
     }
 

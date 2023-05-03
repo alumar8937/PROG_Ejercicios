@@ -10,8 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.Controller;
-import footballLang.LangProperties;
-import footballLang.Language;
+import programLanguage.ProgramLanguageProperties;
+import programLanguage.ProgramLanguage;
 import view.creation.PlayerCreationPanel;
 import view.creation.TeamCreationPanel;
 
@@ -47,7 +47,7 @@ class MainWindowContainerPanel extends JPanel {
     private static JButton playerCreationPanelButton = new JButton();
     private static JButton mostrarDatosButton = new JButton();
     private static JLabel idiomaLabel = new JLabel();
-    private static JComboBox<Language> cambiarIdiomaComboBox = new JComboBox<Language>();
+    private static JComboBox<ProgramLanguage> cambiarIdiomaComboBox = new JComboBox<ProgramLanguage>();
 
     private static JPanel programPanel = null;
 
@@ -83,21 +83,21 @@ class MainWindowContainerPanel extends JPanel {
     }
 
     private void cambiarIdioma() {
-        LangProperties.getInstance().load((Language) cambiarIdiomaComboBox.getSelectedItem());
+        ProgramLanguageProperties.getInstance().load((ProgramLanguage) cambiarIdiomaComboBox.getSelectedItem());
         updateLang();
         PlayerCreationPanel.getInstance().updateLang();
         TeamCreationPanel.getInstance().updateLang();
     }
 
     private void updateLang() {
-        teamCreationPanelButton.setText(LangProperties.getInstance().getProperty("crearEquipo"));
-        playerCreationPanelButton.setText(LangProperties.getInstance().getProperty("crearJugador"));
-        mostrarDatosButton.setText(LangProperties.getInstance().getProperty("mostrarDatos"));
-        idiomaLabel.setText(LangProperties.getInstance().getProperty("idioma"));
+        teamCreationPanelButton.setText(ProgramLanguageProperties.getInstance().getProperty("crearEquipo"));
+        playerCreationPanelButton.setText(ProgramLanguageProperties.getInstance().getProperty("crearJugador"));
+        mostrarDatosButton.setText(ProgramLanguageProperties.getInstance().getProperty("mostrarDatos"));
+        idiomaLabel.setText(ProgramLanguageProperties.getInstance().getProperty("idioma"));
     }
 
     private void fillCambiarIdiomaComboBox() {
-        for (Language l: Language.values()) {
+        for (ProgramLanguage l: ProgramLanguage.values()) {
             cambiarIdiomaComboBox.addItem(l);
         }
     }

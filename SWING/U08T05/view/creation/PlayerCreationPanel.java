@@ -14,9 +14,9 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import controller.Controller;
-import footballLang.LangProperties;
 import model.Demarcacion;
 import model.Equipo;
+import programLanguage.ProgramLanguageProperties;
 
 public class PlayerCreationPanel extends JPanel {
     
@@ -76,13 +76,13 @@ public class PlayerCreationPanel extends JPanel {
     }
 
     public void updateLang() {
-        botonAnyadir.setText(LangProperties.getInstance().getProperty("anyadirJugador"));
-        equipoLabel.setText(LangProperties.getInstance().getProperty("equipo"));
-        demarcacionLabel.setText(LangProperties.getInstance().getProperty("demarcacion"));
-        nombreLabel.setText(LangProperties.getInstance().getProperty("nombre"));
-        anyoNacimientoLabel.setText(LangProperties.getInstance().getProperty("anyoNacimiento"));
-        alturaLabel.setText(LangProperties.getInstance().getProperty("altura"));
-        dorsalLabel.setText(LangProperties.getInstance().getProperty("dorsal"));
+        botonAnyadir.setText(ProgramLanguageProperties.getInstance().getProperty("anyadirJugador"));
+        equipoLabel.setText(ProgramLanguageProperties.getInstance().getProperty("equipo"));
+        demarcacionLabel.setText(ProgramLanguageProperties.getInstance().getProperty("demarcacion"));
+        nombreLabel.setText(ProgramLanguageProperties.getInstance().getProperty("nombre"));
+        anyoNacimientoLabel.setText(ProgramLanguageProperties.getInstance().getProperty("anyoNacimiento"));
+        alturaLabel.setText(ProgramLanguageProperties.getInstance().getProperty("altura"));
+        dorsalLabel.setText(ProgramLanguageProperties.getInstance().getProperty("dorsal"));
         repaint();
     }
 
