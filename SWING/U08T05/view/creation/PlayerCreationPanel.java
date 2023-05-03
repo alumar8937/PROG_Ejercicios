@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import controller.Controller;
-import lang.Language;
 import lang.LangProperties;
 import model.Demarcacion;
 import model.Equipo;

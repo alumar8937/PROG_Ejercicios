@@ -14,6 +14,7 @@ public class LangProperties extends Properties{
 
     private LangProperties() {
         super();
+        load(DEFAULT_LANG);
     }
 
     public static LangProperties getInstance() {
