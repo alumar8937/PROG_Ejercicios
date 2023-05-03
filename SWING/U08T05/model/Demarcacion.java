@@ -1,6 +1,6 @@
 package model;
 
-import lang.LangProperties;
+import footballLang.LangProperties;
 
 public enum Demarcacion {
     PORTERO,

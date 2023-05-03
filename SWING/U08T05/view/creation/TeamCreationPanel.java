@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import controller.Controller;
-import lang.LangProperties;
+import footballLang.LangProperties;
 
 public class TeamCreationPanel extends JPanel {
 
@@ -34,7 +34,7 @@ public class TeamCreationPanel extends JPanel {
 
     private TeamCreationPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setPreferredSize(new Dimension(500,400));
+        setPreferredSize(new Dimension(550,400));
         setBorder(border);
 
         botonAnyadir.addActionListener((e) -> anyadirEquipo());
@@ -54,6 +54,7 @@ public class TeamCreationPanel extends JPanel {
     }
 
     public void updateLang() {
+        botonAnyadir.setText(LangProperties.getInstance().getProperty("anyadirEquipo"));
         nombreLabel.setText(LangProperties.getInstance().getProperty("nombre"));
         paisLabel.setText(LangProperties.getInstance().getProperty("pais"));
         nombreCompeticionLabel.setText(LangProperties.getInstance().getProperty("competicion"));
@@ -64,6 +65,7 @@ public class TeamCreationPanel extends JPanel {
     private void anyadirEquipo() {
         try {
             Controller.addEquipo(nombre.getText(), pais.getText(), nombreCompeticion.getText(), nombreEntrenador.getText());
+            PlayerCreationPanel.getInstance().repaint();
             JOptionPane.showMessageDialog(this, "Equipo añadido correctamente.");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al añadir el equipo, intentalo de nuevo.");

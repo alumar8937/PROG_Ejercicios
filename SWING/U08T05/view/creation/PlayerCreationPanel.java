@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import controller.Controller;
-import lang.LangProperties;
+import footballLang.LangProperties;
 import model.Demarcacion;
 import model.Equipo;
 
@@ -41,7 +41,7 @@ public class PlayerCreationPanel extends JPanel {
 
     private PlayerCreationPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setPreferredSize(new Dimension(500,400));
+        setPreferredSize(new Dimension(550,400));
         setBorder(border);
         
         fillEquipoComboBox();

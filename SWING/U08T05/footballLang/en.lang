@@ -1,0 +1,15 @@
+anyadirJugador=Add Player
+anyadirEquipo=Add Team
+equipo=Team:
+demarcacion=Position:
+nombre=Name:
+anyoNacimiento=Birth Year:
+altura=Height:
+dorsal=Shirt Number:
+pais=Country:
+competicion=Competition:
+entrenador=Coach:
+crearEquipo=Add Team
+crearJugador=Add Player
+mostrarDatos=Show Data
+idioma=Language
