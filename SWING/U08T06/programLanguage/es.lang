@@ -11,6 +11,7 @@ pais=País:
 competicion=Competición:
 entrenador=Entrenador:
 crearEquipo=Añadir Equipo
+modificarEquipo=Modificar Equipo
 crearJugador=Añadir Jugador
 mostrarDatos=Mostrar Datos
 idioma=Idioma

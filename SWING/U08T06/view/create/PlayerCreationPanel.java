@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import controller.Controller;
-import model.Demarcacion;
-import model.Equipo;
+import model.PlayerPosition;
+import model.Team;
 import programLanguage.LangHandler;
 import view.form.PlayerFormPanel;
 
@@ -41,7 +41,7 @@ public class PlayerCreationPanel extends JPanel {
     private void createPlayer() {
         try {
             Object[] fields = form.getFields();
-            Controller.addJugador((Equipo) fields[0], (Demarcacion) fields[1], (String) fields[2], (int) fields[3], (int) fields[4], (int) fields[5]);
+            Controller.addPlayer((Team) fields[0], (PlayerPosition) fields[1], (String) fields[2], (int) fields[3], (int) fields[4], (int) fields[5]);
             JOptionPane.showMessageDialog(this, LangHandler.getInstance().getProperty("operacionCompletada"));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, LangHandler.getInstance().getProperty("error"));

@@ -4,58 +4,65 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import model.Demarcacion;
-import model.Equipo;
-import model.Equipos;
-import model.Jugador;
+import model.PlayerPosition;
+import model.Team;
+import model.Teams;
+import model.Player;
 import programLanguage.LangHandler;
 import view.teamView.playerEntry;
 
 public class Controller {
     
-    public static void addJugador(Equipo equipo, Demarcacion demarcacion, String nombre, int anyoNacimiento, int altura, int dorsal) {
-        Jugador jugador = new Jugador(demarcacion, nombre, anyoNacimiento, altura, dorsal);
-        equipo.getJugadores().add(jugador);
+    public static void addPlayer(Team team, PlayerPosition position, String name, int birthyear, int height, int number) {
+        Player player = new Player(position, name, birthyear, height, number);
+        team.getPlayers().add(player);
     }
 
-    public static void addEquipo(String nombre, String pais, String nombreCompeticion, String nombreEntrenador) {
-        Equipos.getInstance().getEquipos().add(new Equipo(nombre, pais, nombreCompeticion, nombreEntrenador));
+    public static void addTeam(String name, String country, String competitionName, String coachName) {
+        Teams.getInstance().getTeams().add(new Team(name, country, competitionName, coachName));
     }
 
-    public static Demarcacion[] getDemarcaciones() {
-        return Demarcacion.values();
+    public static void modifyTeam(Team team, String name, String country, String competitionName, String coachName) {
+        team.setName(name);
+        team.setCompetitionName(competitionName);
+        team.setCoachName(coachName);
+        team.setCountry(country);
     }
 
-    public static ArrayList<Equipo> getEquipos() {
-        return Equipos.getInstance().getEquipos();
+    public static PlayerPosition[] getPlayerPosition() {
+        return PlayerPosition.values();
     }
 
-    public static Queue<playerEntry> getPlayerEntries(Equipo equipo) {
+    public static ArrayList<Team> getTeams() {
+        return Teams.getInstance().getTeams();
+    }
+
+    public static Queue<playerEntry> getPlayerEntries(Team team) {
         Queue<playerEntry> teamViewPlayerEntries = new LinkedList<playerEntry>();
-        for (Jugador j: equipo.getJugadores()) {
+        for (Player j: team.getPlayers()) {
             teamViewPlayerEntries.add(new playerEntry(
-                "<b>"+LangHandler.getInstance().getProperty("demarcacion")+":</b> "+j.getDemarcacion()
-                +"<b><br>"+LangHandler.getInstance().getProperty("nombre")+":</b> "+j.getNombre()
-                +"<b><br>"+LangHandler.getInstance().getProperty("anyoNacimiento")+"</b> "+j.getAnyoNacimiento()
-                +"<b><br>"+LangHandler.getInstance().getProperty("altura")+"</b> "+j.getAltura()
-                +"<b><br>"+LangHandler.getInstance().getProperty("dorsal")+"</b> "+j.getDorsal()));
+                "<b>"+LangHandler.getInstance().getProperty("demarcacion")+":</b> "+j.getPlayerPosition()
+                +"<b><br>"+LangHandler.getInstance().getProperty("nombre")+":</b> "+j.getName()
+                +"<b><br>"+LangHandler.getInstance().getProperty("anyoNacimiento")+"</b> "+j.getBirthyear()
+                +"<b><br>"+LangHandler.getInstance().getProperty("altura")+"</b> "+j.getHeight()
+                +"<b><br>"+LangHandler.getInstance().getProperty("dorsal")+"</b> "+j.getNumber()));
         }
         return teamViewPlayerEntries;
     }
 
     public static void imprimirDatosPorConsola() {
-        for (Equipo e: getEquipos()) {
-            System.out.println("Nombre: "+e.getNombre());
-            System.out.println("País: "+e.getPais());
-            System.out.println("Nombre de la competición: "+e.getNombreCompeticion());
-            System.out.println("Nombre del entrenador: "+e.getNombreEntrenador());
+        for (Team e: getTeams()) {
+            System.out.println("Nombre: "+e.getName());
+            System.out.println("País: "+e.getCountry());
+            System.out.println("Nombre de la competición: "+e.getCompetitionName());
+            System.out.println("Nombre del entrenador: "+e.getCoachName());
             System.out.println("Jugadores: ");
-            for (Jugador j: e.getJugadores()) {
-                System.out.println("\tDemarcación: "+j.getDemarcacion());
-                System.out.println("\tNombre: "+j.getNombre());
-                System.out.println("\tAño de nacimiento: "+j.getAnyoNacimiento());
-                System.out.println("\tAltura: "+j.getAltura());
-                System.out.println("\tDorsal: "+j.getDorsal());
+            for (Player j: e.getPlayers()) {
+                System.out.println("\tDemarcación: "+j.getPlayerPosition());
+                System.out.println("\tNombre: "+j.getName());
+                System.out.println("\tAño de nacimiento: "+j.getBirthyear());
+                System.out.println("\tAltura: "+j.getHeight());
+                System.out.println("\tDorsal: "+j.getNumber());
                 System.out.println("");
             }
             System.out.println("");

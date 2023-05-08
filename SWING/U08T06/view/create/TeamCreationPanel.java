@@ -39,7 +39,7 @@ public class TeamCreationPanel extends JPanel {
     private void createTeam() {
         try {
             Object[] fields = form.getFields();
-            Controller.addEquipo((String) fields[0], (String) fields[1], (String) fields[2], (String) fields[3]);
+            Controller.addTeam((String) fields[0], (String) fields[1], (String) fields[2], (String) fields[3]);
             JOptionPane.showMessageDialog(this, LangHandler.getInstance().getProperty("operacionCompletada"));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, LangHandler.getInstance().getProperty("error"));

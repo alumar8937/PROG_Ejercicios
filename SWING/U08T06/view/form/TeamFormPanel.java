@@ -49,4 +49,11 @@ public class TeamFormPanel extends JPanel {
         return new Object[]{nombre.getText(), pais.getText(), nombreCompeticion.getText(), nombreEntrenador.getText()};
     }
 
+    public void setFields(Object[] fields) {
+        nombre.setText((String) fields[0]);
+        pais.setText((String) fields[1]);
+        nombreCompeticion.setText((String) fields[2]);
+        nombreEntrenador.setText((String) fields[3]);
+    }
+
 }

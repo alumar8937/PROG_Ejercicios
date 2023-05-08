@@ -11,6 +11,7 @@ pais=Country:
 competicion=Competition:
 entrenador=Coach:
 crearEquipo=Add Team
+modificarEquipo=Modify Team
 crearJugador=Add Player
 mostrarDatos=Show Data
 idioma=Language
