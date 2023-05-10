@@ -50,6 +50,7 @@ public class TeamFormPanel extends JPanel {
         return new Object[]{nombre.getText(), pais.getText(), nombreCompeticion.getText(), nombreEntrenador.getText()};
     }
 
+<<<<<<< HEAD
     public void setFields(Equipo equipo) {
         nombre.setText(equipo.getNombre());
         pais.setText(equipo.getPais());
@@ -62,6 +63,13 @@ public class TeamFormPanel extends JPanel {
         pais.setEnabled(enabled);
         nombreCompeticion.setEnabled(enabled);
         nombreEntrenador.setEnabled(enabled);
+=======
+    public void setFields(Object[] fields) {
+        nombre.setText((String) fields[0]);
+        pais.setText((String) fields[1]);
+        nombreCompeticion.setText((String) fields[2]);
+        nombreEntrenador.setText((String) fields[3]);
+>>>>>>> 5e6fa6f03af0d597a7185e71e682a2311ca887b9
     }
 
 }

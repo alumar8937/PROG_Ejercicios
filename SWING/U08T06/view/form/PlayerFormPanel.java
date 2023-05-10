@@ -9,14 +9,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.Controller;
-import model.Demarcacion;
-import model.Equipo;
+import model.PlayerPosition;
+import model.Team;
 import programLanguage.LangHandler;
 
 public class PlayerFormPanel extends JPanel {
 
-    private JComboBox<Equipo> equipoComboBox = new JComboBox<Equipo>();
-    private JComboBox<Demarcacion> demarcacionComboBox = new JComboBox<Demarcacion>();
+    private JComboBox<Team> equipoComboBox = new JComboBox<Team>();
+    private JComboBox<PlayerPosition> demarcacionComboBox = new JComboBox<PlayerPosition>();
     private JTextField nombre = new JTextField();
     private JTextField anyoNacimiento = new JTextField();
     private JTextField altura = new JTextField();
@@ -43,6 +43,7 @@ public class PlayerFormPanel extends JPanel {
         add(equipoComboBox);
 
         add(demarcacionLabel);
+    
         add(demarcacionComboBox);
         add(nombreLabel);
         add(nombre);
@@ -55,7 +56,7 @@ public class PlayerFormPanel extends JPanel {
     }
 
     public Object[] getFields() throws Exception {
-        return new Object[]{(Equipo) equipoComboBox.getSelectedItem(),(Demarcacion) demarcacionComboBox.getSelectedItem(), nombre.getText(), Integer.parseInt(anyoNacimiento.getText()), Integer.parseInt(altura.getText()), Integer.parseInt(dorsal.getText())};
+        return new Object[]{(Team) equipoComboBox.getSelectedItem(),(PlayerPosition) demarcacionComboBox.getSelectedItem(), nombre.getText(), Integer.parseInt(anyoNacimiento.getText()), Integer.parseInt(altura.getText()), Integer.parseInt(dorsal.getText())};
     }
 
     public void updateLang() {
@@ -70,7 +71,7 @@ public class PlayerFormPanel extends JPanel {
 
     private void fillEquipoComboBox() {
         equipoComboBox.removeAllItems();
-        for (Equipo e: Controller.getEquipos()) {
+        for (Team e: Controller.getTeams()) {
             equipoComboBox.addItem(e);
         }
     }
@@ -85,7 +86,7 @@ public class PlayerFormPanel extends JPanel {
     }
 
     private void fillDemarcacionComboBox() {
-        for (Demarcacion d: Controller.getDemarcaciones()) {
+        for (PlayerPosition d: Controller.getPlayerPosition()) {
             demarcacionComboBox.addItem(d);
         }
     }

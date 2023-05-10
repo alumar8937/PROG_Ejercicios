@@ -2,7 +2,7 @@ package model;
 
 import programLanguage.LangHandler;
 
-public enum Demarcacion {
+public enum PlayerPosition {
     PORTERO,
     DEFENSA,
     CENTROCAMPISTA,

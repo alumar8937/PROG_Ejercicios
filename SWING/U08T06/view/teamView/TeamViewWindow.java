@@ -11,12 +11,12 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import controller.Controller;
-import model.Equipo;
+import model.Team;
 
 
 public class TeamViewWindow extends JFrame {
 
-    private Equipo equipo = null;
+    private Team equipo = null;
     
     private JPanel historyWindowPanel = new JPanel();
 
@@ -25,12 +25,12 @@ public class TeamViewWindow extends JFrame {
     private JScrollPane playerScrollPane = new JScrollPane(playerPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
                                                                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-    public TeamViewWindow(Equipo equipo) {
+    public TeamViewWindow(Team equipo) {
 
         this.equipo = equipo;
 
         setSize(300, 500);
-        setTitle(equipo.getNombre());
+        setTitle(equipo.getName());
 
         playerScrollPane.setPreferredSize(new Dimension(this.getWidth(),this.getHeight()));
         historyWindowPanel.setLayout(new BoxLayout(historyWindowPanel, BoxLayout.Y_AXIS));
