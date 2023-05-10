@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.Equipo;
 import programLanguage.LangHandler;
 
 public class TeamFormPanel extends JPanel {
@@ -47,6 +48,20 @@ public class TeamFormPanel extends JPanel {
 
     public Object[] getFields() {
         return new Object[]{nombre.getText(), pais.getText(), nombreCompeticion.getText(), nombreEntrenador.getText()};
+    }
+
+    public void setFields(Equipo equipo) {
+        nombre.setText(equipo.getNombre());
+        pais.setText(equipo.getPais());
+        nombreCompeticion.setText(equipo.getNombreCompeticion());
+        nombreEntrenador.setText(equipo.getNombreEntrenador());
+    }
+
+    public void setFieldEnabled(boolean enabled) {
+        nombre.setEnabled(enabled);
+        pais.setEnabled(enabled);
+        nombreCompeticion.setEnabled(enabled);
+        nombreEntrenador.setEnabled(enabled);
     }
 
 }
