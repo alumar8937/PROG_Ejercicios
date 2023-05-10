@@ -1,5 +1,6 @@
 package view.form;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.BoxLayout;
@@ -7,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import model.Equipo;
+import model.Team;
 import programLanguage.LangHandler;
 
 public class TeamFormPanel extends JPanel {
@@ -27,6 +28,11 @@ public class TeamFormPanel extends JPanel {
         setPreferredSize(new Dimension(550,400));
 
         updateLang();
+
+        nombre.setDisabledTextColor(Color.BLACK);
+        pais.setDisabledTextColor(Color.BLACK);
+        nombreCompeticion.setDisabledTextColor(Color.BLACK);
+        nombreEntrenador.setDisabledTextColor(Color.BLACK);
 
         add(nombreLabel);
         add(nombre);
@@ -50,12 +56,11 @@ public class TeamFormPanel extends JPanel {
         return new Object[]{nombre.getText(), pais.getText(), nombreCompeticion.getText(), nombreEntrenador.getText()};
     }
 
-<<<<<<< HEAD
-    public void setFields(Equipo equipo) {
-        nombre.setText(equipo.getNombre());
-        pais.setText(equipo.getPais());
-        nombreCompeticion.setText(equipo.getNombreCompeticion());
-        nombreEntrenador.setText(equipo.getNombreEntrenador());
+    public void setFields(Team team) {
+        nombre.setText(team.getName());
+        pais.setText(team.getCountry());
+        nombreCompeticion.setText(team.getCompetitionName());
+        nombreEntrenador.setText(team.getCoachName());
     }
 
     public void setFieldEnabled(boolean enabled) {
@@ -63,13 +68,12 @@ public class TeamFormPanel extends JPanel {
         pais.setEnabled(enabled);
         nombreCompeticion.setEnabled(enabled);
         nombreEntrenador.setEnabled(enabled);
-=======
+    }
     public void setFields(Object[] fields) {
         nombre.setText((String) fields[0]);
         pais.setText((String) fields[1]);
         nombreCompeticion.setText((String) fields[2]);
         nombreEntrenador.setText((String) fields[3]);
->>>>>>> 5e6fa6f03af0d597a7185e71e682a2311ca887b9
     }
 
 }

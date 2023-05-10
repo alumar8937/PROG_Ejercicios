@@ -6,6 +6,5 @@ public class FootballManager {
         MainWindow mainWindow = MainWindow.getInstance();
         FrameUtils.centerWindowOnScreen(mainWindow);
         mainWindow.setVisible(true);
-        System.out.println("Ronaldiño Soccer! HAHAHA.");
     }
 }
