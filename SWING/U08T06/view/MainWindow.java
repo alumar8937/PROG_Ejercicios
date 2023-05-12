@@ -17,6 +17,8 @@ import view.query.PlayerQueryPanel;
 import view.query.TeamQueryPanel;
 import programLanguage.ProgramLanguage;
 
+// This class contains the main program frame and it's contained panel.
+
 public class MainWindow extends JFrame {
 
     private static MainWindow INSTANCE = null;

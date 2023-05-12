@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
+// This class manages program language and reads from the dictionary files located in /programLanguage.
+
 public class LangHandler extends Properties{
     
     private static LangHandler INSTANCE = null;

@@ -8,7 +8,7 @@ import view.MainWindow;
 
 public class FootballManager {
     public static void main(String[] args) {
-        loadData();
+        loadData(); // Data is automatically loaded from memory upon program startup.
         MainWindow mainWindow = MainWindow.getInstance();
         FrameUtils.centerWindowOnScreen(mainWindow);
         mainWindow.setVisible(true);

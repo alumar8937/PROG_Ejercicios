@@ -1,5 +1,7 @@
 package programLanguage;
 
+// Enum of supported languages.
+
 public enum ProgramLanguage {
 
     ES,

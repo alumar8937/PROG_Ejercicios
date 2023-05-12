@@ -17,6 +17,9 @@ import model.PlayerPosition;
 import model.Team;
 import programLanguage.LangHandler;
 
+// This class acts as a form, it can be filled and have it's values retrieved or have it's fields disabled and used
+// to display data.
+
 public class PlayerFormPanel extends JPanel {
 
     private JComboBox<Team> equipoComboBox = new JComboBox<Team>();

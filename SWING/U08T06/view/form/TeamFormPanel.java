@@ -11,6 +11,9 @@ import javax.swing.JTextField;
 import model.Team;
 import programLanguage.LangHandler;
 
+// This class acts as a form, it can be filled and have it's values retrieved or have it's fields disabled and used
+// to display data.
+
 public class TeamFormPanel extends JPanel {
 
     private JTextField nombre = new JTextField();
