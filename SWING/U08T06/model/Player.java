@@ -1,6 +1,11 @@
 package model;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
+
+    private static final long serialVersionUID = 2;
+
     private PlayerPosition playerPosition = null;
     private String name = null;
     private int birthyear = 0;
@@ -13,6 +18,10 @@ public class Player {
         this.birthyear = birthyear;
         this.height = height;
         this.number = number;
+    }
+
+    public String toString() {
+        return name;
     }
 
     public PlayerPosition getPlayerPosition() {
@@ -33,6 +42,26 @@ public class Player {
 
     public int getNumber() {
         return number;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBirthyear(int birthyear) {
+        this.birthyear = birthyear;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setPlayerPosition(PlayerPosition playerPosition) {
+        this.playerPosition = playerPosition;
     }
 
 }

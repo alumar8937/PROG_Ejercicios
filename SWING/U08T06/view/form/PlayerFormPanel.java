@@ -2,13 +2,17 @@ package view.form;
 
 import java.awt.Dimension;
 
+import java.awt.Color;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.awt.Graphics;
 
 import controller.Controller;
+import model.Player;
 import model.PlayerPosition;
 import model.Team;
 import programLanguage.LangHandler;
@@ -37,6 +41,25 @@ public class PlayerFormPanel extends JPanel {
         fillEquipoComboBox();
         fillDemarcacionComboBox();
 
+        nombre.setDisabledTextColor(Color.BLACK);
+        anyoNacimiento.setDisabledTextColor(Color.BLACK);
+        altura.setDisabledTextColor(Color.BLACK);
+        dorsal.setDisabledTextColor(Color.BLACK);
+        equipoComboBox.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public void paint(Graphics g) {
+                setForeground(Color.BLACK);
+                super.paint(g);
+            }
+        });
+        demarcacionComboBox.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public void paint(Graphics g) {
+                setForeground(Color.BLACK);
+                super.paint(g);
+            }
+        });
+
         updateLang();
 
         add(equipoLabel);
@@ -57,6 +80,27 @@ public class PlayerFormPanel extends JPanel {
 
     public Object[] getFields() throws Exception {
         return new Object[]{(Team) equipoComboBox.getSelectedItem(),(PlayerPosition) demarcacionComboBox.getSelectedItem(), nombre.getText(), Integer.parseInt(anyoNacimiento.getText()), Integer.parseInt(altura.getText()), Integer.parseInt(dorsal.getText())};
+    }
+
+    public void setFields(Player player, Team team) {
+        if (player == null || team == null) {
+            return;
+        }
+        nombre.setText(player.getName());
+        anyoNacimiento.setText(player.getBirthyear()+"");
+        altura.setText(player.getHeight()+"");
+        dorsal.setText(player.getNumber()+"");
+        equipoComboBox.setSelectedItem(team);
+        demarcacionComboBox.setSelectedItem(player.getPlayerPosition());
+    }
+
+    public void setFieldEnabled(boolean enabled) {
+        nombre.setEnabled(enabled);
+        anyoNacimiento.setEnabled(enabled);
+        altura.setEnabled(enabled);
+        dorsal.setEnabled(enabled);
+        equipoComboBox.setEnabled(enabled);
+        demarcacionComboBox.setEnabled(enabled);
     }
 
     public void updateLang() {

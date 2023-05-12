@@ -1,6 +1,9 @@
 operacionCompletada=Operacion completada correctamente.
 error=Error, intentalo de nuevo.
+errorData=Error al cargar los datos.
 ok=Ok
+del=Eliminar
+save=Guardar Datos
 equipo=Equipo:
 demarcacion=Demarcación:
 nombre=Nombre:

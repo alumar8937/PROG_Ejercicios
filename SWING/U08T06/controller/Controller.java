@@ -1,16 +1,16 @@
 package controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 
 import model.PlayerPosition;
 import model.Team;
 import model.Teams;
 import model.Player;
-import programLanguage.LangHandler;
-import view.teamView.playerEntry;
-
 public class Controller {
     
     public static void addPlayer(Team team, PlayerPosition position, String name, int birthyear, int height, int number) {
@@ -37,19 +37,6 @@ public class Controller {
         return Teams.getInstance().getTeams();
     }
 
-    public static Queue<playerEntry> getPlayerEntries(Team team) {
-        Queue<playerEntry> teamViewPlayerEntries = new LinkedList<playerEntry>();
-        for (Player j: team.getPlayers()) {
-            teamViewPlayerEntries.add(new playerEntry(
-                "<b>"+LangHandler.getInstance().getProperty("demarcacion")+":</b> "+j.getPlayerPosition()
-                +"<b><br>"+LangHandler.getInstance().getProperty("nombre")+":</b> "+j.getName()
-                +"<b><br>"+LangHandler.getInstance().getProperty("anyoNacimiento")+"</b> "+j.getBirthyear()
-                +"<b><br>"+LangHandler.getInstance().getProperty("altura")+"</b> "+j.getHeight()
-                +"<b><br>"+LangHandler.getInstance().getProperty("dorsal")+"</b> "+j.getNumber()));
-        }
-        return teamViewPlayerEntries;
-    }
-
     public static void imprimirDatosPorConsola() {
         for (Team e: getTeams()) {
             System.out.println("Nombre: "+e.getName());
@@ -67,6 +54,21 @@ public class Controller {
             }
             System.out.println("");
         }
+    }
+
+    public static void saveData() throws Exception {
+        FileOutputStream fileOutputStream = new FileOutputStream("savedData"+File.separatorChar+"savedData.dat");
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(Teams.getInstance());
+        objectOutputStream.flush();
+        objectOutputStream.close();
+    }
+
+    public static void loadData() throws Exception {
+        FileInputStream fileInputStream = new FileInputStream("savedData"+File.separatorChar+"savedData.dat");
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        Teams.getInstance().loadData((Teams) objectInputStream.readObject());
+        objectInputStream.close(); 
     }
 
 }

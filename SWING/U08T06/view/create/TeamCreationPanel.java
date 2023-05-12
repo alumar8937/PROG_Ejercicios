@@ -15,14 +15,12 @@ import view.form.TeamFormPanel;
 
 public class TeamCreationPanel extends JPanel {
 
-    private static TeamCreationPanel INSTANCE = null;
-
     private static Border border = BorderFactory.createLineBorder(Color.BLACK);
 
     private TeamFormPanel form = new TeamFormPanel();
     private JButton okButton = new JButton(); 
     
-    private TeamCreationPanel() {
+    public TeamCreationPanel() {
         
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(border);
@@ -49,13 +47,6 @@ public class TeamCreationPanel extends JPanel {
     public void updateLang() {
         okButton.setText(LangHandler.getInstance().getProperty("ok"));
         form.updateLang();
-    }
-
-    public static TeamCreationPanel getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new TeamCreationPanel();
-        }
-        return INSTANCE;
     }
 
 }

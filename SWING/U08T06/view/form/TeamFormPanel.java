@@ -57,6 +57,9 @@ public class TeamFormPanel extends JPanel {
     }
 
     public void setFields(Team team) {
+        if (team == null) {
+            return;
+        }
         nombre.setText(team.getName());
         pais.setText(team.getCountry());
         nombreCompeticion.setText(team.getCompetitionName());

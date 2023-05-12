@@ -1,12 +1,11 @@
 package view;
 
-import java.awt.Color;
-
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controller.Controller;
@@ -25,7 +24,7 @@ public class MainWindow extends JFrame {
     private static MainWindowContainerPanel mainWindowContainerPanel = null;
     
     private MainWindow () {
-        mainWindowContainerPanel = MainWindowContainerPanel.getInstance();
+        mainWindowContainerPanel = new MainWindowContainerPanel();
         add(mainWindowContainerPanel);
         setSize(550, 500);
         setResizable(false);
@@ -44,9 +43,10 @@ public class MainWindow extends JFrame {
 
 class MainWindowContainerPanel extends JPanel {
 
-    private static MainWindowContainerPanel INSTANCE = null;
-
     private static JPanel navigationButtonPanel = new JPanel();
+    private static JPanel teamButtonPanel = new JPanel();
+    private static JPanel playerButtonPanel = new JPanel();
+    private static JPanel dataButtonPanel = new JPanel();
 
     private static JButton teamCreationPanelButton = new JButton();
     private static JButton playerCreationPanelButton = new JButton();
@@ -58,69 +58,69 @@ class MainWindowContainerPanel extends JPanel {
     private static JButton teamQueryPanelButton = new JButton();
 
     private static JButton showDataButton = new JButton();
+    private static JButton saveDataButton = new JButton();
+
     private static JLabel languageLabel = new JLabel();
     private static JComboBox<ProgramLanguage> changeLanguageComboBox = new JComboBox<ProgramLanguage>();
 
-    private static JPanel programPanel = null;
+    private static JPanel programPanel = new JPanel();
 
-    private MainWindowContainerPanel() {
+    public MainWindowContainerPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        teamButtonPanel.setLayout(new BoxLayout(teamButtonPanel, BoxLayout.Y_AXIS));
+        playerButtonPanel.setLayout(new BoxLayout(playerButtonPanel, BoxLayout.Y_AXIS));
+        dataButtonPanel.setLayout(new BoxLayout(dataButtonPanel, BoxLayout.Y_AXIS));
 
         updateLang();
-        
-        playerCreationPanelButton.setBackground(Color.WHITE);
-        teamCreationPanelButton.setBackground(Color.WHITE);
 
-        playerModificationPanelButton.setBackground(Color.WHITE);
-        teamModificationPanelButton.setBackground(Color.WHITE);
+        teamCreationPanelButton.addActionListener((e) -> establishPanel(new TeamCreationPanel()));
+        playerCreationPanelButton.addActionListener((e) -> establishPanel(new PlayerCreationPanel()));
 
-        playerQueryPanelButton.setBackground(Color.WHITE);
-        teamQueryPanelButton.setBackground(Color.WHITE);
-        
-        playerCreationPanelButton.setFocusPainted(false);
-        teamCreationPanelButton.setFocusPainted(false);
-        
-        playerModificationPanelButton.setFocusPainted(false);
-        teamModificationPanelButton.setFocusPainted(false);
-        
-        playerQueryPanelButton.setFocusPainted(false);
-        teamQueryPanelButton.setFocusPainted(false);
+        playerModificationPanelButton.addActionListener((e) -> establishPanel(new PlayerModificationPanel()));
+        teamModificationPanelButton.addActionListener((e) -> establishPanel(new TeamModificationPanel()));
 
-        teamCreationPanelButton.addActionListener((e) -> teamCreationPanelButtonAction());
-        playerCreationPanelButton.addActionListener((e) -> playerCreationPanelButtonAction());
-
-        playerModificationPanelButton.addActionListener((e) -> playerModificationPanelButtonAction());
-        teamModificationPanelButton.addActionListener((e) -> teamModificationPanelButtonAction());
-
-        playerQueryPanelButton.addActionListener((e) -> playerQueryPanelButtonAction());
-        teamQueryPanelButton.addActionListener((e) -> teamQueryPanelButtonAction());
+        playerQueryPanelButton.addActionListener((e) -> establishPanel(new PlayerQueryPanel()));
+        teamQueryPanelButton.addActionListener((e) -> establishPanel(new TeamQueryPanel()));
         showDataButton.addActionListener((e) -> Controller.imprimirDatosPorConsola());
+        saveDataButton.addActionListener((e) -> saveDataButtonAction());
 
         fillchangeLanguageComboBox();
 
         changeLanguageComboBox.addActionListener((e) -> changeLanguage());
 
-        navigationButtonPanel.add(teamCreationPanelButton);
-        navigationButtonPanel.add(teamModificationPanelButton);
-        navigationButtonPanel.add(teamQueryPanelButton);
-        navigationButtonPanel.add(playerCreationPanelButton);
-        navigationButtonPanel.add(playerModificationPanelButton);
-        navigationButtonPanel.add(playerQueryPanelButton);
-        navigationButtonPanel.add(showDataButton);
-        navigationButtonPanel.add(languageLabel);
+        teamButtonPanel.add(teamCreationPanelButton);
+        teamButtonPanel.add(teamModificationPanelButton);
+        teamButtonPanel.add(teamQueryPanelButton);
+        playerButtonPanel.add(playerCreationPanelButton);
+        playerButtonPanel.add(playerModificationPanelButton);
+        playerButtonPanel.add(playerQueryPanelButton);
+        dataButtonPanel.add(showDataButton);
+        dataButtonPanel.add(saveDataButton);
+        dataButtonPanel.add(languageLabel);
+        navigationButtonPanel.add(teamButtonPanel);
+        navigationButtonPanel.add(playerButtonPanel);
+        navigationButtonPanel.add(dataButtonPanel);
         navigationButtonPanel.add(changeLanguageComboBox);
-
-        programPanel = new JPanel();
 
         add(navigationButtonPanel);
         add(programPanel);
     }
 
+    private void saveDataButtonAction() {
+        try {
+            Controller.saveData();
+            JOptionPane.showMessageDialog(this, LangHandler.getInstance().getProperty("operacionCompletada"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, LangHandler.getInstance().getProperty("error"));
+            return;
+        }
+    }
+
     private void changeLanguage() {
         LangHandler.getInstance().load((ProgramLanguage) changeLanguageComboBox.getSelectedItem());
         updateLang();
-        PlayerCreationPanel.getInstance().updateLang();
-        TeamCreationPanel.getInstance().updateLang();
+        programPanel.removeAll();
         MainWindow.getInstance().pack();
     }
 
@@ -133,79 +133,13 @@ class MainWindowContainerPanel extends JPanel {
         teamQueryPanelButton.setText(LangHandler.getInstance().getProperty("consultarEquipo"));
         showDataButton.setText(LangHandler.getInstance().getProperty("mostrarDatos"));
         languageLabel.setText(LangHandler.getInstance().getProperty("idioma"));
+        saveDataButton.setText(LangHandler.getInstance().getProperty("save"));
     }
 
     private void fillchangeLanguageComboBox() {
         for (ProgramLanguage l: ProgramLanguage.values()) {
             changeLanguageComboBox.addItem(l);
         }
-    }
-
-    private void teamQueryPanelButtonAction() {
-        establishPanel(TeamQueryPanel.getInstance());
-        playerCreationPanelButton.setBackground(Color.WHITE);
-        playerModificationPanelButton.setBackground(Color.WHITE);
-        playerQueryPanelButton.setBackground(Color.WHITE);
-        teamCreationPanelButton.setBackground(Color.WHITE);
-        teamModificationPanelButton.setBackground(Color.WHITE);
-        teamQueryPanelButton.setBackground(Color.GRAY);
-    }
-
-    private void playerQueryPanelButtonAction() {
-        //establishPanel(PlayerQueryPanel.getInstance());
-        playerCreationPanelButton.setBackground(Color.WHITE);
-        playerModificationPanelButton.setBackground(Color.WHITE);
-        playerQueryPanelButton.setBackground(Color.GRAY);
-        teamCreationPanelButton.setBackground(Color.WHITE);
-        teamModificationPanelButton.setBackground(Color.WHITE);
-        teamQueryPanelButton.setBackground(Color.WHITE);
-    }
-
-    private void playerModificationPanelButtonAction() {
-        //establishPanel(PlayerModificationPanel.getInstance());
-        playerCreationPanelButton.setBackground(Color.WHITE);
-        playerModificationPanelButton.setBackground(Color.GRAY);
-        playerQueryPanelButton.setBackground(Color.WHITE);
-        teamCreationPanelButton.setBackground(Color.WHITE);
-        teamModificationPanelButton.setBackground(Color.WHITE);
-        teamQueryPanelButton.setBackground(Color.WHITE);
-    }
-
-    private void playerCreationPanelButtonAction() {
-        establishPanel(PlayerCreationPanel.getInstance());
-        playerCreationPanelButton.setBackground(Color.GRAY);
-        playerModificationPanelButton.setBackground(Color.WHITE);
-        playerQueryPanelButton.setBackground(Color.WHITE);
-        teamCreationPanelButton.setBackground(Color.WHITE);
-        teamModificationPanelButton.setBackground(Color.WHITE);
-        teamQueryPanelButton.setBackground(Color.WHITE);
-    }
-
-    private void teamCreationPanelButtonAction() {
-        establishPanel(TeamCreationPanel.getInstance());
-        playerCreationPanelButton.setBackground(Color.WHITE);
-        playerModificationPanelButton.setBackground(Color.WHITE);
-        playerQueryPanelButton.setBackground(Color.WHITE);
-        teamCreationPanelButton.setBackground(Color.GRAY);
-        teamModificationPanelButton.setBackground(Color.WHITE);
-        teamQueryPanelButton.setBackground(Color.WHITE);
-    }
-
-    private void teamModificationPanelButtonAction() {
-        establishPanel(TeamModificationPanel.getInstance());
-        playerCreationPanelButton.setBackground(Color.WHITE);
-        playerModificationPanelButton.setBackground(Color.WHITE);
-        playerQueryPanelButton.setBackground(Color.WHITE);
-        teamCreationPanelButton.setBackground(Color.WHITE);
-        teamModificationPanelButton.setBackground(Color.GRAY);
-        teamQueryPanelButton.setBackground(Color.WHITE);
-    }
-
-    public static MainWindowContainerPanel getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new MainWindowContainerPanel();
-        }
-        return INSTANCE;
     }
 
     public void establishPanel(JPanel panel) {

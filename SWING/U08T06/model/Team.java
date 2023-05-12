@@ -1,8 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Team {
+public class Team implements Serializable {
+
+    private static final long serialVersionUID = 1;
     
     private ArrayList<Player> players = new ArrayList<Player>();
 

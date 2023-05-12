@@ -12,12 +12,11 @@ import javax.swing.border.Border;
 
 import controller.Controller;
 import model.Team;
+import model.Teams;
 import programLanguage.LangHandler;
 import view.form.TeamFormPanel;
 
 public class TeamModificationPanel extends JPanel {
-
-    private static TeamModificationPanel INSTANCE = null;
 
     private Team equipo = null;
 
@@ -26,8 +25,9 @@ public class TeamModificationPanel extends JPanel {
 
     private TeamFormPanel form = new TeamFormPanel();
     private JButton okButton = new JButton(); 
+    private JButton delButton = new JButton(); 
     
-    private TeamModificationPanel() {
+    public TeamModificationPanel() {
         
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(border);
@@ -35,6 +35,7 @@ public class TeamModificationPanel extends JPanel {
         equipoComboBox.addActionListener((e) -> {equipo = (Team) equipoComboBox.getSelectedItem(); fillFields(); fillEquipoComboBox(); repaint();});
         fillEquipoComboBox();
 
+        delButton.addActionListener((e) -> {delButtonAction();});
         okButton.addActionListener((e) -> modifyTeam(equipo));
 
         updateLang();
@@ -42,7 +43,13 @@ public class TeamModificationPanel extends JPanel {
         add(equipoComboBox);
         add(form);
         add(okButton);
+        add(delButton);
 
+    }
+
+    private void delButtonAction() {
+        Teams.getInstance().getTeams().remove((Team) equipoComboBox.getSelectedItem());
+        JOptionPane.showMessageDialog(this, LangHandler.getInstance().getProperty("operacionCompletada"));
     }
 
     private void fillFields() {
@@ -68,14 +75,8 @@ public class TeamModificationPanel extends JPanel {
 
     public void updateLang() {
         okButton.setText(LangHandler.getInstance().getProperty("ok"));
+        delButton.setText(LangHandler.getInstance().getProperty("del"));
         form.updateLang();
-    }
-
-    public static TeamModificationPanel getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new TeamModificationPanel();
-        }
-        return INSTANCE;
     }
 
 }

@@ -14,13 +14,11 @@ import view.form.TeamFormPanel;
 
 public class TeamQueryPanel extends JPanel {
 
-    private static TeamQueryPanel INSTANCE = null;
-
     private static Border border = BorderFactory.createLineBorder(Color.BLACK);
     private JComboBox<Team> equipoComboBox = new JComboBox<Team>();
     private TeamFormPanel form = new TeamFormPanel();
     
-    private TeamQueryPanel() {
+    public TeamQueryPanel() {
         
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(border);
@@ -46,13 +44,6 @@ public class TeamQueryPanel extends JPanel {
         for (Team e: Controller.getTeams()) {
             equipoComboBox.addItem(e);
         }
-    }
-
-    public static TeamQueryPanel getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new TeamQueryPanel();
-        }
-        return INSTANCE;
     }
 
 }

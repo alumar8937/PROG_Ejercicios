@@ -1,6 +1,9 @@
 operacionCompletada=Operation completed successfully.
 error=Error, try again.
+errorData=There was an error while loading the data.
 ok=Ok
+del=Delete
+save=Save Data
 equipo=Team:
 demarcacion=Position:
 nombre=Name:
